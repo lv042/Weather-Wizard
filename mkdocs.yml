@@ -14,7 +14,7 @@ theme:
     accent: indigo
   font:
     # See available fonts at https://fonts.google.com/
-    text: Arial
+    text: Raleway
     code: Ubuntu Mono  
   logo: images/iot_car.svg
   favicon: images/iot_car.svg
