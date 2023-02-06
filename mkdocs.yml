@@ -1,7 +1,7 @@
 # Replace the text below to customize your site
-site_name: Internet of Things Documentation Page
-site_description: Documentation for <insert student name>
-site_author: <insert student name>
+site_name: IOT Documentation Page of Luca von Kannen
+site_description: Documentation for Luca von Kannen
+site_author: Luca von Kannen
 copyright: Copyright 2022 <insert student name> - Creative Commons Attribution Non Commercial
 
 site_url: https://localhost:8000/
@@ -10,8 +10,8 @@ theme:
   name: material
   palette:
     # try other colors https://squidfunk.github.io/mkdocs-material/getting-started/#primary-colors
-    primary: light blue
-    accent: indigo
+    primary: deep purple
+    accent: red
   font:
     # See available fonts at https://fonts.google.com/
     text: Raleway
