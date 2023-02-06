@@ -9,7 +9,6 @@
   - [Built With](#built-with)
   - [Usage](#usage)
   - [Code Examples](#code-examples)
-- [Example code snippet](#example-code-snippet)
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -35,3 +34,4 @@ Instructions on how to use the project.
 ```python
 # Example code snippet
 print("Hello, World!")
+```
