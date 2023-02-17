@@ -34,6 +34,7 @@ nav:
       - 'API Documentation' : 'api_documentation.md'
     - 'User Interaction' : 'user_interaction.md'
     - 'Physical Design' : 'physical_design.md'
+    - 'Project Structure' : 'structure.md'
 
 plugins:
   - search
