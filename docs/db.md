@@ -1,4 +1,3 @@
-//maybe rename the page to backend.md
 
 # __Database__
 ## __Structure__
