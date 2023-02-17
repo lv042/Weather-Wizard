@@ -24,16 +24,22 @@
 
 ## Conclusion
 
-## Failures
+# Failures
 
-!!! Failure
-    Failure 1
+### First draft and expermenting with 3D-printing
 
-!!! Failure
-    Failure 2
+This is the first draft of the enclosure. It is made of 15mm thick ABS plastic and is printed on a Ultimaker 3D printer. It was designed with TinkerCAD. 
+![Example Screenshot](docs/../images/expirement.png)
+![Example Screenshot](docs/../images/draft1.jpeg)
+![Example Screenshot](docs/../images/draft2.jpeg)
 
-!!! Failure
-    Failure 3
 
-!!! Failure
-    Failure 4
+
+
+- ### First draft and expermenting with 3D-printing
+
+
+- ### First draft and expermenting with 3D-printing
+
+
+- ### First draft and expermenting with 3D-printing
