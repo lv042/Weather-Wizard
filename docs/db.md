@@ -35,7 +35,7 @@ __This is a 1:1 relationship between data table and weather/energy table. Could 
 //Because appearntly MySQL Workbench is very buggy and old, I can't change some of the column's datatypes
 
 
-## __Rebuild script__
+## __ReBuild script__
 
 ```sql
 
@@ -80,6 +80,22 @@ ENGINE = InnoDB
 
 
 ```
+
+1. First connect to your machine and select the database you want to use. 
+Execute the SQL script by typing the following command:
+
+``` bash
+source /path/to/your/file/create_tables.sql;
+```
+
+
+2. After executing the script, you can check that the tables were created successfully by typing the following command:
+
+```sql
+SHOW TABLES;
+```
+
+3. You should see three tables: data, energy_data, and weather_data.
 
 ## __Insert script__
 
