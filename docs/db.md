@@ -1,7 +1,7 @@
 //maybe rename the page to backend.md
 
-# Database
-## Structure
+# __Database__
+## __Structure__
 
 ### __Table: data__
 - __timestamp__ (integer, primary key): unique identifier for each record</br>
@@ -31,17 +31,13 @@
 ### __ER diagram__
 
 ![Screenshot](docs/../images/er_diagram.png)
-//Because appearntly MySQL Workbench is very buggy and old, I can't change some of the column's datatype
-__
+__This is a 1:1 relationship between data table and weather/energy table. Could also be summarized in only one table, but in my opinion it is better structured this way__
+//Because appearntly MySQL Workbench is very buggy and old, I can't change some of the column's datatypes
+
+
 ## __Rebuild script__
 
 ```sql
-
-DROP DATABASE IF EXISTS `mydb`;
-
-CREATE DATABASE IF NOT EXISTS `mydb`;
-
-USE `mydb`;
 
 DROP TABLE IF EXISTS `data`;
 DROP TABLE IF EXISTS `energy_data`;
@@ -51,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`data` (
   `timestamp` DATE NOT NULL,
   `energy_data_id` INT NOT NULL,
   `weather_data_id` INT NOT NULL,
-  PRIMARY KEY (`timestamp`),
+  PRIMARY KEY (`timestamp`, `energy_data_id`, `weather_data_id`),
   INDEX `fk_data_energy_data_idx` (`energy_data_id` ASC) VISIBLE,
   INDEX `fk_data_weather_data1_idx` (`weather_data_id` ASC) VISIBLE,
   CONSTRAINT `fk_data_energy_data`
@@ -63,27 +59,25 @@ CREATE TABLE IF NOT EXISTS `mydb`.`data` (
     FOREIGN KEY (`weather_data_id`)
     REFERENCES `mydb`.`weather_data` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-);
+    ON UPDATE NO ACTION)
 
 CREATE TABLE IF NOT EXISTS `mydb`.`energy_data` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `battery_level` FLOAT NOT NULL,
   `solar_panel_voltage` FLOAT NOT NULL,
-  PRIMARY KEY (`id`)
-);
+  PRIMARY KEY (`id`))
 
 CREATE TABLE IF NOT EXISTS `mydb`.`weather_data` (
   `id` INT NOT NULL,
   `temperature` FLOAT NOT NULL,
   `humidity` FLOAT NOT NULL,
   `pressure` FLOAT NOT NULL,
-  `obstacle_detected` TINYINT NOT NULL,
-  `light_intensity` FLOAT NULL,
-  PRIMARY KEY (`id`, `obstacle_detected`)
-);
+  `obstacle_detected` BOOLEAN NOT NULL,
+  `light_intensity` FLOAT NOT NULL,
+  PRIMARY KEY (`id`))
+  
+ENGINE = InnoDB
 
-ENGINE = InnoDB;
 
 ```
 
