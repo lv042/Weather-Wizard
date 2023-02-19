@@ -1,37 +1,24 @@
-# Pet Tracker
+# WeatherWizard
 
-## Table of Contents
-- [Pet Tracker](#pet-tracker)
-  - [Table of Contents](#table-of-contents)
-  - [Getting Started](#getting-started)
-  - [Features](#features)
-  - [Screenshots](#screenshots)
-  - [Built With](#built-with)
-  - [Usage](#usage)
-  - [Code Examples](#code-examples)
+WeatherWizard is an Internet of Things (IoT) project that collects and analyzes weather data in real-time. The project is designed to provide users with accurate and up-to-date weather information, as well as insights into climate trends over time.
 
-## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-## Features
-| Feature | Description |
-| --- | --- |
-| Feature 1 | Description of feature 1 |
-| Feature 2 | Description of feature 2 |
-| Feature 3 | Description of feature 3 |
+# Features
+- blablablaba
+- blabalbal 
+- blabalbalba
+  
+# Getting Started
+Clone the WeatherWizard repository and to and follow the instructions below to get started.
 
-## Screenshots
-![Example Screenshot](docs/../images/shrek.jpeg)
+1. asdf
+2. asdf
+3. asdf
+4. asdf
+5. asdf
 
-## Built With
-- [Technology 1](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
-- [Technology 2](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+Clone the WeatherWizard repository and to and follow the instructions below to get started.
 
-## Usage
-Instructions on how to use the project.
 
-## Code Examples
-```python
-# Example code snippet
-print("Hello, World!")
-```
+# License
+WeatherWizard is released under the MIT License.
