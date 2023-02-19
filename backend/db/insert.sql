@@ -1,17 +1,15 @@
-INSERT INTO `mydb`.`energy_data` (`id`, `battery_level`, `solar_panel_voltage`)
-VALUES (1, 50.2, 12.5),
-       (2, 45.8, 11.9),
-       (3, 48.6, 13.2),
-       (4, 51.1, 14.5);
+-- Insert sample data for energy_data
+INSERT INTO ws.energy_data (id, battery_level, solar_panel_voltage)
+VALUES (1, 12.5, 3.2), (2, 11.1, 4.0), (3, 13.2, 2.7);
 
-INSERT INTO `mydb`.`weather_data` (`id`, `temperature`, `humidity`, `pressure`, `obstacle_detected`, `light_intensity`)
-VALUES (1, 24.5, 56.8, 1013.2, 0, 120),
-       (2, 23.1, 55.2, 1012.8, 1, 95),
-       (3, 25.8, 57.5, 1014.1, 0, 130),
-       (4, 22.6, 53.7, 1012.4, 0, 115);
+-- Insert sample data for weather_data
+INSERT INTO ws.weather_data (id, temperature, humidity, pressure, obstacle_detected, light_intensity)
+VALUES (1, 25.5, 65.0, 1013.25, true, 200.0),
+       (2, 23.0, 70.0, 1012.50, false, 150.0),
+       (3, 26.5, 60.0, 1014.00, true, 220.0);
 
-INSERT INTO `mydb`.`data` (`timestamp`, `energy_data_id`, `weather_data_id`)
-VALUES ('2023-02-16', 1, 2),
-       ('2023-02-16', 3, 1),
-       ('2023-02-17', 2, 4),
-       ('2023-02-17', 4, 3);
+-- Insert sample data for data
+INSERT INTO ws.data (timestamp, energy_data_id, weather_data_id)
+VALUES ('2022-02-22 10:00:00', 1, 1),
+       ('2022-02-23 12:00:00', 2, 2),
+       ('2022-02-24 14:00:00', 3, 3);

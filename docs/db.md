@@ -39,44 +39,35 @@ __This is a 1:1 relationship between data table and weather/energy table. Could 
 
 ```sql
 
-DROP TABLE IF EXISTS `data`;
-DROP TABLE IF EXISTS `energy_data`;
-DROP TABLE IF EXISTS `weather_data`;
+DROP TABLE IF EXISTS `WS`.`data`;
+DROP TABLE IF EXISTS `WS`.`energy_data`;
+DROP TABLE IF EXISTS `WS`.`weather_data`;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`data` (
-  `timestamp` DATE NOT NULL,
-  `energy_data_id` INT NOT NULL,
-  `weather_data_id` INT NOT NULL,
-  PRIMARY KEY (`timestamp`, `energy_data_id`, `weather_data_id`),
-  INDEX `fk_data_energy_data_idx` (`energy_data_id` ASC) VISIBLE,
-  INDEX `fk_data_weather_data1_idx` (`weather_data_id` ASC) VISIBLE,
-  CONSTRAINT `fk_data_energy_data`
-    FOREIGN KEY (`energy_data_id`)
-    REFERENCES `mydb`.`energy_data` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_data_weather_data1`
-    FOREIGN KEY (`weather_data_id`)
-    REFERENCES `mydb`.`weather_data` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+CREATE TABLE IF NOT EXISTS `ws`.`energy_data`(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `battery_level` FLOAT NOT NULL,
+    `solar_panel_voltage` FLOAT NOT NULL,
+    PRIMARY KEY(`id`)
+); 
 
-CREATE TABLE IF NOT EXISTS `mydb`.`energy_data` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `battery_level` FLOAT NOT NULL,
-  `solar_panel_voltage` FLOAT NOT NULL,
-  PRIMARY KEY (`id`))
+CREATE TABLE IF NOT EXISTS `ws`.`weather_data`(
+    `id` INT NOT NULL,
+    `temperature` FLOAT NOT NULL,
+    `humidity` FLOAT NOT NULL,
+    `pressure` FLOAT NOT NULL,
+    `obstacle_detected` BOOLEAN NOT NULL,
+    `light_intensity` FLOAT NOT NULL,
+    PRIMARY KEY(`id`)
+);
 
-CREATE TABLE IF NOT EXISTS `mydb`.`weather_data` (
-  `id` INT NOT NULL,
-  `temperature` FLOAT NOT NULL,
-  `humidity` FLOAT NOT NULL,
-  `pressure` FLOAT NOT NULL,
-  `obstacle_detected` BOOLEAN NOT NULL,
-  `light_intensity` FLOAT NOT NULL,
-  PRIMARY KEY (`id`))
-  
-ENGINE = InnoDB
+CREATE TABLE IF NOT EXISTS `ws`.`data`(
+    `timestamp` DATE NOT NULL,
+    `energy_data_id` INT NOT NULL,
+    `weather_data_id` INT NOT NULL,
+    PRIMARY KEY(`timestamp`),
+    FOREIGN KEY (energy_data_id) REFERENCES `ws`.`energy_data`(id),
+    FOREIGN KEY (weather_data_id) REFERENCES `ws`.`weather_data`(id)
+);
 
 
 ```
@@ -99,25 +90,25 @@ SHOW TABLES;
 
 ## __Insert script__
 
+To add some data to the tables, you can use the following script:
+
 ```sql
 
-INSERT INTO `mydb`.`energy_data` (`id`, `battery_level`, `solar_panel_voltage`)
-VALUES (1, 50.2, 12.5),
-       (2, 45.8, 11.9),
-       (3, 48.6, 13.2),
-       (4, 51.1, 14.5);
+-- Insert sample data for energy_data
+INSERT INTO ws.energy_data (id, battery_level, solar_panel_voltage)
+VALUES (1, 12.5, 3.2), (2, 11.1, 4.0), (3, 13.2, 2.7);
 
-INSERT INTO `mydb`.`weather_data` (`id`, `temperature`, `humidity`, `pressure`, `obstacle_detected`, `light_intensity`)
-VALUES (1, 24.5, 56.8, 1013.2, 0, 120),
-       (2, 23.1, 55.2, 1012.8, 1, 95),
-       (3, 25.8, 57.5, 1014.1, 0, 130),
-       (4, 22.6, 53.7, 1012.4, 0, 115);
+-- Insert sample data for weather_data
+INSERT INTO ws.weather_data (id, temperature, humidity, pressure, obstacle_detected, light_intensity)
+VALUES (1, 25.5, 65.0, 1013.25, true, 200.0),
+       (2, 23.0, 70.0, 1012.50, false, 150.0),
+       (3, 26.5, 60.0, 1014.00, true, 220.0);
 
-INSERT INTO `mydb`.`data` (`timestamp`, `energy_data_id`, `weather_data_id`)
-VALUES ('2023-02-16', 1, 2),
-       ('2023-02-16', 3, 1),
-       ('2023-02-17', 2, 4),
-       ('2023-02-17', 4, 3);
+-- Insert sample data for data
+INSERT INTO ws.data (timestamp, energy_data_id, weather_data_id)
+VALUES ('2022-02-22 10:00:00', 1, 1),
+       ('2022-02-23 12:00:00', 2, 2),
+       ('2022-02-24 14:00:00', 3, 3);
 
 ```
 
