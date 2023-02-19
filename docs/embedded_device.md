@@ -34,7 +34,22 @@
 - At night or when there is little sunlight, the battery supplies power to the weather station via the charge controller.
 
 
+## Information for myself
 
+Der Wemos Lolin D1 ist ein kleines, kostengünstiges Entwicklungsboard, das mit der Arduino IDE kompatibel ist und für die Entwicklung von Internet of Things (IoT)-Projekten konzipiert wurde. Das Board basiert auf dem ESP8266-Mikrocontroller und bietet eine Reihe von Konnektivitätsoptionen, einschließlich Wi-Fi und Bluetooth.
+
+Hier ist ein kurzer Überblick über einige wichtige Pins auf dem Wemos Lolin D1:
+
+TX/RX: Dies sind die Pins, die für die serielle Kommunikation verwendet werden. TX steht für Senden und RX steht für Empfangen.
+SCL/SDA: Dies sind die Pins für die I2C-Kommunikation, ein Zweidraht-Kommunikationsprotokoll, das zum Anschluss mehrerer Geräte an einen einzigen Mikrocontroller verwendet wird.
+GND: Dieser Pin ist die Masseverbindung für die Platine und wird zum Abschließen elektrischer Schaltungen verwendet.
+VBUS: Dieser Pin wird zur Stromversorgung externer Geräte verwendet, die an die Platine angeschlossen sind.
+RST: Dieser Pin wird zum Zurücksetzen der Platine verwendet.
+Ruhezustand: Dieser Pin wird verwendet, um die Karte in den Sleep-Modus zu versetzen, einen Energiesparmodus, der zur Verlängerung der Batterielebensdauer nützlich sein kann.
+SCK/MISO/MOSI/SS: Diese Pins werden für die SPI-Kommunikation verwendet, ein Vier-Draht-Kommunikationsprotokoll, mit dem mehrere Geräte an einen einzigen Mikrocontroller angeschlossen werden können. SCK steht für den seriellen Takt, MISO steht für Master-Input-Slave-Output, MOSI steht für Master-Output-Slave-Input und SS steht für Slave Select.
+3v3: Dieser Pin ist die 3,3-V-Stromversorgung für die Platine und wird zur Versorgung externer Geräte verwendet, die an die Platine angeschlossen sind.
+
+Übersetzt mit www.DeepL.com/Translator (kostenlose Version)
 
 
 

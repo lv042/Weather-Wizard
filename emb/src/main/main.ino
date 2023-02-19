@@ -36,7 +36,7 @@ void setup() {
 
 void loop() {
   displayChargedBattery();
-
+  easteregg();
 
   delay(1000000); //so it only runs once
 }

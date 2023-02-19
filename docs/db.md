@@ -14,7 +14,7 @@
 - __humidity__ (float): measured relative humidity in percentage</br>
 - __light_intensity__ (float): measured light intensity in Lux</br>
 - __pressure__ (float): measured barometric pressure</br>
-- __obstacle_detected__ (boolean): whether an obstacle was detected by the obstacle avoidance sensor</br>
+- __obstacle_detected__ (boolean): Can be used to see if the weather station is covered</br>
 
   
 ---
