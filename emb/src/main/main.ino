@@ -24,9 +24,9 @@
 
 // the setup function runs once when you press reset or power the board
 
-int speaker = 13;
-int led_red = 12;
-int led_green = 11;
+int speaker = 5;
+int led_red = 0;
+int led_green = 4;
 
 void setup() {
   pinMode(led_red, OUTPUT); // set pin D4 as output
@@ -35,10 +35,10 @@ void setup() {
 }
 
 void loop() {
-  displayChargedBattery();
   easteregg();
+  displayLowBattery();
+  
 
-  delay(1000000); //so it only runs once
 }
 
 
