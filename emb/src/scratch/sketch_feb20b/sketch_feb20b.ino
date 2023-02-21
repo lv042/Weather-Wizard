@@ -20,10 +20,11 @@ int lcdColumns = 16;
 int lcdRows = 2;
 float h = 0;
 float t = 0;
-int redpin = 11; // select the pin for the red LED
-int bluepin =10; // select the pin for the  blue LED
-int greenpin =9; // select the pin for the green LED
-int val;
+int led = 15;
+int sensorPin = A0; 
+int value = 0; 
+
+
 
 // set LCD address, number of columns and rows
 // if you don't know your display address, run an I2C scanner sketch
@@ -41,10 +42,14 @@ void setup(){
   Serial.println("KY-015 test - temperature and humidity test:");
   // Measurement is started
   dht.begin();
-  
+  pinMode(led, OUTPUT);
+
 }
 
 void loop(){
+    digitalWrite(led, HIGH);
+    
+
   // set cursor to first column, first row
   lcd.setCursor(0, 0);
   lcd.setBacklight(HIGH);
@@ -94,7 +99,10 @@ void loop(){
   Serial.print(char(186)); //Output <°> symbol
   Serial.println("C ");
   Serial.println("-----------------------------------------------------------");
-  Serial.println(" ");
+  value = analogRead(sensorPin); 
+	Serial.println(value, DEC);
+  Serial.println("-----------------------------------------------------------");
+
   lcd.clear(); 
 
 }
