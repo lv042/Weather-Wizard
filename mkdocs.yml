@@ -1,8 +1,8 @@
 # Replace the text below to customize your site
-site_name: IOT Documentation Page of Luca von Kannen
-site_description: Documentation for Luca von Kannen
+site_name: IOT Minor Documentation by Luca von Kannen
+site_description: IOT Minor Documentation by Luca von Kannen
 site_author: Luca von Kannen
-copyright: Copyright 2022 <insert student name> - Creative Commons Attribution Non Commercial
+copyright: Copyright 2022 Luca von Kannen - Creative Commons Attribution Non Commercial
 
 site_url: https://localhost:8000/
   
@@ -35,6 +35,8 @@ nav:
       - 'API Documentation' : 'api_documentation.md'
     - 'User Interaction' : 'user_interaction.md'
     - 'Physical Design' : 'physical_design.md'
+    - 'Testing' : 'testing.md'
+    - 'Business and Trends Assignments' : 'bt.md'
 
 plugins:
   - search
