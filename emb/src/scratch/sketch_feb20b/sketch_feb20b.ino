@@ -42,6 +42,7 @@ void setup(){
   Serial.println("KY-015 test - temperature and humidity test:");
   // Measurement is started
   dht.begin();
+  delay(2000);
   pinMode(led, OUTPUT);
 
 }
@@ -100,7 +101,8 @@ void loop(){
   Serial.println("C ");
   Serial.println("-----------------------------------------------------------");
   value = analogRead(sensorPin); 
-	Serial.println(value, DEC);
+  Serial.print("Light intensity: ");
+	Serial.println( value, DEC);
   Serial.println("-----------------------------------------------------------");
 
   lcd.clear(); 

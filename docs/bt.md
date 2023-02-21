@@ -8,23 +8,19 @@ Much of history revolves around this question: how does one convince millions of
  
 
 ### __Explain this statement. (50 words)__
-<br>
+
 
 The statement highlights how beliefs in gods, nations, corporations and technology shape history and how these beliefs are spread through compelling stories that are accepted by large numbers of people.
  
-<br>
+
 
 ### __What does this tell you about the evolution of human culture (50 words)__
 
-<br>
-
-Der Artikel hebt hervor, wie Erzählungen, auch über IoT und Klimawandel, die Überzeugungen und Handlungen der Menschen beeinflussen. Narrative prägen die Geschichte, und Technologie hat die Macht, den Klimawandel zu bekämpfen.
 
 
 It shows the importance of shared beliefs and stories in the development of human culture and history. The ability to persuade large groups of people to accept certain ideas has enabled the development of societies, religions and technologies, with the power of these ideas shaping the course of history.
 
-<br>
-<br>
+
 
 ---
 ## __Assignment Workshop 2__
@@ -39,18 +35,18 @@ IoT platforms have shown recently how they can help us in staying connected to n
 
 ### __Find an article on how IoT could come up with a solution (one is enough) for the problem of climate change and write a summary (100 words)__
 
-<br>
+
 Based on the german article(https://www.magdochjeder.de/blog/digitalfarming/) about smart farmings impact on climate change.
 
 
-<br>
+
 Agriculture is highly affected by climate change and the use of digital technologies, known as smart farming, has been introduced to address these challenges. Smart farming involves the implementation of digital technologies such as sensors, big data analysis and ai to enable precise and sustainable farming. This approach has the potential to contribute to climate change mitigation, e.g. through reduced pesticide use, optimised crop growth and animal welfare monitoring. Examples of digital technologies in agriculture include warning apps, drone analysis, smart livestock monitoring systems and field robots. The farming industry is expected to become increasingly digital in the future.
 
-<br>
+
 
 
 ### __How do your findings fit in with the assignment of week 1 dealing with narratives. (30 words)__
-<br>
+
 
 Der Artikel hebt hervor, wie Erzählungen, auch über IoT und Klimawandel, die Überzeugungen und Handlungen der Menschen beeinflussen. Narrative prägen die Geschichte, und Technologie hat die Macht, den Klimawandel zu bekämpfen.
 
