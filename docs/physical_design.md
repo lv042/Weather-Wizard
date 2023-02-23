@@ -40,7 +40,7 @@ The user of the WeatherWizard can be anyone who is interested in monitoring and 
 
 - Aesthetics: The enclosure should be designed to be aesthetically pleasing to ensure that the WeatherWizard is not an eyesore.
 
-![Screenshot](docs/../images/%20pd-draft.png)
+![Screenshot](docs/../images/drawing.png)
 
 The design is seperated in two floors the first floor is for the main hardware and the second is for the sensors. The reason for that is that some of the sensors need ventilation to make more accurate messearments.
 
