@@ -50,8 +50,7 @@ SCK/MISO/MOSI/SS: Diese Pins werden für die SPI-Kommunikation verwendet, ein Vi
 3v3: Dieser Pin ist die 3,3-V-Stromversorgung für die Platine und wird zur Versorgung externer Geräte verwendet, die an die Platine angeschlossen sind.
 
 
-## Timeline
-- On the 20. February I tried to connect the DHT and the display -> I got the DHT working after some time but the display didn't work. I tried to connect the display to the D1 mini and the Arduino Uno but it didn't work. One of the tutors said its broken.
+
 
 ## Wiring diagram
 
