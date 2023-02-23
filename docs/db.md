@@ -33,19 +33,18 @@
 ## __ReBuild script__
 
 ```sql
-
 DROP TABLE IF EXISTS `WS`.`energy_data`;
 DROP TABLE IF EXISTS `WS`.`weather_data`;
 
 CREATE TABLE IF NOT EXISTS `ws`.`energy_data`(
-    `timestamp` INT NOT NULL,
+    `timestamp` DATE NOT NULL,
     `battery_level` FLOAT NOT NULL,
     `solar_panel_voltage` FLOAT NOT NULL,
     PRIMARY KEY(`timestamp`)
 ); 
 
 CREATE TABLE IF NOT EXISTS `ws`.`weather_data`(
-    `timestamp` INT NOT NULL,
+    `timestamp` DATE NOT NULL,
     `temperature` FLOAT NOT NULL,
     `humidity` FLOAT NOT NULL,
     `pressure` FLOAT NOT NULL,
@@ -53,10 +52,6 @@ CREATE TABLE IF NOT EXISTS `ws`.`weather_data`(
     `light_intensity` FLOAT NOT NULL,
     PRIMARY KEY(`timestamp`)
 );
-
-
-
-
 ```
 
 __1:__ First connect to your machine and select the database you want to use. 
@@ -80,20 +75,17 @@ __3.__ You should see three tables: data, energy_data, and weather_data.
 To add some data to the tables, you can use the following script:
 
 ```sql
+INSERT INTO `ws`.`energy_data` (`timestamp`, `battery_level`, `solar_panel_voltage`) 
+VALUES ('2022-02-01', 0.85, 14.2),
+       ('2022-02-02', 0.87, 12.8),
+       ('2022-02-03', 0.89, 11.5),
+       ('2022-02-04', 0.90, 10.2);
 
-
--- Insert sample data for weather_data
-INSERT INTO ws.weather_data (id, temperature, humidity, pressure, obstacle_detected, light_intensity)
-VALUES (1, 25.5, 65.0, 1013.25, true, 200.0),
-       (2, 23.0, 70.0, 1012.50, false, 150.0),
-       (3, 26.5, 60.0, 1014.00, true, 220.0);
-
--- Insert sample data for data
-INSERT INTO ws.data (timestamp, energy_data_id, weather_data_id)
-VALUES ('2022-02-22 10:00:00', 1, 1),
-       ('2022-02-23 12:00:00', 2, 2),
-       ('2022-02-24 14:00:00', 3, 3);
-
+INSERT INTO `ws`.`weather_data` (`timestamp`, `temperature`, `humidity`, `pressure`, `obstacle_detected`, `light_intensity`) 
+VALUES ('2022-02-01', 21.5, 65.2, 1015.7, 0, 1024.8),
+       ('2022-02-02', 22.1, 61.8, 1016.2, 0, 1025.1),
+       ('2022-02-03', 23.0, 57.4, 1016.4, 1, 1025.5),
+       ('2022-02-04', 23.5, 54.6, 1016.7, 1, 1025.8);
 ```
 
 
