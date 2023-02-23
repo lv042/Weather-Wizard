@@ -49,7 +49,7 @@ The design is seperated in two floors the first floor is for the main hardware a
 
 ## The chosen device
 
-3D printing is a manufacturing process in which a digital 3D model is converted into a physical object layer by layer using a 3D printer. To do this, the printer uses different materials, such as plastics or metals, which are applied layer by layer and fused together. 
+3D printing is a process in which a digital 3D model is converted into a physical object layer by layer using a 3D printer. To do this, the printer uses different materials, such as plastics or metals, which are applied layer by layer and fused together. 
 
 ## The chosen material
 
@@ -65,6 +65,7 @@ For the enclosure of the weather station, ABS (Acrylonitrile Butadiene Styrene).
 
 - Durability: 3D printing allows for the production of durable parts that can withstand the elements and last for a long time.
 
+# DIGITAL DESIGN	
 
 ## Choosen software
 
