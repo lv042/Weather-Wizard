@@ -4,5 +4,7 @@
 - On the 21. February, I successfully all sensors I want to use to the Wemos(DHT11, Phtoresistor, LCD-Display and red led to display some useful information). All sensors are working, but I have to change the code to connect them to my backend.
 ![Screenshot](docs/../images/input.png)
 
-- On the 22. February
+- On the 22. February, I connected the wemos to the wifi manager, restructed the database once again and made a concept for the physical design of the weather station. I also started to work on the backend and the frontend.
+![Screenshot](docs/../images/%20pd-draft.png)
+
 

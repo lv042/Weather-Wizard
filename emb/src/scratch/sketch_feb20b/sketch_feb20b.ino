@@ -172,7 +172,6 @@ void setupWifi() {
       Serial.println("Connected...");
       Serial.println(WiFi.localIP());
       digitalWrite(LED_BUILTIN, LOW);
-
   }
 }
 
