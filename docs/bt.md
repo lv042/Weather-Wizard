@@ -62,7 +62,15 @@ Its cultural approach emphasizes the political and economic importance of the ch
 
  
 
-•       Why has the globalization narrative become a globally contested issue? 
+### __Why has the globalization narrative become a globally contested issue?##__
+
+Globalization has become a hotly debated issue around the world for a few reasons. One of the biggest concerns is economic inequality, as the spread of globalization has contributed to a widening gap between the rich and poor. While some regions have seen economic growth and development, others have been left behind, leading to concerns about the distribution of wealth and the effects of globalization on workers and local communities.
+
+Another concern is the impact of globalization on cultural identity. The spread of global trade and ideas has led to the loss of traditional cultural practices and a fear of cultural homogenization. This has led to pushback against globalization, particularly in regions where cultural identity is strongly tied to history and tradition.
+
+Environmental impact is also a major concern. The spread of global trade and production has led to increased pollution and climate change, which has led to growing concerns about sustainability and the long-term impact of globalization on the planet.
+
+Finally, there are concerns about the impact of globalization on political power and governance. Some argue that globalization has contributed to the rise of a global elite that is disconnected from the needs and interests of ordinary citizens, while others argue that globalization has helped to advance human rights and democratic ideals.
 
 •       Why do competing conceptions of 'world order' have political and economic consequences.
 
