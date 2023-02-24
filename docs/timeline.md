@@ -8,3 +8,4 @@
 ![Screenshot](docs/../images/%20pd-draft.png)
 
 
+- On the 23. February, I started to work on the backend and the frontend. Since I have no experince with PHP, I had to learn it first. I also started to work on the frontend. 
