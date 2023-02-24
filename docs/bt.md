@@ -64,21 +64,33 @@ Its cultural approach emphasizes the political and economic importance of the ch
 
 ### __Why has the globalization narrative become a globally contested issue?##__
 
-Globalization has become a hotly debated issue around the world for a few reasons. One of the biggest concerns is economic inequality, as the spread of globalization has contributed to a widening gap between the rich and poor. While some regions have seen economic growth and development, others have been left behind, leading to concerns about the distribution of wealth and the effects of globalization on workers and local communities.
+Globalization is a strittig issue for several reasons. One significant concern is economic inequality, as globalization has led to an increase in economic inequality within and between countries. Additionally, the impact of globalization on cultural identity is a concern, as traditional practices are disappearing and people worry about cultural homogenization. Environmental impact is also a major worry, as global trade and production have led to climate change and environmental degradation. Concerns have also been raised about the impact of globalization on political power and governance, with some arguing that it has contributed to the rise of a global elite that is disconnected from the needs of ordinary citizens. Overall, the impact of globalization is a complex issue, and it is important to continue to consider both the benefits and drawbacks while finding ways to address the negative effects.
 
-Another concern is the impact of globalization on cultural identity. The spread of global trade and ideas has led to the loss of traditional cultural practices and a fear of cultural homogenization. This has led to pushback against globalization, particularly in regions where cultural identity is strongly tied to history and tradition.
 
-Environmental impact is also a major concern. The spread of global trade and production has led to increased pollution and climate change, which has led to growing concerns about sustainability and the long-term impact of globalization on the planet.
+### __Why do competing conceptions of 'world order' have political and economic consequences__
 
-Finally, there are concerns about the impact of globalization on political power and governance. Some argue that globalization has contributed to the rise of a global elite that is disconnected from the needs and interests of ordinary citizens, while others argue that globalization has helped to advance human rights and democratic ideals.
+Basically, when different countries have different ideas about how the world should work, it can lead to some pretty big political and economic consequences. For example, some countries might want to trade with everyone and let the market decide, while others might want to protect their own industries and put up blocks to imports. This can have a major impact on international trade and the global economy.
 
-•       Why do competing conceptions of 'world order' have political and economic consequences.
+Different ideas about world order can also affect which countries work together and which don't. Some countries might only want to partner with other nations that share their values, while others might be more interested in forming alliances based on power or resources. This can have a big impact on diplomacy and global relations.
 
-•       Could you give some examples?
+Resource allocation is another topic where different ideas about world order can have dramatic consequences. Some countries might believe in sharing resources more equally while others might want to keep as much as they can for themselves. This can have a big impact on support and development programs, as well as the allocation of natural resources like oil and various minerals.
 
-Imagine for a moment that you run a business that produces the product you have in mind for the Internet of Things.
+All of this stuff can have a nig impact on people and societies around the world. The way that different countries approach world order can affect everything from trade and resource allocation to political alliances and diplomatic relationships.
 
-•       How would globalisation impact your company?
+### __Could you give some examples?__
+
+- The US and China have dividing ideas about how the world should be. The US likes topics like democracy, open markets, and working together with other countries. China, on the other hand, wants to focus more on its own power and development, and not let other countries interfere in its business. These differences have led to some problems between the two countries, especially with things like trade, technology, and who gets to be the big boss in the world. In addition, China is critical of the U.S.'s support of Taiwan.
+
+- The Middle East is another great example of how religion has political and economic consequences. Many people believe religion should have an important part in the government, while others believe it should be kept separate. Some governments try to seek complete control over everything, while others want individuals to have greater voice. These disparities may lead to a lot of stress and conflict between countries, making it difficult to collaborate in between a country and with other nations.
+
+
+### __Imagine for a moment that you run a business that produces the product you have in mind for the Internet of Things.__
+
+- If I owned a business that made a IOT product, globalisation would definitely affect us. On the one hand, we might be able to reach a lot more customers and markets around the world, which could be really great for business. We could work with partners and suppliers from different parts of the world, and maybe even set up factories in different countries to save on costs.
+
+On the other hand, globalisation could also make things more complicated for us. We might have to deal with different rules and regulations in different countries, which could be a real headache. We might also have to compete with companies from all over the world, which could be tough to manage. And if there were any global economic problems, like a recession, that could really hurt our business.
+
+One thing we'd have to think about is how to balance all the different factors involved in globalisation. We'd need to figure out the best way to reach new markets while also dealing with all the challenges that come with it. It wouldn't be easy, but it could be really rewarding if we got it right.
 
 ---
 ## Workshop 4 Access China
