@@ -77,6 +77,7 @@ Resource allocation is another topic where different ideas about world order can
 
 All of this stuff can have a nig impact on people and societies around the world. The way that different countries approach world order can affect everything from trade and resource allocation to political alliances and diplomatic relationships.
 
+
 ### __Could you give some examples?__
 
 - The US and China have dividing ideas about how the world should be. The US likes topics like democracy, open markets, and working together with other countries. China, on the other hand, wants to focus more on its own power and development, and not let other countries interfere in its business. These differences have led to some problems between the two countries, especially with things like trade, technology, and who gets to be the big boss in the world. In addition, China is critical of the U.S.'s support of Taiwan.
