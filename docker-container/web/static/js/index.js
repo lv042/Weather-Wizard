@@ -6,7 +6,9 @@ var trace1 = {
 };
 var data1 = [trace1];
 var layout1 = {
-    title: 'Temperature'
+    title: 'Temperature',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    paper_bgcolor: 'rgba(0,0,0,0)'
 };
 Plotly.newPlot('temperature', data1, layout1);
 
@@ -18,7 +20,9 @@ var trace2 = {
 };
 var data2 = [trace2];
 var layout2 = {
-    title: 'Humidity'
+    title: 'Humidity',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    paper_bgcolor: 'rgba(0,0,0,0)'
 };
 Plotly.newPlot('humidity', data2, layout2);
 
@@ -30,7 +34,9 @@ var trace3 = {
 };
 var data3 = [trace3];
 var layout3 = {
-    title: 'Light Intensity'
+    title: 'Light Intensity',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    paper_bgcolor: 'rgba(0,0,0,0)'
 };
 Plotly.newPlot('light', data3, layout3);
 
@@ -42,7 +48,9 @@ var trace4 = {
 };
 var data4 = [trace4];
 var layout4 = {
-    title: 'Wind Speed'
+    title: 'Wind Speed',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    paper_bgcolor: 'rgba(0,0,0,0)'
 };
 Plotly.newPlot('wind', data4, layout4);
 
@@ -70,3 +78,12 @@ function updateTemperatureGraph() {
 
 // Call the updateTemperatureGraph function every 10 seconds
 setInterval(updateTemperatureGraph, 10000);
+
+// Get the h1 element by its ID
+var header = document.getElementById('name');
+
+// Add a click event listener to the h1 element
+header.addEventListener('click', function() {
+    // Reload the page when the h1 element is clicked
+    location.reload();
+});

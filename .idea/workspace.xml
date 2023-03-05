@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7aca0bdf-46b6-415a-b5b6-a93e7fefbf0f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-container/db.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-container/config/mariadb/aria_log.00000001" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/config/mariadb/aria_log.00000001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-container/config/mariadb/aria_log_control" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/config/mariadb/aria_log_control" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-container/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-container/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-container/web/static/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/web/static/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-container/web/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/web/static/js/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,10 +70,8 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-container: Compose Deployment">
-    <configuration name="rebuild.sql" type="DatabaseScript" editBeforeRun="true" temporary="true">
-      <script-file value="$PROJECT_DIR$/backend/db/rebuild.sql" />
-      <script-mode>FILE</script-mode>
+  <component name="RunManager" selected="Docker.docker-container.nginx: Compose Deployment">
+    <configuration name="index.php (1)" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/docker-container/index.php">
       <method v="2" />
     </configuration>
     <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/docker_container/web/index.php">
@@ -86,21 +91,39 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker_container: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-container.nginx: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
-          <option name="envFilePath" value="" />
-          <option name="sourceFilePath" value="docker_container/docker-compose.yml" />
+          <option name="services">
+            <list>
+              <option value="nginx" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-container/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-container.php: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="php" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-container/docker-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-container.nginx: Compose Deployment" />
+        <item itemvalue="Docker.docker-container.php: Compose Deployment" />
         <item itemvalue="Docker.docker-container: Compose Deployment" />
+        <item itemvalue="PHP Script.index.php (1)" />
         <item itemvalue="PHP Script.index.php" />
-        <item itemvalue="Docker.docker_container: Compose Deployment" />
-        <item itemvalue="Database Script.rebuild.sql" />
       </list>
     </recent_temporary>
   </component>
@@ -120,7 +143,8 @@
       <workItem from="1677441236786" duration="288000" />
       <workItem from="1677515632876" duration="4411000" />
       <workItem from="1677943963508" duration="3532000" />
-      <workItem from="1677947513269" duration="3312000" />
+      <workItem from="1677947513269" duration="6314000" />
+      <workItem from="1677953848084" duration="5177000" />
     </task>
     <servers />
   </component>

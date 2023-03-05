@@ -1,7 +1,8 @@
-html, body {margin: 0; height: 100%; overflow: hidden; padding: 0; font-family: 'Raleway', sans-serif;}
+html, body {margin: 0; padding: 0; font-family: 'Raleway', sans-serif;}
 
 html {
     background-image: url("../images/background.jpg");
+    overflow-x: hidden !important;
 }
 
 #nav{
@@ -15,6 +16,8 @@ html {
     font-size: 2vw;
     margin-top: 1vw;
     margin-left: 1vw;
+    cursor: pointer;
+    display: inline-block;
 }
 
 #graphs {
@@ -26,6 +29,6 @@ html {
 }
 
 .graph {
-    height: 50%;
+    height: available;
     width: 100%;
 }
