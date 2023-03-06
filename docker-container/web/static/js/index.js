@@ -1,12 +1,22 @@
+//some settings for vanta js which is responsible for the cool background
+VANTA.CLOUDS({
+    el: "#main",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 500.00,
+    minWidth: 200.00,
+    speed: 1.00
+})
 
 //Update the temperature graph in the beginning
 updateTemperatureGraph();
 
 var ly_margin = {
-    l: 70,
+    l: 65,
     r: 30,
-    t: 30,
-    b: 30
+    t: 50,
+    b: 50
 }
 
 // Temperature graph
@@ -228,13 +238,3 @@ window.addEventListener('resize', function() {
 
 
 
-//some settings for vanta js which is responsible for the cool background
-VANTA.CLOUDS({
-    el: "#main",
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 500.00,
-    minWidth: 200.00,
-    speed: 1.00
-})
