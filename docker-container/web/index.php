@@ -1,6 +1,8 @@
 <?php
 include 'db.php';
 
+
+
 //set up the database connection
 $db = new Database("mariadb", "root", "7YKyE8R2AhKzswfN", "WS");
 
