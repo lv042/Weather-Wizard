@@ -1,10 +1,11 @@
--- Insert sample data for energy_data
-INSERT INTO ws.energy_data (id, battery_level, solar_panel_voltage)
-VALUES (1, 12.5, 3.2), (2, 11.1, 4.0), (3, 13.2, 2.7);
+INSERT INTO `ws`.`energy_data` (`timestamp`, `battery_level`, `solar_panel_voltage`)
+VALUES ('2022-02-01', 0.85, 14.2),
+       ('2022-02-02', 0.87, 12.8),
+       ('2022-02-03', 0.89, 11.5),
+       ('2022-02-04', 0.90, 10.2);
 
--- Insert sample data for weather_data
-INSERT INTO ws.weather_data (id, temperature, humidity, pressure, obstacle_detected, light_intensity)
-VALUES (1, 25.5, 65.0, 1013.25, true, 200.0),
-       (2, 23.0, 70.0, 1012.50, false, 150.0),
-       (3, 26.5, 60.0, 1014.00, true, 220.0);
-
+INSERT INTO `ws`.`weather_data` (`timestamp`, `temperature`, `humidity`, `pressure`, `obstacle_detected`, `light_intensity`)
+VALUES ('2022-02-01', 21.5, 65.2, 1015.7, 0, 1024.8),
+       ('2022-02-02', 22.1, 61.8, 1016.2, 0, 1025.1),
+       ('2022-02-03', 23.0, 57.4, 1016.4, 1, 1025.5),
+       ('2022-02-04', 23.5, 54.6, 1016.7, 1, 1025.8);
