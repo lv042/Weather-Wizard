@@ -2,6 +2,13 @@
 //Update the temperature graph in the beginning
 updateTemperatureGraph();
 
+var ly_margin = {
+    l: 70,
+    r: 30,
+    t: 30,
+    b: 30
+}
+
 // Temperature graph
 var trace1 = {
     x: [],
@@ -22,12 +29,7 @@ var temp_layout = {
         showline: false,
         gridcolor: 'white'
     },
-    margin: {
-        l: 60,
-        r: 30,
-        t: 30,
-        b: 30
-    },
+    margin: ly_margin,
     plot_bgcolor: 'transparent',
     paper_bgcolor: 'transparent'
 };
@@ -53,12 +55,7 @@ var hum_layout = {
         showline: false,
         gridcolor: 'white'
     },
-    margin: {
-        l: 60,
-        r: 30,
-        t: 30,
-        b: 30
-    },
+    margin: ly_margin,
     plot_bgcolor: 'transparent',
     paper_bgcolor: 'transparent'
 };
@@ -84,12 +81,7 @@ var light_layout = {
         showline: false,
         gridcolor: 'white'
     },
-    margin: {
-        l: 60,
-        r: 30,
-        t: 30,
-        b: 30
-    },
+    margin: ly_margin,
     plot_bgcolor: 'transparent',
     paper_bgcolor: 'transparent'
 };
@@ -114,14 +106,11 @@ var pres_layout = {
     yaxis: {
         title: 'Air Pressure (hPa)',
         showline: false,
-        gridcolor: 'white'
+        gridcolor: 'white',
+        //changes the step size of the y-axis
+        dtick: 1
     },
-    margin: {
-        l: 60,
-        r: 30,
-        t: 30,
-        b: 30
-    },
+    margin: ly_margin,
     plot_bgcolor: 'transparent',
     paper_bgcolor: 'transparent'
 };
@@ -145,6 +134,7 @@ function updateTemperatureGraph() {
             var light = [];
             var pressure = [];
             for (var i = 0; i < jsonData.length; i++) {
+
                 //Adds the data to the arrays
                 timestamps.push(new Date(jsonData[i].timestamp));
                 temperatures.push(jsonData[i].temperature);
