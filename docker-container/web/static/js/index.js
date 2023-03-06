@@ -87,3 +87,8 @@ header.addEventListener('click', function() {
     // Reload the page when the h1 element is clicked
     location.reload();
 });
+
+
+window.addEventListener('resize', function() {
+    location.reload();
+});
