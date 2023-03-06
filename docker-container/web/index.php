@@ -4,14 +4,7 @@ include 'db.php';
 //set up the database connection
 $db = new Database("mariadb", "root", "7YKyE8R2AhKzswfN", "WS");
 
-
-
-
-
-
-
 if (isset($_SERVER['REQUEST_METHOD'])) {
-
     if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
         // Get the request body and decode it as JSON
         $json = file_get_contents('php://input');
@@ -42,7 +35,14 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
         die();
     }
 
-    if ($_GET['action'] == 'weather_data') {
+    if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_SERVER['REQUEST_URI'] == '/') {
+        // Return the index.html file
+        header('Content-type: text/html');
+        readfile('index.html');
+        die();
+    }
+
+    else if ($_GET['action'] == 'weather_data') {
         $result = $db->getWeatherData();
         echo $result;
         die();
@@ -50,11 +50,10 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 }
 else {
     echo "Error: This script is not being executed as part of an HTTP request.";
+    die();
 }
 
 
 
-
 $db->close();
-
 ?>
