@@ -1,58 +1,132 @@
+
+//Update the temperature graph in the beginning
+updateTemperatureGraph();
+
 // Temperature graph
 var trace1 = {
     x: [],
     y: [],
     type: 'scatter'
 };
-var data1 = [trace1];
-var layout1 = {
+var temp_data = [trace1];
+var temp_layout = {
     title: 'Temperature',
-    plot_bgcolor: 'rgba(0,0,0,0)',
-    paper_bgcolor: 'rgba(0,0,0,0)'
+    xaxis: {
+        showgrid: false,
+        tickformat: '%m/%d %H:%M:%S',
+        automargin: true,
+        gridcolor: 'white'
+    },
+    yaxis: {
+        title: 'Temperature (°C)',
+        showline: false,
+        gridcolor: 'white'
+    },
+    margin: {
+        l: 60,
+        r: 30,
+        t: 30,
+        b: 30
+    },
+    plot_bgcolor: 'transparent',
+    paper_bgcolor: 'transparent'
 };
-Plotly.newPlot('temperature', data1, layout1);
+Plotly.newPlot('temperature', temp_data, temp_layout);
 
 // Humidity graph
-var trace2 = {
+var hum_trace = {
     x: [],
     y: [],
     type: 'scatter'
 };
-var data2 = [trace2];
-var layout2 = {
+var hum_data = [hum_trace];
+var hum_layout = {
     title: 'Humidity',
-    plot_bgcolor: 'rgba(0,0,0,0)',
-    paper_bgcolor: 'rgba(0,0,0,0)'
+    xaxis: {
+        showgrid: false,
+        tickformat: '%m/%d %H:%M:%S',
+        automargin: true,
+        gridcolor: 'white'
+    },
+    yaxis: {
+        title: 'Humidity (%)',
+        showline: false,
+        gridcolor: 'white'
+    },
+    margin: {
+        l: 60,
+        r: 30,
+        t: 30,
+        b: 30
+    },
+    plot_bgcolor: 'transparent',
+    paper_bgcolor: 'transparent'
 };
-Plotly.newPlot('humidity', data2, layout2);
+Plotly.newPlot('humidity', hum_data, hum_layout);
 
 // Light intensity graph
-var trace3 = {
+var light_trace = {
     x: [],
     y: [],
     type: 'scatter'
 };
-var data3 = [trace3];
-var layout3 = {
+var light_data = [light_trace];
+var light_layout = {
     title: 'Light Intensity',
-    plot_bgcolor: 'rgba(0,0,0,0)',
-    paper_bgcolor: 'rgba(0,0,0,0)'
+    xaxis: {
+        showgrid: false,
+        tickformat: '%m/%d %H:%M:%S',
+        automargin: true
+        ,
+    },
+    yaxis: {
+        title: 'Light Intensity (lux)',
+        showline: false,
+        gridcolor: 'white'
+    },
+    margin: {
+        l: 60,
+        r: 30,
+        t: 30,
+        b: 30
+    },
+    plot_bgcolor: 'transparent',
+    paper_bgcolor: 'transparent'
 };
-Plotly.newPlot('light', data3, layout3);
+Plotly.newPlot('light', light_data, light_layout);
 
-// Wind graph
-var trace4 = {
+// pressure graph
+var pres_trace = {
     x: [],
     y: [],
-    type: 'scatter'
+    type: 'scatter',
 };
-var data4 = [trace4];
-var layout4 = {
-    title: 'Wind Speed',
-    plot_bgcolor: 'rgba(0,0,0,0)',
-    paper_bgcolor: 'rgba(0,0,0,0)'
+var pres_data = [pres_trace];
+var pres_layout = {
+    title: 'Air Pressure',
+    xaxis: {
+        showgrid: false,
+        tickformat: '%m/%d %H:%M:%S',
+        automargin: true,
+        gridcolor: 'white'
+
+    },
+    yaxis: {
+        title: 'Air Pressure (hPa)',
+        showline: false,
+        gridcolor: 'white'
+    },
+    margin: {
+        l: 60,
+        r: 30,
+        t: 30,
+        b: 30
+    },
+    plot_bgcolor: 'transparent',
+    paper_bgcolor: 'transparent'
 };
-Plotly.newPlot('wind', data4, layout4);
+
+Plotly.newPlot('pressure', pres_data, pres_layout);
 
 function updateTemperatureGraph() {
     // Send an AJAX request to fetch the latest temperature data
@@ -67,11 +141,18 @@ function updateTemperatureGraph() {
             // Extract the temperature and timestamp data
             var timestamps = [];
             var temperatures = [];
+            var humidities = [];
+            var light = [];
+            var pressure = [];
             for (var i = 0; i < jsonData.length; i++) {
+                //Adds the data to the arrays
                 timestamps.push(new Date(jsonData[i].timestamp));
                 temperatures.push(jsonData[i].temperature);
+                humidities.push(jsonData[i].humidity);
+                light.push(jsonData[i].light_intensity);
+                pressure.push(jsonData[i].pressure);
             }
-
+            //Update temperature graph
             // Update the temperature trace with the new data
             var temperatureTrace = {
                 x: timestamps,
@@ -83,30 +164,55 @@ function updateTemperatureGraph() {
                     width: 2
                 }
             };
-            var layout = {
-                title: 'Temperature (°C)',
-                xaxis: {
-                    title: 'Time',
-                    showgrid: false,
-                    tickformat: '%m/%d %H:%M:%S',
-                    automargin: true
-                },
-                yaxis: {
-                    title: 'Temperature (°C)',
-                    showline: false
-                },
-                margin: {
-                    l: 60,
-                    r: 30,
-                    t: 30,
-                    b: 30
-                },
-                plot_bgcolor: 'transparent',
-                paper_bgcolor: 'transparent'
 
+            Plotly.newPlot('temperature', [temperatureTrace], temp_layout);
+
+            //Update humidity graph
+            // Update the humidity trace with the new data
+            var humidityTrace = {
+                x: timestamps,
+                y: humidities,
+                type: 'scatter',
+                mode: 'lines',
+                line: {
+                    color: 'red',
+                    width: 2
+                }
             };
-            Plotly.newPlot('temperature', [temperatureTrace], layout);
-        }
+
+            Plotly.newPlot('humidity', [humidityTrace], hum_layout);
+
+            //Update light graph
+            // Update the light trace with the new data
+            var lightTrace = {
+                x: timestamps,
+                y: light,
+                type: 'scatter',
+                mode: 'lines',
+                line: {
+                    color: 'red',
+                    width: 2
+                }
+            };
+
+            Plotly.newPlot('light', [lightTrace], light_layout);
+
+            //Update pressure graph
+            // Update the pressure trace with the new data
+            var pressureTrace = {
+                x: timestamps,
+                y: pressure,
+                type: 'scatter',
+                mode: 'lines',
+                line: {
+                    color: 'red',
+                    width: 2
+                }
+            };
+
+            Plotly.newPlot('pressure', [pressureTrace], pres_layout);
+
+            }
     });
 }
 
