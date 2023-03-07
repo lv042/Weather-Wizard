@@ -1,4 +1,5 @@
 # Backend documentation
+(Reviewed by Luca(not me))
 
 This API provides CRUD (Create, Read, Update, Delete) operations for managing weather data.
 

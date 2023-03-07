@@ -1,4 +1,5 @@
 # Frontend
+(Reviewed by Luca(not me))
 
 The frontend is the visible user interface of the Weather station the user can interact with.
 
