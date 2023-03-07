@@ -1,8 +1,18 @@
 <?php
 include 'db.php';
 
+//Set the credentials
+$host = "mariadb";
+$user = "root";
+$pass = "7YKyE8R2AhKzswfN";
+$dbname = "WS";
+
+//$WemosPing = new WemosPing("http://wemos:80", 5, 60);
+//$WemosPing->start();
+
+
 //set up the database connection
-$db = new Database("mariadb", "root", "7YKyE8R2AhKzswfN", "WS");
+$db = new Database($host, $user, $pass, $dbname);
 
 //check if the request method is set
 if (isset($_SERVER['REQUEST_METHOD'])) {

@@ -1,7 +1,6 @@
 <?php
 
-//This class is used to ping the Wemos in a seperate thread to check if it is connected or not
-class WemosPinger {
+class WemosPing extends Thread {
     private $url;
     private $timeout;
     private $interval;
@@ -14,7 +13,14 @@ class WemosPinger {
         $this->wemos_connected = false;
     }
 
-    public function ping() {
+    public function run() {
+        while (true) {
+            $this->ping();
+            sleep($this->interval);
+        }
+    }
+
+    private function ping() {
         // Initialize a new cURL session
         $curl = curl_init();
 
@@ -34,30 +40,16 @@ class WemosPinger {
             $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
             if ($http_code == 200) {
                 $this->wemos_connected = true;
-                echo "Wemos is connected";
+                echo "Wemos is connected\n";
             } else {
                 $this->wemos_connected = false;
-                echo "Wemos is not connected";
+                echo "Wemos is not connected\n";
             }
         }
 
         // Close the cURL session
         curl_close($curl);
     }
-
-    public function start() {
-        // Create a new thread for the pinging
-        $thread = new Thread(function() {
-            while (true) {
-                $this->ping();
-                sleep($this->interval);
-            }
-        });
-
-        // Start the thread
-        $thread->start();
-    }
 }
-
 
 ?>
