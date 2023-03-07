@@ -37,6 +37,8 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
         die();
     }
 
+
+
     if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_SERVER['REQUEST_URI'] == '/') {
         // Return the index.html file
         header('Content-type: text/html');

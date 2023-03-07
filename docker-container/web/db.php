@@ -42,11 +42,27 @@ class Database {
         return json_encode($data);
     }
 
+    public function deleteWeatherData($id) {
+        $sql = "DELETE FROM weather_data WHERE id='$id'";
+        $result = $this->conn->query($sql);
+        if (!$result) {
+            die("Error deleting weather data: " . $this->conn->error);
+        }
+    }
+
     public function addWeatherData($timestamp, $temperature, $humidity, $pressure, $obstacle_detected, $light_intensity) {
         $sql = "INSERT INTO weather_data (timestamp, temperature, humidity, pressure, obstacle_detected, light_intensity) VALUES ('$timestamp', '$temperature', '$humidity', '$pressure', '$obstacle_detected', '$light_intensity')";
         $result = $this->conn->query($sql);
         if (!$result) {
             die("Error adding weather data: " . $this->conn->error);
+        }
+    }
+
+    public function updateWeatherData($id, $timestamp, $temperature, $humidity, $pressure, $obstacle_detected, $light_intensity) {
+        $sql = "UPDATE weather_data SET timestamp='$timestamp', temperature='$temperature', humidity='$humidity', pressure='$pressure', obstacle_detected='$obstacle_detected', light_intensity='$light_intensity' WHERE id='$id'";
+        $result = $this->conn->query($sql);
+        if (!$result) {
+            die("Error updating weather data: " . $this->conn->error);
         }
     }
 
