@@ -1,3 +1,10 @@
+/*
+* Author: Luca von Kannen
+* Date: March 7, 2023
+* Description: This class contains the PHP code to connect to the database
+* License: MIT License
+*/
+
 <?php
 class Database {
     private $servername;

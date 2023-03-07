@@ -1,3 +1,10 @@
+/*
+* Author: Luca von Kannen
+* Date: March 7, 2023
+* Description: This file contains the PHP code for the API of the backend
+* License: MIT License
+*/
+
 <?php
 include 'db.php';
 

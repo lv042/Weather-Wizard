@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7aca0bdf-46b6-415a-b5b6-a93e7fefbf0f" name="Changes" comment="QW 4356i8o9p0=[">
-      <change afterPath="$PROJECT_DIR$/docker-container/web/WemosPinger.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-container/.env" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-container/web/WemosPing.php" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/web/WemosPing.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-container/web/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/web/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/backend.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/backend.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mkdocs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mkdocs.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,24 +45,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;19.7.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.14.6&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/luca.v.k./Library/Mobile Documents/com~apple~CloudDocs/iCloud/Programming/IOT/iot-kannenl1&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;watcher.settings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "19.7.0",
+    "javascript.nodejs.core.library.typings.version": "18.14.6",
+    "last_opened_file_path": "/Users/luca.v.k./Library/Mobile Documents/com~apple~CloudDocs/iCloud/Programming/IOT/iot-kannenl1/docker-container/web/static",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "watcher.settings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docker-container/web/static" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/docs/images" />
       <recent name="$PROJECT_DIR$/docker-container/web/static/images" />
@@ -67,7 +74,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="PHP Script.db.php">
+  <component name="RunManager" selected="PHP Script.index.php (1)">
     <configuration name="db.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/docker-container/web/db.php">
       <method v="2" />
     </configuration>
@@ -116,8 +123,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHP Script.db.php" />
         <item itemvalue="PHP Script.index.php (1)" />
+        <item itemvalue="PHP Script.db.php" />
         <item itemvalue="Docker.docker-container.nginx: Compose Deployment" />
         <item itemvalue="Docker.docker-container.php: Compose Deployment" />
         <item itemvalue="Docker.docker-container: Compose Deployment" />
@@ -143,12 +150,26 @@
       <workItem from="1677947513269" duration="6314000" />
       <workItem from="1677953848084" duration="28117000" />
       <workItem from="1678184234160" duration="9000" />
-      <workItem from="1678184252291" duration="10487000" />
+      <workItem from="1678184252291" duration="14462000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Adapted index.php to work with WemosPing class" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

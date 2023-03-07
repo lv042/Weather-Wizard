@@ -1,3 +1,10 @@
+/*
+* Author: Luca von Kannen
+* Date: March 7, 2023
+* Description: This file contains the PHP code to ping the wemos
+* License: MIT License
+*/
+
 <?php
 
 class WemosPing extends Thread {
