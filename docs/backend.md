@@ -11,15 +11,15 @@ This API provides CRUD (Create, Read, Update, Delete) operations for managing we
 - DELETE /?action=weather_data - Deletes an existing weather data point
 - GET /?action=weather_data - Retrieves all the weather data points
 
-## Request Parameters:
+## Parameters:
 
-timestamp: The timestamp of the weather data point (required)
-new_timestamp: The new timestamp for an updated weather data point
-temperature: The temperature of the weather data point (required)
-humidity: The humidity of the weather data point (required)
-pressure: The pressure of the weather data point (required)
-obstacle_detected: Whether an obstacle was detected (required)
-light_intensity: The light intensity of the weather data point (required)
+- timestamp: The timestamp of the weather data point (required)
+- new_timestamp: The new timestamp for an updated weather data point
+- temperature: The temperature of the weather data point (required)
+- humidity: The humidity of the weather data point (required)
+- pressure: The pressure of the weather data point (required)
+- obstacle_detected: Whether an obstacle was detected (required)
+- light_intensity: The light intensity of the weather data point (required)
 
 ### __Every request returns a JSON file__
 - Success: JSON object with a message

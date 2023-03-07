@@ -1,6 +1,7 @@
 # Physical design
+(Reviewed by Rafail)
 
-# Concept 
+# Concept
 
 ## Target group
 
@@ -49,7 +50,7 @@ The design is seperated in two floors the first floor is for the main hardware a
 
 ## The chosen device
 
-3D printing is a process in which a digital 3D model is converted into a physical object layer by layer using a 3D printer. To do this, the printer uses different materials, such as plastics or metals, which are applied layer by layer and fused together. 
+3D printing is a process in which a digital 3D model is converted into a physical object layer by layer using a 3D printer. To do this, the printer uses different materials, such as plastics or metals, which are applied layer by layer and fused together.
 
 ## The chosen material
 
@@ -61,20 +62,34 @@ For the enclosure of the weather station, ABS (Acrylonitrile Butadiene Styrene).
 
 - Speed: 3D printing allows for fast production of the weather station chassis, with the ability to print parts on demand and with minimal lead time.
 
-- Cost-effective: 3D printing is a cost-effective option for producing small
+- Cost-effective: 3D printing is a cost-effective option for producing a small casing the weather station chassis (The final draft of the weather station which is currently printing, costed me 10 euro's)
 
 - Durability: 3D printing allows for the production of durable parts that can withstand the elements and last for a long time.
 
-# DIGITAL DESIGN	
+## Disadvantages of the selected production:
 
-## Choosen software
+- Limited material choices: While 3D printing has come a long way in terms of materials, the range of available materials is still limited compared to traditional manufacturing methods.
+- Hard to repair: 3D printing is not suitable for repairing broken parts.
+- Hard to recycle: 3D printing is not suitable for recycling.
+- Limited print size: The size of 3D printed objects is limited by the size of the 3D printer.
+- Limited production speed: 3D printing can be a slow process, especially for large objects.
+
+# DIGITAL DESIGN
+
+## Chosen software
 
 First I used Tinkedcad, but later switched to FreeCAD. I used FreeCAD because it is more powerful and has more features. Tinkercad might be better for beginners, but FreeCAD is more suitable for more complex designs.
 
 ## Stages of the design process
 
-I dont know how I can provide the design process without having the physical design completed.
-I would hand in the assignment later, but we are required to do 3 assignments a week. It is correct that a delivery can be evaluated 2 times?
+1. Determine the purpose and requirements of the casing
+2. Take accurate measurements
+3. Create a 3D model of the object using CAD software
+4. Select the appropriate printer and material
+5. Slice the 3D model into layers using slicing software
+6. Set the printing parameters, such as the layer height and printing speed
+7. Send the sliced model to the 3D printer and start the printing
+
 
 
 
@@ -87,9 +102,9 @@ I would hand in the assignment later, but we are required to do 3 assignments a 
 
 # Failures
 
-### First draft and expermenting with 3D-printing
+### First draft and experimenting with 3D-printing
 
-This is the first draft of the enclosure. It is made of 15mm thick ABS plastic and is printed on a Ultimaker 3D printer. It was designed with TinkerCAD. However, the shape of the housing is fully unsuitable therefore probably a rectangular structure is better.
+This is the first draft of the enclosure. It is made of 15 mm thick ABS plastic and is printed on an Ultimaker 3D printer. It was designed with TinkerCAD. However, the shape of the housing is fully unsuitable, therefore probably a rectangular structure is better.
 ![Example Screenshot](docs/../images/expirement.png)
 ![Example Screenshot](docs/../images/draft1.jpeg)
 ![Example Screenshot](docs/../images/draft2.jpeg)
