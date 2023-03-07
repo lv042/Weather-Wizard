@@ -20,12 +20,12 @@ var ly_margin = {
 }
 
 // Temperature graph
-var trace1 = {
+var temp_trace = {
     x: [],
     y: [],
     type: 'scatter'
 };
-var temp_data = [trace1];
+var temp_data = [temp_trace];
 var temp_layout = {
     title: 'Temperature',
     xaxis: {
@@ -218,7 +218,7 @@ function updateTemperatureGraph() {
 
 
 // Call the updateTemperatureGraph function every 10 seconds
-setInterval(updateTemperatureGraph, 3000);
+setInterval(updateTemperatureGraph, 10000);
 
 
 // Get the h1 element by its ID
