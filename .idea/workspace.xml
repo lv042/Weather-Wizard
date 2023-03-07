@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7aca0bdf-46b6-415a-b5b6-a93e7fefbf0f" name="Changes" comment="QW 4356i8o9p0=[">
+      <change afterPath="$PROJECT_DIR$/docker-container/web/WemosPinger.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-container/config/mariadb/aria_log.00000001" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/config/mariadb/aria_log.00000001" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-container/config/mariadb/aria_log_control" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/config/mariadb/aria_log_control" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-container/config/mariadb/ddl_recovery.log" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/config/mariadb/ddl_recovery.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-container/config/mariadb/ib_buffer_pool" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/config/mariadb/ib_buffer_pool" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-container/web/db.php" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/web/db.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-container/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/web/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-container/web/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/web/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-container/web/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/docker-container/web/static/js/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +143,7 @@
       <workItem from="1677947513269" duration="6314000" />
       <workItem from="1677953848084" duration="28117000" />
       <workItem from="1678184234160" duration="9000" />
-      <workItem from="1678184252291" duration="6200000" />
+      <workItem from="1678184252291" duration="10487000" />
     </task>
     <servers />
   </component>

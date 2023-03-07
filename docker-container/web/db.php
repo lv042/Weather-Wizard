@@ -99,7 +99,7 @@ class Database {
             return false;
         }
 
-        // Record exists, update it
+        // Record exists, update it then
         $sql = "UPDATE weather_data SET timestamp='$new_timestamp', temperature='$temperature', humidity='$humidity', pressure='$pressure', obstacle_detected='$obstacle_detected', light_intensity='$light_intensity' WHERE timestamp='$timestamp'";
         $result = $this->conn->query($sql);
         if (!$result) {
@@ -117,14 +117,9 @@ class Database {
     }
 
 
-
-
-
     public function close() {
         $this->conn->close();
     }
 }
-
-
 
 ?>
