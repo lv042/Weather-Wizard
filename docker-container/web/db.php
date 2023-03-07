@@ -6,14 +6,17 @@
 */
 
 <?php
-class Database {
+
+class Database
+{
     private $servername;
     private $username;
     private $password;
     private $dbname;
     private $conn;
 
-    public function __construct($servername, $username, $password, $dbname) {
+    public function __construct($servername, $username, $password, $dbname)
+    {
         $this->servername = $servername;
         $this->username = $username;
         $this->password = $password;
@@ -21,23 +24,16 @@ class Database {
         $this->connect();
     }
 
-    private function connect() {
+    private function connect()
+    {
         $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }
     }
 
-    public function query($sql) {
-        $result = $this->conn->query($sql);
-        $data = array();
-        while ($row = $result->fetch_assoc()) {
-            $data[] = $row;
-        }
-        return json_encode($data);
-    }
-
-    public function getWeatherData() {
+    public function getWeatherData()
+    {
         $sql = "SELECT * FROM weather_data";
         $result = $this->conn->query($sql);
         $data = array();
@@ -49,7 +45,18 @@ class Database {
         return json_encode($data);
     }
 
-    public function deleteWeatherData($id) {
+    public function query($sql)
+    {
+        $result = $this->conn->query($sql);
+        $data = array();
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return json_encode($data);
+    }
+
+    public function deleteWeatherData($id)
+    {
         $sql = "SELECT * FROM weather_data WHERE timestamp = '$id'";
         $result = $this->conn->query($sql);
 
@@ -71,7 +78,8 @@ class Database {
         return true;
     }
 
-    public function addWeatherData($timestamp, $temperature, $humidity, $pressure, $obstacle_detected, $light_intensity) {
+    public function addWeatherData($timestamp, $temperature, $humidity, $pressure, $obstacle_detected, $light_intensity)
+    {
         // Check if the record already exists
         $check_sql = "SELECT COUNT(*) AS count FROM weather_data WHERE timestamp = '$timestamp'";
         $check_result = $this->conn->query($check_sql);
@@ -93,7 +101,15 @@ class Database {
         return true;
     }
 
-    public function updateWeatherData($timestamp, $new_timestamp, $temperature, $humidity, $pressure, $obstacle_detected, $light_intensity) {
+    public function updateWeatherData(
+        $timestamp,
+        $new_timestamp,
+        $temperature,
+        $humidity,
+        $pressure,
+        $obstacle_detected,
+        $light_intensity
+    ) {
         // Check if the record exists
         $check_sql = "SELECT COUNT(*) AS count FROM weather_data WHERE timestamp = '$timestamp'";
         $check_result = $this->conn->query($check_sql);
@@ -115,7 +131,8 @@ class Database {
         return true;
     }
 
-    public function deleteAllWeatherData() {
+    public function deleteAllWeatherData()
+    {
         $sql = "DELETE FROM weather_data";
         $result = $this->conn->query($sql);
         if (!$result) {
@@ -124,7 +141,8 @@ class Database {
     }
 
 
-    public function close() {
+    public function close()
+    {
         $this->conn->close();
     }
 }

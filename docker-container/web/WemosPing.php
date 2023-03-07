@@ -7,27 +7,31 @@
 
 <?php
 
-class WemosPing extends Thread {
+class WemosPing extends Thread
+{
+    public $wemos_connected;
     private $url;
     private $timeout;
     private $interval;
-    public $wemos_connected;
 
-    public function __construct($url, $timeout=5, $interval=60) {
+    public function __construct($url, $timeout = 5, $interval = 60)
+    {
         $this->url = $url;
         $this->timeout = $timeout;
         $this->interval = $interval;
         $this->wemos_connected = false;
     }
 
-    public function run() {
+    public function run()
+    {
         while (true) {
             $this->ping();
             sleep($this->interval);
         }
     }
 
-    private function ping() {
+    private function ping()
+    {
         // Initialize a new cURL session
         $curl = curl_init();
 
@@ -41,7 +45,7 @@ class WemosPing extends Thread {
         $response = curl_exec($curl);
 
         // Check for errors or timeouts
-        if(curl_errno($curl)) {
+        if (curl_errno($curl)) {
             $this->wemos_connected = false;
         } else {
             $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
