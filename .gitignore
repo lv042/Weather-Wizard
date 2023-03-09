@@ -1,3 +1,8 @@
 .idea/
 .target/idea/encodings.xml
 .target/idea/inspectionProfiles/Project_Default.xml
+
+2019-01-01 12:00:00
+
+GIT_AUTHOR_DATE=$(date -d'2023-03-09') GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE" git commit -am 'Test commit'
+GIT_AUTHOR_DATE="2023-03-09T17:00:00 +0200" GIT_COMMITTER_DATE=$GIT_AUTHOR_DATE git commit -am 'Test commit'
