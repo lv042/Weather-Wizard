@@ -4,10 +4,6 @@
 
 
 ## INTRODUCTION
-
-
-
-
 The Weather Wizard is a device that collects weather data, including temperature, humidity, and light intensity (and soon more), and sends it to the backend where data gets saved in a database. From the backend, the data will be fetched
 by the frontend and displayed in graphs. The Weather Wizard is designed for weather enthusiasts, students, and researchers who want to collect accurate weather data.
 
@@ -15,9 +11,6 @@ by the frontend and displayed in graphs. The Weather Wizard is designed for weat
 
 
 The Weather Wizard's features include:
-
-
-
 
 - Collects temperature, humidity, and light intensity data
 - Sends data to a web application for analysis
@@ -27,14 +20,9 @@ The Weather Wizard's features include:
 
 
 
-## INSTALLATION INSTRUCTIONS ARDUINO IDE AND LIBRARIES
-
-
-
+## INSTALLATION INSTRUCTIONS: ARDUINO IDE AND LIBRARIES
 
 To start building your own Weather Wizard, you will need to install the Arduino IDE and all the necessary libraries. Here are the steps to install:
-
-
 
 
 1. Download and install the latest version of the Arduino IDE from the official Arduino website.
@@ -77,8 +65,10 @@ Here are the steps to build your IoT Weather Station:
 
 
 
-1. Gather the necessary components, which are listed in under Embedded → BOM and wiring diagram.
-2. Solder the components together according to the wiring diagram, which is also under Embedded → BOM and wiring diagram.
+1. Gather the necessary components, which are listed under Embedded → BOM and wiring diagram -> BOM
+2. Solder the components together according to the wiring diagram, which is also under Embedded → BOM and wiring diagram -> Wiring diagram
+3. Place the components in the casing
+4. Place the ceiling of the casing on top and glue it in place (preferably with hot glue)
 
 
 
