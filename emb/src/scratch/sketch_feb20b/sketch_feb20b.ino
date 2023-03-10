@@ -37,7 +37,7 @@ void get_config(){
   WiFiClient client;
   HTTPClient httpClient;
   
-  httpClient.begin(client, "http://asd.loca.lt/index.php?action=config");
+  httpClient.begin(client, "https://abc3.loca.lt/index.php?action=config");
   int httpCode = httpClient.GET();
 
   if(httpCode == HTTP_CODE_OK) { // HTTP_CODE_OK == 200
