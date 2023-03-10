@@ -1,10 +1,10 @@
 # User Manual
 
-
+(Reviewed by Rafail)
 
 
 ## INTRODUCTION
-The Weather Wizard is a device that collects weather data, including temperature, humidity, and light intensity (and soon more), and sends it to the backend where data gets saved in a database. From the backend, the data will be fetched
+The Weather Wizard is an IOT device that collects weather data, including temperature, humidity, and light intensity (and soon more), and sends it to the backend where data gets saved in a database. From the backend, the data will be fetched
 by the frontend and displayed in graphs. The Weather Wizard is designed for weather enthusiasts, students, and researchers who want to collect accurate weather data.
 
 
@@ -114,8 +114,8 @@ To configure the Wi-Fi network on your Weather Wizard, follow these steps:
 
 
 
-1. Power on the device and wait for it to start up.
-2. Wait a few seconds until the device starts in AP mode. A Wi-Fi network named "WeatherWizard AutoConnect" will appear.
+1. Power on the Weather Wizard and wait for it to start up.
+2. Wait a few seconds until the Wemos starts in AP mode. A Wi-Fi network named "WeatherWizard AutoConnect" will appear.
 3. Connect to this Wi-Fi network with your computer or mobile device.
 4. A window will open which will ask you to connect to a Wi-Fi network. Go to Scan Network, select your network and enter the password.
 
