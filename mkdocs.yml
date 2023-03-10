@@ -1,0 +1,73 @@
+# Replace the text below to customize your site
+site_name: IOT Minor Documentation by Luca von Kannen
+site_description: IOT Minor Documentation by Luca von Kannen
+site_author: Luca von Kannen
+copyright: Copyright 2022 Luca von Kannen - Creative Commons Attribution Non Commercial
+
+site_url: https://localhost:8000/
+  
+theme:
+  name: material
+  palette:
+    # try other colors https://squidfunk.github.io/mkdocs-material/getting-started/#primary-colors
+    primary: deep purple
+    accent: red
+  font:
+    # See available fonts at https://fonts.google.com/
+    text: Raleway
+    code: Ubuntu Mono  
+  logo: images/iot_power.svg
+  favicon: images/iot_power.svg
+  features:
+    - navigation.instant 
+    - content.code.annotate 
+nav:
+    - 'index.md'
+    - 'Product' :
+      - 'Project planning' : 'structure.md'
+      - 'Product Description' : 'product.md'
+      - 'User Manual' : 'user_manual.md'
+      - 'Architecture Overview' : 'architecture_overview.md'
+    - 'Embedded Device' :
+      - 'Concept' : 'embedded_device.md'
+      - 'System requirements' : 'system_requirements.md'
+      - 'Software' : 'emb_software.md'
+      - 'Wiring Diagram & BOM' : 'bom.md'
+    - 'Web Application' :
+      - 'Database' : 'db.md'
+      - 'Admin Manual' : 'admin_manual.md'
+      - 'Frontend' : 'frontend.md'
+      - 'Backend API' : 'backend.md'
+
+    - 'User Interaction' : 'user_interaction.md'
+    - 'Physical Design' : 'physical_design.md'
+    - 'Testing' : 'testing.md'
+
+    - 'Business and Trends Assignments' : 'bt.md'
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+      # Read more: https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/options/#enabled
+      enabled: !ENV [ENABLED_GIT_REVISION_DATE, False]
+
+markdown_extensions:
+  - extra
+  - smarty
+  - admonition
+  - pymdownx.keys
+  - codehilite:
+      guess_lang: true
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.details  
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
