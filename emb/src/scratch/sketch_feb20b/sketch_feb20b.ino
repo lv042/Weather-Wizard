@@ -1,14 +1,19 @@
+/* Author: Luca von Kannen
+ * License: MIT
+ * Goal: This file contains code to operate the WeatherWizard and to connect it to the backend.
+ */
+
 #include <LiquidCrystal_I2C.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
+#include <WiFiManager.h>
 
-// Adafruit_DHT library is inserted
+
+// Adafruit_DHT library 
 #include "DHT.h"
- 
 // Here the respective input pin can be declared
 #define DHTPIN 0   
- 
 // The sensor is initialized
 #define DHTTYPE DHT11 // DHT 11
 DHT dht(DHTPIN, DHTTYPE);
@@ -21,17 +26,17 @@ DHT dht(DHTPIN, DHTTYPE);
 // set the LCD number of columns and rows
 int lcdColumns = 16;
 int lcdRows = 2;
-float h = 0;
+float humidity = 0;
 float t = 0;
 int led = 15;
 int sensorPin = A0; 
-int value = 0; 
+int value = 0;
 
-
-
-// set LCD address, number of columns and rows
-// if you don't know your display address, run an I2C scanner sketch
+//Initilisation
+WiFiManager wm;
 LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows);  
+
+
 
 void get_config(){
   WiFiClient client;
@@ -58,6 +63,8 @@ void loop(){
     
 
   // set cursor to first column, first row
+  run_lcd();
+
   lcd.setCursor(0, 0);
   lcd.setBacklight(HIGH);
   // print message
@@ -75,7 +82,7 @@ void loop(){
   lcd.print("Humidity: ");
 
   char hum_c[5];
-  lcd.print(dtostrf(h, 3, 2, hum_c));
+  lcd.print(dtostrf(humidity, 3, 2, hum_c));
   lcd.print("%");
   delay(1000);
 
@@ -84,14 +91,14 @@ void loop(){
   delay(2000);
  
   // Humidity is measured
-  h = dht.readHumidity();
+  humidity = dht.readHumidity();
   // temperature is measured
   t = dht.readTemperature();
   
    
   // Checking if the measurements have passed without errors
   // if an error is detected, a error message is displayed here
-  if (isnan(h) || isnan(t)) {
+  if (isnan(humidity) || isnan(t)) {
     Serial.println("Error reading the sensor");
     return;
   }
@@ -99,7 +106,7 @@ void loop(){
   // Output to serial console
   Serial.println("-----------------------------------------------------------");
   Serial.print("Humidity: ");
-  Serial.print(h);
+  Serial.print(humidity);
   Serial.print(" %\t");
   Serial.print("Temperature: ");
   Serial.print(t);
@@ -112,6 +119,12 @@ void loop(){
   Serial.println("-----------------------------------------------------------");
 
   lcd.clear(); 
+}
+
+run_lcd(){
+
+
+
 
 }
 
@@ -123,31 +136,39 @@ const char* ssid     = "Hi";         // The SSID (name) of the Wi-Fi network you
 const char* password = "prinsengracht225d";     // The password of the Wi-Fi network
 
 void setup() {
+  //sets baud rate to 115200
   Serial.begin(115200);
-
-  //connectToWiFi(ssid, password);
   
   //wifi
-  setupWifi();
+  setup_wifi_manager();
+  //config for lcd
+  setup_lcd();
+  
+  
+  pinMode(led, OUTPUT);
 
+  //some sensors ned some time before they start working
+  delay(2000);
+}
+
+void setup_lcd(){
   lcd.begin(5, 4);// initialize LCD
   lcd.init();
   // turn on LCD backlight                      
   lcd.backlight();
+}
 
-  
-
-  //humidity and temperture -> dht
+void setup_dht(){
+  setup_dht();
+  //humidity and temperture 
   Serial.println("KY-015 test - temperature and humidity test:");
   // Measurement is started
   dht.begin();
-  
-  pinMode(led, OUTPUT);
-  //some sensors ned some time to
-  delay(2000);
 }
 
 void connectToWiFi(const char* ssid, const char* password) {
+  //this code is only needed to connect to a specific wifi
+  //this method won't be called because currently the wifi manager is used
   delay(10);
   Serial.println('\n');
 
@@ -172,12 +193,10 @@ void connectToWiFi(const char* ssid, const char* password) {
 
 
 
-#include <WiFiManager.h>
 
-  // WiFiManager, Local intialization.
-  WiFiManager wm;
 
-void setupWifi() {
+
+void setup_wifi_manager() {
   WiFiManager wifiManager;
   bool con = wifiManager.autoConnect("WeatherWizard AutoConnect", "password");
   pinMode(LED_BUILTIN, OUTPUT);
