@@ -1,5 +1,5 @@
 /* Author: Luca von Kannen
- * License: MIT
+ * License: Apache License, version 2.0.
  * Goal: This file contains code to operate the WeatherWizard and to connect it to the backend.
  */
 

@@ -8,7 +8,7 @@ Program code contains comment in the top the file stating author information, li
 
 ```
 /* Author: Luca von Kannen
- * License: MIT
+ * License: Apache License, version 2.0.
  * Goal: This file contains code to operate the WeatherWizard and to connect it to the backend.
  */
 ```
@@ -78,7 +78,7 @@ See full code below. All setups and loops are in their own indepentend functions
 
 ```cpp
 /* Author: Luca von Kannen
- * License: MIT
+ * License: Apache License, version 2.0.
  * Goal: This file contains code to operate the WeatherWizard and to connect it to the backend.
  */
 
