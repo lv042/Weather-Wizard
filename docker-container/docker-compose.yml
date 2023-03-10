@@ -1,0 +1,69 @@
+version: "3.7"
+services:
+  php:
+    build:
+      context: ./docker-images
+      dockerfile: php-fpm.Dockerfile
+    container_name: ${APP_NAME}-php
+    volumes:
+      - './web:/var/www/html'
+    depends_on:
+      - mariadb
+  
+  nginx:
+    image: nginx:latest
+    container_name: ${APP_NAME}-nginx
+    ports:
+      - "80:80"
+    links:
+      - 'php'
+    volumes:
+      - './web:/var/www/html'
+      - './config/nginx:/etc/nginx/conf.d'
+    external_links:
+      - mariadb:mariadb
+      - phpmyadmin:phpmyadmin
+      - localhost-run:localhost-run
+      - localtunnel:localtunnel
+    depends_on:
+      - php
+  
+  mariadb:
+    image: mariadb:latest
+    container_name: ${APP_NAME}-mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - './config/mariadb:/var/lib/mysql'
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: ${APP_NAME}-phpmyadmin
+    environment:
+      - "PMA_HOST=mariadb"
+      - "PMA_PORT=3306"
+      - "PMA_ABSOLUTE_URI=http://localhost/phpmyadmin"
+    external_links:
+      - mariadb:mariadb
+    volumes:
+      - './config/phpmyadmin/sessions:/sessions'
+
+  localhost-run:
+    build:
+      context: ./docker-images/localhost-run
+      dockerfile: localhost-run.Dockerfile
+    container_name: ${APP_NAME}-localhost-run
+    depends_on:
+      - nginx
+
+  localtunnel:
+    build:
+      context: ./docker-images/localtunnel
+      dockerfile: localtunnel.Dockerfile
+    container_name: ${APP_NAME}-localtunnel
+    environment:
+      - "TUNNEL_SUBDOMAIN=${TUNNEL_SUBDOMAIN}"
+    depends_on:
+      - nginx
