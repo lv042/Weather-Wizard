@@ -36,12 +36,14 @@ nav:
       - 'Database' : 'db.md'
       - 'Frontend' : 'frontend.md'
       - 'Backend API' : 'backend.md'
-
-
     - 'Physical Design' :
         - 'Concept' : 'physical_design.md'
         - 'Creation' : 'creation.md'
         - 'Failures' : 'failures.md'
+    - 'Profile':
+        - 'Research' : 'research.md'
+        - 'Improvement' : 'improvement.md'
+        - 'Research Question' : 'research_question.md'
 
     - 'Business and Trends Assignments' : 'bt.md'
 
