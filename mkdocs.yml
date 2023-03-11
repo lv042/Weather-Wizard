@@ -25,7 +25,7 @@ nav:
     - 'index.md'
     - 'Product' :
       - 'Project planning' : 'structure.md'
-      - 'Product Description' : 'product.md'
+      - 'Product Description' : 'index.md'
       - 'User Manual' : 'user_manual.md'
       - 'Architecture Overview' : 'architecture_overview.md'
     - 'Embedded Device' :
@@ -35,13 +35,14 @@ nav:
       - 'Wiring Diagram & BOM' : 'bom.md'
     - 'Web Application' :
       - 'Database' : 'db.md'
-      - 'Admin Manual' : 'admin_manual.md'
       - 'Frontend' : 'frontend.md'
       - 'Backend API' : 'backend.md'
 
-    - 'User Interaction' : 'user_interaction.md'
-    - 'Physical Design' : 'physical_design.md'
-    - 'Testing' : 'testing.md'
+
+    - 'Physical Design' :
+        - 'Concept' : 'physical_design.md'
+        - 'Creation' : 'creation.md'
+        - 'Failures' : 'failures.md'
 
     - 'Business and Trends Assignments' : 'bt.md'
 
