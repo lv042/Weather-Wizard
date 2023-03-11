@@ -26,12 +26,16 @@ const char* password = "prinsengracht225d"; // Wi-Fi network password
 int lcdColumns = 16;
 int lcdRows = 2;
 
+int buttonPin = 12;
 float humidity = 0;
 float temperature = 0;
 int light = 0; // variable to store light intensity value
 
-int led = 15; // GPIO pin for the LED
+int led_green = 14;
+int led_red = 15; // GPIO pin for the LED
 int light_intensity_sensor = A0; // GPIO pin for the light intensity sensor
+
+bool running_ww = false;
 
 
 // create the HTTP client object
@@ -50,20 +54,27 @@ void setup() {
   setup_lcd(); // Function to set up LCD
   setup_dht(); // Function to set up DHT11 sensor
   
-  pinMode(led, OUTPUT); // Set LED pin to output mode
+  pinMode(led_red, OUTPUT); // Set LED pin to output mode
+  pinMode(buttonPin, INPUT);
 
   //some sensors ned some time before they start working
   delay(2000); // Delay to allow sensors to stabilize
 }
 
 void loop(){
+  //check if the button was pressed to turn on Weather Wizard
+  button_input();
+
+  if(running_ww){
+    //turns on the green LED if the Weather Wizard is running
+    digitalWrite(led_red, LOW);
+    digitalWrite(led_green, HIGH);
+
   //after doing a get request the backend sends config file 
   get_config(); // Function to get configuration file from server
   //send data with a post request
   send_data(temperature, humidity, 0, 0, light); // Function to send sensor data to server
     
-  run_led(); // Function to turn on/off the LED based on temperature and humidity values
-  // set cursor to first column, first row
   run_lcd(); // Function to update LCD screen with sensor data
   read_sensors(); // Function to read sensor values
 
@@ -71,6 +82,23 @@ void loop(){
   delay(2000); // Delay before taking new measurements
   lcd.clear(); // Clear LCD screen
   //lcd clears the screen again
+  }
+  else{
+    //turn on the red light and turn off the green light
+    digitalWrite(led_red, HIGH);
+    digitalWrite(led_green, LOW);
+  }
+}
+
+void button_input(){
+  int buttonState = digitalRead(buttonPin);
+
+  // If the button is pressed, set running_ww to true
+  if (buttonState == HIGH) {
+    running_ww = true;
+  } else {
+    running_ww = false;
+  }
 }
 
 void get_config(){
@@ -112,11 +140,7 @@ void send_data(float temperature, float humidity, float pressure, int obstacle_d
   httpClient.end();
 }
 
-void run_led(){
-    digitalWrite(led, HIGH);
-    delay(3000);
-    digitalWrite(led, LOW);
-}
+
 
 void read_sensors(){
   // Humidity is measured
@@ -130,7 +154,7 @@ void read_sensors(){
   // if an error is detected, a error message is displayed here
   if (isnan(humidity) || isnan(temperature)) {
     Serial.println("Error reading the sensor");
-    return; /quits the function
+    return; //quits the function
   }
 }
 
