@@ -139,7 +139,7 @@ void run_lcd(){
 }
 ```
 
-Function to turn the LEDs on and off:
+Main loop of the Weather Wizard to turn the LEDs on and off:
 
 If Weather Wizard is running the green LED is turned on and the red LED is turned off.
 If the Weather Wizard is not running the green LED is turned off and the red LED is turned on.
