@@ -1,3 +1,5 @@
+(Reviewed by Rafail)
+
 # Failures in Physical Design
 Of course, there are failures in the process of developing a physical design. This document is a collection of failures and solutions to the mistakes that I have made.
 
