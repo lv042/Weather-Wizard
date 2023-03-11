@@ -1,6 +1,10 @@
 # User Manual
 
 (Reviewed by Rafail)
+- Tips adding exact commands to run
+- Add exact paths to files
+- Add exact names of files
+- Maybe add links to download (Will add to second review)
 
 
 ## INTRODUCTION
@@ -28,6 +32,7 @@ To start building your own Weather Wizard, you will need to install the Arduino 
 1. Download and install the latest version of the Arduino IDE from the official Arduino website.
 2. Open the Arduino IDE and navigate to Sketch > Include Library > Manage Libraries.
 3. Search for and install the following libraries:
+
 - LiquidCrystal_I2C
 - ESP8266WiFi
 - ESP8266HTTPClient

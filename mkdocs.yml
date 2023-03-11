@@ -25,7 +25,6 @@ nav:
     - 'index.md'
     - 'Product' :
       - 'Project planning' : 'structure.md'
-      - 'Product Description' : 'index.md'
       - 'User Manual' : 'user_manual.md'
       - 'Architecture Overview' : 'architecture_overview.md'
     - 'Embedded Device' :
