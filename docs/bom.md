@@ -1,8 +1,12 @@
 # Wiring Diagram
 
+This wiring diagram gives a visual representation of an electrical circuit or system that shows the physical connections between its components and wires. It uses symbols and shapes to depict the different electrical components and their interconnections. By using wiring diagrams, electricians and engineers can understand and troubleshoot complex electrical systems easily.
+
 ![Wiring](images/Wiring.png)
 
 # Bill of Materials
+
+This Bill of Materials (BOM) is a comprehensive list of all the materials, components, and instructions needed to produce Weather Wizard. BOM's are commonly used in manufacturing, product development, and engineering to plan purchases, estimate costs, control inventory, and minimize production delays and waste.
 
 | Part Number | Part Name                          | Part Description                                                                                        | Part Quantity    | Manufacturer | Part Cost | URL                                                                                                                                                                   |
 |------------|------------------------------------|---------------------------------------------------------------------------------------------------------|------------------|-------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
