@@ -26,7 +26,7 @@ const char* password = "prinsengracht225d"; // Wi-Fi network password
 int lcdColumns = 16;
 int lcdRows = 2;
 
-int buttonPin = 12; 
+int buttonPin = D3; 
 float humidity = 0; //variable to store the humidity
 float temperature = 0; //variable to store the temperature
 int light = 0; // variable to store light intensity value
