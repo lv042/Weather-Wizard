@@ -1,5 +1,7 @@
 # Wiring Diagram
 
+(Reviewed by Luca(not me))
+
 This wiring diagram gives a visual representation of an electrical circuit or system that shows the physical connections between its components and wires. It uses symbols and shapes to depict the different electrical components and their interconnections. By using wiring diagrams, electricians and engineers can understand and troubleshoot complex electrical systems easily.
 
 ![Wiring](images/Wiring.png)
