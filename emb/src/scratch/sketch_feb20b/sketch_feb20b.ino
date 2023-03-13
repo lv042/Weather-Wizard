@@ -26,13 +26,13 @@ const char* password = "prinsengracht225d"; // Wi-Fi network password
 int lcdColumns = 16;
 int lcdRows = 2;
 
-int buttonPin = 12;
-float humidity = 0;
-float temperature = 0;
+int buttonPin = 12; 
+float humidity = 0; //variable to store the humidity
+float temperature = 0; //variable to store the temperature
 int light = 0; // variable to store light intensity value
 
-int led_green = 14;
-int led_red = 15; // GPIO pin for the LED
+int led_green = D0;
+int led_red = D5; // GPIO pin for the LED
 int light_intensity_sensor = A0; // GPIO pin for the light intensity sensor
 
 bool running_ww = false;
@@ -78,10 +78,12 @@ void loop(){
   run_lcd(); // Function to update LCD screen with sensor data
   read_sensors(); // Function to read sensor values
 
+
+  print_to_console();
   //waits 2 sec till it makes new measurements
   delay(2000); // Delay before taking new measurements
   lcd.clear(); // Clear LCD screen
-  //lcd clears the screen again
+  
   }
   else{
     //turn on the red light and turn off the green light
@@ -152,7 +154,7 @@ void read_sensors(){
    
   // Checking if the measurements have passed without errors
   // if an error is detected, a error message is displayed here
-  if (isnan(humidity) || isnan(temperature)) {
+  if (isnan(humidity) || isnan(temperature) || isnan(light)) {
     Serial.println("Error reading the sensor");
     return; //quits the function
   }
