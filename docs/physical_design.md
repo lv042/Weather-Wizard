@@ -1,6 +1,4 @@
-# Physical design
 (Reviewed by Rafail)
-
 # Concept
 
 ## Target group
@@ -79,6 +77,8 @@ For the enclosure of the weather station, ABS (Acrylonitrile Butadiene Styrene).
 ## Chosen software
 
 First I used Tinkedcad, but later switched to FreeCAD. I used FreeCAD because it is more powerful and has more features. Tinkercad might be better for beginners, but FreeCAD is more suitable for more complex designs.
+
+Update: Unfortunately I had to switch back to Tinkercad because FreeCAD learning curve is too steep for the time I have left.
 
 ## Stages of the design process
 
