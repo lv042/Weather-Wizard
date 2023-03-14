@@ -35,7 +35,8 @@ int led_green = D0;
 int led_red = D5; // GPIO pin for the LED
 int light_intensity_sensor = A0; // GPIO pin for the light intensity sensor
 
-bool running_ww = false;
+bool running_ww = false; //if the Weather Wizard is currently running
+String current_time = "";
 
 
 // create the HTTP client object
@@ -62,10 +63,15 @@ void setup() {
 }
 
 void loop(){
+
+
   //check if the button was pressed to turn on Weather Wizard
   button_input();
 
   if(running_ww){
+    //get current time
+    get_current_time();
+
     //turns on the green LED if the Weather Wizard is running
     digitalWrite(led_red, LOW);
     digitalWrite(led_green, HIGH);
@@ -89,6 +95,24 @@ void loop(){
     //turn on the red light and turn off the green light
     digitalWrite(led_red, HIGH);
     digitalWrite(led_green, LOW);
+  }
+}
+
+void get_current_time() {
+  
+  httpClient.begin(client, "http://worldtimeapi.org/api/ip");
+  int httpCode = httpClient.GET();
+  
+  //does a get request to receive the current time from this api
+  int httpResponseCode = httpClient.GET();
+  if (httpResponseCode == HTTP_CODE_OK) {
+    String payload = httpClient.getString();
+    int startIndex = payload.indexOf("datetime") + 12;
+    int endIndex = startIndex + 19;
+    current_time = payload.substring(startIndex, endIndex);
+    //assign the global variable current_time to the response
+  } else {
+    Serial.println("HTTP request failed");
   }
 }
 
@@ -119,7 +143,7 @@ void get_config(){
 
 void send_data(float temperature, float humidity, float pressure, int obstacle_detected, float light_intensity) {
   // create the JSON payload string
-  String payload = "{\"timestamp\":\"2022-03-03\",\"temperature\":" + String(temperature) + ",\"humidity\":" + String(humidity) + ",\"pressure\":" + String(pressure) + 
+  String payload = "{\"timestamp\":\"current_time,\"temperature\":" + String(temperature) + ",\"humidity\":" + String(humidity) + ",\"pressure\":" + String(pressure) + 
   ",\"obstacle_detected\":" + String(obstacle_detected) + ",\"light_intensity\":" + String(light_intensity) + "}";
   
   // specify the target URL
