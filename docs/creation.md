@@ -19,13 +19,15 @@ Criteria I can test:
 - The casing should be easy to assemble after printing -> You just have to plug in sensors, button, led's and the LCD screen and
 glue the roof on the casing
 
+- Measurements -> All the components fit in the casing as shown later in the final design
+
 - Aesthetics -> The casing looks nice and is easy to print
 
 - Ventilation for sensor readings -> The casing has a ventilation hole at the bottom of the casing
 
-- Shower test -> I put the casing in the shower, and it was still working after 10 minutes
+- Rain test -> I put the casing in the shower, and it was still working after 10 minutes
 
-- Drop test -> I dropped the casing from 1 meter for 30 times, and it was still working
+- Drop test -> I dropped the casing from 1 meter for 30 times, and the casing was still intact
 
 - Space for expansion -> The casing has a lot of space to be expandable with more sensors
 
