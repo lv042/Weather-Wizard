@@ -36,12 +36,60 @@ glue the roof on the casing
 
 ![Prototype](./images/proto.jpg)
 
+![Prototype](./images/fail2.jpg)
+
 Although this prototype already looks quite good. I still want to do some changes to the casing. The changes include: 
 
 - Merging the two smaller cases into one big case to make it easier to print and assemble
 
 - Putting the ventilation hole at the bottom of the casing, so rainwater can't get inside the casing like before
 
-- Removing the holes from the pr
+- Removing the holes from the print, but instead drill the holes in the casing after printing which is easier to do and more accurate
 
+- Improve printing quality -> The bottom of the prototype is not printed well, so I want to improve the printing quality
+
+
+## Final Design
+
+First, after merging the the two smaller cases and adding the ventilation at the bottom, this was the design:
+
+![Final Design](./images/final.png)
+
+![Final Design](./images/final2.png)
+
+A snowflake made a great shape for the ventilation hole, because it was easy to print and was fitting for a weather station. The
+W on the top of the casing stands for Weather Wizard. The other cutout at the bottom is for the cable of the Wemos d1 mini.
+
+![Final Design](./images/print.jpg)
+
+This was the first print of the casing. Although the print had some imperfections, it was good enough for the final version.
+I used a 0.2 mm layer height and 20% infill. The print took about 17 hours and 30 minutes. The print was made with PLA filament.
+I used auto generated support for the snowflake and the hole of the lcd screen. The support was easy to remove afterwards. The whole 
+casing was printed on a brim, so it would stick to the build plate. The Cura slicer was used for the slicing and the printer was a
+Ultimaker 2+ Connect.
+
+
+![Inside](./images/inside.jpeg)
+
+![Before](./images/before.jpg)
+
+![After](./images/front.jpg)
+
+This was the first look of the casing after printing and inserting t
+
+![drilling](./images/drilling.jpg)
+
+Next, I still had to drill the holes for the sensors, button, led's and the LCD screen. Firstly, I measured the length of the components
+and marked the holes on the casing. Then I compared the measurements with the drill bits I had. I used a 3mm and 5 mm drill bit for the
+the sensors and led's. The button needed the 5 mm drill bit. It is important that a drill bit for plastic is used, otherwise you will
+damage the drill bit. 
+
+![After](./images/right.jpg)
+
+![After](./images/left.jpg)
+
+![After](./images/top.jpg)
+
+For the final version, I would glue the components with hot glue to make sure they don't fall out of the casing, but 
+for now I duck taped them in the casing, because I still want to use the components after the project.
 
