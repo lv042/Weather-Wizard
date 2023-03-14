@@ -93,3 +93,47 @@ damage the drill bit.
 For the final version, I would glue the components with hot glue to make sure they don't fall out of the casing, but 
 for now I duck taped them in the casing, because I still want to use the components after the project.
 
+## Manufacturing process
+
+I printed in with the quality setting, which already took 17 hours and 30 minutes. To have more detail you could print with the smallest nozzle, but
+this would take more than 24 hours to print and would cost way too much time for the blueprint phase.
+
+#### Chosen material 
+
+I chose PLA yellow Ultimaker filament, because:
+
+- It is easy to print with
+- It is easy to remove the support
+- It is easy to glue the components in the casing
+- It is easy to drill the holes in the casing
+- It is environmentally friendly
+- It is cheap
+- It allows for a wide range of colors and finishes
+
+#### Manufactoring device
+
+The main reason, because I printed with the Ultimaker 2+ Connect, is because it was the main printer of the Makerslab, but it is also a good printer.
+
+Most of its special features, I didn't even have to use:
+
+- Single extrusion with swappable nozzles
+-  Cloud-enabled remote 3D printing
+-  Filter up to 95% of UFPs (optional)
+-  Print with 9 materials (including PP & PC)
+
+
+#### Logging of the manufacturing process is described
+
+Of course I could only log the beginning of the print and the final product of the print, because the print always was running the whole night.
+
+
+#### Files
+
+The stl files contain the basic structure of the file and the 
+ufp files contain the additional information for the printer. 
+The ufp files are used to print the casing with the Ultimaker 2+ Connect.
+
+```
+./physical-design
+```
+
