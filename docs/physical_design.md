@@ -104,6 +104,13 @@ Update: Unfortunately I had to switch back to Tinkercad because FreeCAD learning
 6. Set the printing parameters, such as the layer height and printing speed
 7. Send the sliced model to the 3D printer and start the printing
 
+# Project files of the design
+
+Go to:
+```
+./physical-design/........
+```
+
 
 
 
