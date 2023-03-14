@@ -196,4 +196,12 @@ void setup_wifi_manager() {
 }
 ```
 
+## Full code 
+
+Go to:
+
+```
+./emb/src/main/main.ino
+```
+
 
