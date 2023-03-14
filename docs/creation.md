@@ -124,7 +124,7 @@ Most of its special features, I didn't even have to use:
 
 #### Logging of the manufacturing process is described
 
-Of course I could only log the beginning of the print and the final product of the print, because the print always was running the whole night.
+Of course, I could only log the beginning of the print and the final product of the print, because the print always was running the whole night.
 
 
 #### Files
@@ -136,4 +136,20 @@ The ufp files are used to print the casing with the Ultimaker 2+ Connect.
 ```
 ./physical-design
 ```
+
+#### Future improvements
+
+- For mass production, I would use a different printer, because the Ultimaker 2+ Connect is not the fastest printer, and it is not the cheapest printer, but also including the holes in the casing 
+would make the assembly easier and more accurate.
+
+- More accurate holes for the components
+
+- Glue the components in the casing with hot glue
+
+- More accurate printing quality
+
+
+#### Reached Requirements
+
+All the mentioned requirements are reached, except for the easy printing, because the time to print is quite long. But the print is easy to assemble afterwards. 
 
