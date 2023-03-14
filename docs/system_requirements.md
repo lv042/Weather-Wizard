@@ -24,7 +24,7 @@ Code:
 ```cpp
 void send_data(float temperature, float humidity, float pressure, int obstacle_detected, float light_intensity) {
   // create the JSON payload string
-  String payload = "{\"timestamp\":\"2022-03-03\",\"temperature\":" + String(temperature) + ",\"humidity\":" + String(humidity) + ",\"pressure\":" + String(pressure) + 
+  String payload = "{\"timestamp\":\"current_time,\"temperature\":" + String(temperature) + ",\"humidity\":" + String(humidity) + ",\"pressure\":" + String(pressure) + 
   ",\"obstacle_detected\":" + String(obstacle_detected) + ",\"light_intensity\":" + String(light_intensity) + "}";
   
   // specify the target URL
