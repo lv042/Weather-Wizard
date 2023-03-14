@@ -1,5 +1,6 @@
 # Physical Design - Create
 
+(Reviewer Luca(not me))
 
 ## Requirements
 
@@ -40,7 +41,7 @@ glue the roof on the casing
 
 ![Prototype](./images/fail2.jpg)
 
-Although this prototype already looks quite good. I still want to do some changes to the casing. The changes include: 
+Although this prototype already looks quite good. I still want to make some changes to the casing. The changes include: 
 
 - Merging the two smaller cases into one big case to make it easier to print and assemble
 
@@ -75,9 +76,8 @@ Ultimaker 2+ Connect.
 
 ![Before](./images/before.jpg)
 
-![After](./images/front.jpg)
 
-This was the first look of the casing after printing and inserting t
+This was the first look of the casing after printing and inserting the lcd screen.
 
 ![drilling](./images/drilling.jpg)
 
@@ -85,6 +85,8 @@ Next, I still had to drill the holes for the sensors, button, led's and the LCD 
 and marked the holes on the casing. Then I compared the measurements with the drill bits I had. I used a 3mm and 5 mm drill bit for the
 the sensors and led's. The button needed the 5 mm drill bit. It is important that a drill bit for plastic is used, otherwise you will
 damage the drill bit. 
+
+![After](./images/front.jpg)
 
 ![After](./images/right.jpg)
 
