@@ -143,7 +143,17 @@ The files can be found here in the root of the repo:
 ./physical-design
 ```
 
-[The Directory](./physical-design)
+Prototype files:
+
+- [Prototype.ufp](./physical-design/prototype.ufp)
+- [Prototype 0.1.stl](./physical-design/prototype%200.1.stl)
+- [Prototype 0.15.stl](./physical-design/prototype%200.15.stl)
+- [Prototype 0.2.stl](./physical-design/prototype%200.2.stl)
+- [Prototype 0.25.stl](./physical-design/prototype%200.2%20rotated.stl)
+
+Final design: 
+- [Final Design.ufp](./physical-design/Weather%20Wizard%20Final.ufp)
+- [Final Design.stl](./physical-design/Weather%20Wizard%20Final.stl)
 
 #### Optimisations during the manufacturing process:
 
