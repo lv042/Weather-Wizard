@@ -151,7 +151,8 @@ Prototype files:
 - [Prototype 0.2.stl](./physical-design/prototype%200.2.stl)
 - [Prototype 0.25.stl](./physical-design/prototype%200.2%20rotated.stl)
 
-Final design: 
+Final design:
+
 - [Final Design.ufp](./physical-design/Weather%20Wizard%20Final.ufp)
 - [Final Design.stl](./physical-design/Weather%20Wizard%20Final.stl)
 
