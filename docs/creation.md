@@ -137,11 +137,23 @@ The stl files contain the basic structure of the file and the
 ufp files contain the additional information for the printer. 
 The ufp files are used to print the casing with the Ultimaker 2+ Connect.
 
+
+The files can be found here in the root of the repo:
 ```
 ./physical-design
 ```
 
-#### Future improvements
+[The Directory](./../physical-design/)
+
+#### Optimisations during the manufacturing process:
+
+- During the print one of the early models was not compatabile with the printer, because the required support was too big for the printer, and coudln't be removed afterwards. So I had to redesign the casing to make it compatible with the printer.
+- I drilled the holes of the casing, instead of printing them, because it was easier to do, more accurate and allowed more flexibility for the components.
+- After using the printing option with the smallest nozzle, which took longer than 24 hours, I decided to use the normal quality option, which took 17 hours and 30 minutes. This was a good compromise between time and quality, because
+the quality was good enough for the final version.
+
+
+#### Future possible Optimisations
 
 - For mass production, I would use a different printer, because the Ultimaker 2+ Connect is not the fastest printer, and it is not the cheapest printer, but also including the holes in the casing 
 would make the assembly easier and more accurate.
@@ -150,7 +162,7 @@ would make the assembly easier and more accurate.
 
 - Glue the components in the casing with hot glue
 
-- More accurate printing quality
+- More accurate printing quality, could be achieved by printing with a smaller nozzle size
 
 
 #### Reached Requirements
