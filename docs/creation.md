@@ -143,7 +143,7 @@ The files can be found here in the root of the repo:
 ./physical-design
 ```
 
-[The Directory](./../physical-design/)
+[The Directory](./physical-design)
 
 #### Optimisations during the manufacturing process:
 
