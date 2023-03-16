@@ -20,6 +20,8 @@ Sufficient and realistic requirements should be chosen for the manual manufactur
 
 - Weather resistance testing: Test how resistant the case is to rain, snow, and sunlight. Although it is hard to test the snow in the Netherlands. -> Test if water gets inside during 60 sec of rain
 
+
+
 - Long-term testing: Unfortunately, I did not have the time to test the case in a long term scenario.
 
 ## Prototype:

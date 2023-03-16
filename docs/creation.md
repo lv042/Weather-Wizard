@@ -28,7 +28,30 @@ glue the roof on the casing
 
 - Rain test -> I put the casing in the shower, and it was still working after 10 minutes
 
-- Drop test -> I dropped the casing from 1 meter for 30 times, and the casing was still intact
+Update: I have tested the case in the rain, and it is not completely waterproof, but rather water-resistant . I think that the optimal solution for this problem would be to use hot glue to seal the ceiling of the case.
+This is an image of before the test:
+
+![image](./images/beforew.jpg)
+
+This is an image during the test:
+
+![image](./images/during.jpg)
+
+This is an image after the test:
+
+![image](./images/afterw.jpg)
+
+You can clearly see that some water got inside the casing, but not enough that you can't hot glue the ceiling of the casing.
+
+- Drop test -> I dropped the casing from 1 meter for 20 times, and the casing was still intact
+
+Update: These are images of the casing after the drop test:
+
+![image](./images/drop.jpg)
+
+You can see that there are no major damages to the casing. The scratches in the bottom are probably rather from printing errors than from the drop test. In my opinion the casing can withstand most environmental conditions as long as it is made waterproof.
+
+After performing the drop test, I noticed that the casing was not completely intact. The casing was still working, but the casing was not as sturdy as I thought it would be. I think that the optimal solution for this problem would be to use hot glue to seal the ceiling of the case.
 
 - Space for expansion -> The casing has a lot of space to be expandable with more sensors
 

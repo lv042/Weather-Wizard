@@ -71,6 +71,7 @@ public function __construct($servername, $username, $password, $dbname)
         $this->connect();
     }
 ```
+
 Constructor for the Database class, it sets the credentials and connects to the database
 
 
@@ -476,7 +477,4 @@ else {
 //Close the database connection
 $db->close();
 ?>
-
-
-
 ```
