@@ -45,6 +45,7 @@ class Database
 
     public function query($sql)
     {
+        //Executes a query on the database and returns the result as a JSON string
         $result = $this->conn->query($sql);
         $data = array();
         while ($row = $result->fetch_assoc()) {
@@ -141,6 +142,7 @@ class Database
 
     public function close()
     {
+        //closes the connection to the database
         $this->conn->close();
     }
 }

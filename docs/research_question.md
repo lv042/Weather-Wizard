@@ -45,3 +45,4 @@ Secondary data topics (books, articles, websites, etc.)
 - What are the disadvantages of Golang?
 - How to build a backend in Golang?
 - What is the best architecture for a backend in Golang?
+- What libraries should you use?

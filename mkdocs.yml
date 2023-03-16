@@ -36,6 +36,7 @@ nav:
       - 'Database' : 'db.md'
       - 'Frontend' : 'frontend.md'
       - 'Backend API' : 'backend.md'
+      - 'Backend Structure' : 'backend2.md'
     - 'Physical Design' :
         - 'Concept' : 'physical_design.md'
         - 'Creation' : 'creation.md'

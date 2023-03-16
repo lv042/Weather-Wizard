@@ -6,7 +6,6 @@
 * License: MIT License
 */
 
-die('hjbguyugy');
 
 include 'db.php';
 
@@ -16,15 +15,11 @@ $user = "root";
 $pass = "7YKyE8R2AhKzswfN";
 $dbname = "WS";
 
-//Not working yet but not necessary for the backend assignment
-//$WemosPing = new WemosPing("http://wemos:80", 5, 60);
-//$WemosPing->start();
-
 
 //set up the database connection
 $db = new Database($host, $user, $pass, $dbname);
 
-//check if the request method is set
+//check if its a request is set
 if (isset($_SERVER['REQUEST_METHOD'])) {
     //Post operation to add data from the wemos
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
