@@ -17,6 +17,20 @@ Some of the key rules of the coding style are:
 
 Since I have to show my whole code for this part, you can see the full code of the backend at the bottom of the page.
 
+## Stating the author
+
+The code of the back-end contains comment in the top of the file stating author, information, license type and goal of this part of the code.
+
+```php
+/*
+* Author: Luca von Kannen
+* Date: March 7, 2023
+* Description: This file contains the PHP code for the API of the backend
+* License: MIT License
+*/
+```
+
+
 ## Code comments 
 
 All the important parts of my program code are commented to explain what they do. This is a good practice to make your code more readable and understandable.
@@ -220,16 +234,249 @@ Not all of these functions are necessary for the the basic CRUD operations, but 
 
 ## The REST API entrance of the Embedded Device 
 
-Only via different request types (GET, POST, PUT, DELETE) the backend can be accessed. The backend is accessed with the following URL:
+Only via different request types (GET, POST, PUT, DELETE) the backend can be accessed. The backend is accessed with certain php actions like:
 
+```php
+http://localhost/index.php?action=weather_data 
+http://localhost/index.php?action=config 
+```
 
+1. The config action returns a JSON string with the configuration of the embedded device.
+2. The weather_data action lets you perform CRUD operations on the weather data based on the request type.
 
+## Request structure
+
+The returned messaged for a Get request looks like this:
+
+```json
+[
+	{
+		"timestamp": "2022-03-08",
+		"temperature": "69420.3",
+		"humidity": "45.1",
+		"pressure": "1013.2",
+		"obstacle_detected": "1",
+		"light_intensity": "800.2"
+	},
+	{
+		"timestamp": "2022-03-11",
+		"temperature": "69420.3",
+		"humidity": "45.1",
+		"pressure": "1013.2",
+		"obstacle_detected": "1",
+		"light_intensity": "800.2"
+	},
+	{
+		"timestamp": "2022-04-04",
+		"temperature": "69420.3",
+		"humidity": "45.1",
+		"pressure": "1013.2",
+		"obstacle_detected": "1",
+		"light_intensity": "800.2"
+	},
+	{
+		"timestamp": "2022-04-06",
+		"temperature": "69420.3",
+		"humidity": "45.1",
+		"pressure": "1013.2",
+		"obstacle_detected": "1",
+		"light_intensity": "800.2"
+	}
+]
+```
+
+If you want to have more detailed information about the request structure, you should take a look at the api documentation.
 
 ## Full code
 
-To see the details of my backend the whole code is also displayed here:
+To see the details of my backends index.php the whole code is also displayed here:
 
-    ```php
+```php
+<?php
+/*
+* Author: Luca von Kannen
+* Date: March 7, 2023
+* Description: This file contains the PHP code for the API of the backend
+* License: MIT License
+*/
 
 
-    ```
+include 'db.php';
+
+//Set the credentials
+$host = "mariadb";
+$user = "root";
+$pass = "7YKyE8R2AhKzswfN";
+$dbname = "WS";
+
+
+//set up the database connection
+$db = new Database($host, $user, $pass, $dbname);
+
+//check if its a request is set
+if (isset($_SERVER['REQUEST_METHOD'])) {
+    //Post operation to add data from the wemos
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Get the request body and decode it as JSON
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
+
+        // Check if the JSON decoding failed
+        if ($data === null) {
+            $response = array('error' => 'Invalid JSON format.');
+            http_response_code(400);
+            echo json_encode($response);
+            die();
+        }
+
+        // Extract the values from the JSON data
+        $timestamp = $data['timestamp'];
+        $temperature = $data['temperature'];
+        $humidity = $data['humidity'];
+        $pressure = $data['pressure'];
+        $obstacle_detected = $data['obstacle_detected'];
+        $light_intensity = $data['light_intensity'];
+
+        // Add the new datapoint to the weather_data table
+        $success = $db->addWeatherData(
+            $timestamp,
+            $temperature,
+            $humidity,
+            $pressure,
+            $obstacle_detected,
+            $light_intensity
+        );
+
+        if (!$success) {
+            $response = array('error' => 'Error adding weather data.');
+            http_response_code(400);
+            echo json_encode($response);
+            die();
+        }
+
+        // Return a success message
+        $response = array('message' => 'Weather data added successfully.');
+        echo json_encode($response);
+        die();
+    } //Put operation for updating weather data
+    else {
+        if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+            // Get the request body and decode it as JSON
+            $json = file_get_contents('php://input');
+            $data = json_decode($json, true);
+
+            // Check if the JSON decoding failed
+            if ($data === null) {
+                $response = array('error' => 'Invalid JSON format.');
+                http_response_code(400);
+                echo json_encode($response);
+                die();
+            }
+
+            // Extract the values from the JSON data
+            $timestamp = $data['timestamp'];
+            $new_timestamp = $data['new_timestamp'];
+
+            $temperature = $data['temperature'];
+            $humidity = $data['humidity'];
+            $pressure = $data['pressure'];
+            $obstacle_detected = $data['obstacle_detected'];
+            $light_intensity = $data['light_intensity'];
+
+
+            // Update the existing datapoint in the weather_data table
+            $success = $db->updateWeatherData(
+                $timestamp,
+                $new_timestamp,
+                $temperature,
+                $humidity,
+                $pressure,
+                $obstacle_detected,
+                $light_intensity
+            );
+
+            if (!$success) {
+                $response = array('error' => 'Error updating weather data.');
+                http_response_code(400);
+                echo json_encode($response);
+                die();
+            }
+
+            // Return a success message
+            $response = array('message' => 'Weather data updated successfully.');
+            echo json_encode($response);
+            die();
+        } //Delete operation
+        else {
+            if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+                // Get the request body and decode it as JSON
+                $json = file_get_contents('php://input');
+                $data = json_decode($json, true);
+
+                // Check if the JSON decoding failed
+                if ($data === null) {
+                    $response = array('error' => 'Invalid JSON format.');
+                    http_response_code(400);
+                    echo json_encode($response);
+                    die();
+                }
+
+                // Extract the values from the JSON data
+                $timestamp = $data['timestamp'];
+
+                // Delete the datapoint from
+                // Delete the datapoint from the weather_data table
+                $success = $db->deleteWeatherData($timestamp);
+
+                if (!$success) {
+                    $response = array('error' => 'Error deleting weather data.');
+                    http_response_code(400);
+                    echo json_encode($response);
+                    die();
+                }
+
+                // Return a success message
+                $response = array('message' => 'Weather data deleted successfully.');
+                echo json_encode($response);
+                die();
+            } // Serve the main page
+            else {
+                if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_SERVER['REQUEST_URI'] == '/') {
+                    //Serves the main page
+                    header('Content-type: text/html');
+                    readfile('index.php');
+                    die();
+                } //Get operation for the weather data for the frontend
+
+                 else if ($_GET['action'] == 'weather_data') {
+                        // Return the weather data
+                        $result = $db->getWeatherData();
+                        echo $result;
+                        die();
+                    }
+                 else if ($_GET['action'] == 'config') {
+                     // Read the JSON config file
+                     $config = file_get_contents('config.json');
+
+
+                     // Echo the JSON config file as the response
+                     echo $config;
+                     die();
+                    }
+
+            }
+        }
+    }
+} //Error handling
+else {
+    //When the backend is not on a server
+    echo "Error: This script is not being executed as part of an HTTP request.";
+    die();
+}
+//Close the database connection
+$db->close();
+?>
+
+
+
+```
