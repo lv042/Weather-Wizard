@@ -48,8 +48,7 @@ Agriculture is highly affected by climate change and the use of digital technolo
 ### __How do your findings fit in with the assignment of week 1 dealing with narratives. (30 words)__
 
 
-Der Artikel hebt hervor, wie Erzählungen, auch über IoT und Klimawandel, die Überzeugungen und Handlungen der Menschen beeinflussen. Narrative prägen die Geschichte, und Technologie hat die Macht, den Klimawandel zu bekämpfen.
-
+The article highlights how narratives, including those about IoT and climate change, influence people's beliefs and actions. Narratives shape history, and technology has the power to address climate change.
 
 ---
 ## Workshop 3 Globalisation
