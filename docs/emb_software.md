@@ -2,6 +2,8 @@
 
 (Reviewed by Rafail)
 
+This document describes the embedded software of the Weather Wizard. The embedded software is the code that runs on the microcontroller. The microcontroller is the brain of the Weather Wizard. It is responsible for reading the sensors, displaying the data on the LCD screen, and sending the data to the backend.
+
 ## Information about the code 
 
 Program code contains comment in the top the file stating author information, license type, and goal of this part of the program and has a nice readable layout. License type is an existing license type like FreeBSD, or CC, or individual copyright (C) containing a year.
