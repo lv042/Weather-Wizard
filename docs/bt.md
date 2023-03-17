@@ -155,9 +155,13 @@ How to  gain competitive advantage when you apply strategies that deal with the 
 Please explain briefly your own interest in Intercultural Business Communication.
 How does Intercultural Business Communication link to your IoT studies? Please give some ideas of how you could combine or apply business perspective to your selected field of studies.
 What was especially interesting or even surprising for you in this material? Please choose two topics, and discuss them briefly.
- 
 
-For this assignment please use 100 – 150 words.
+
+My curiosity with the various ways individuals from different cultures communicate and collaborate in a global corporate context fuels my interest in Intercultural Business Communication. Understanding these subtleties is becoming increasingly vital for effective interactions and agreements as the globe gets more interconnected.
+
+Because IoT technologies are being deployed internationally, Intercultural Business Communication is very pertinent to my IoT study. By incorporating a commercial perspective into my research, I will be able to better understand how cultural variations may influence the acceptance, implementation, and use of IoT solutions in various locations. This comprehension will allow me to develop more culturally sensitive and successful IoT apps, assuring their success in a variety of industries.
+
+Two subjects in the material that piqued my interest were Geert Hofstede's cultural elements and the IoT viewpoints of various global entities. Hofstede's model provides useful insights into the cultural variations that influence international business contacts, whilst the many IoT viewpoints emphasize the significance of recognizing and responding to cultural settings when building IoT technology.
 
 ---
 ## Workshop 6 Circular Economy
