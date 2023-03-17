@@ -100,6 +100,21 @@ One thing we'd have to think about is how to balance all the different factors i
 As we speak China is investing heavily in the Internet of Things. Mainly with investments in cutting edge technologies. 
 
 Will China come to dominate the IoT industry in the foreseeable future? 
+
+China's Potential Dominance in the IoT Industry
+
+China has shown a lot of potential for domination the Internet of Things in the near future.
+One of the major goals of China is to invest heavily in advanced technologies and infrastructure, which is 
+crucial for the IoT industry. Iot is one of the most important technologies in the world today, and China is
+investing heavily in it. China is also investing heavily in the development of smart cities, which is another
+important aspect of the IoT industry.
+
+Yet, competition in the IoT business is severe, with other areas such as the United States and Europe spending considerably in technology and research as well. While China's vast consumer market has the potential to fuel IoT growth, worldwide domination is not guaranteed, since it will be determined by variables such as innovation, investment, and market acceptance.
+
+To summarize, China has the potential to dominate the IoT sector, but forecasting absolute dominance is difficult owing to the competitive character of the market and the inclusion of other powerful competitors.
+
+
+
 Will this be a threat?
 Find an article (or two) that shed a light on these two questions. Read the article(s)  and write a brief commentary (50-100 words).
 Here is how you reference an online article?
