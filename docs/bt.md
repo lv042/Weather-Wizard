@@ -116,8 +116,24 @@ To summarize, China has the potential to dominate the IoT sector, but forecastin
 
 
 Will this be a threat?
-Find an article (or two) that shed a light on these two questions. Read the article(s)  and write a brief commentary (50-100 words).
-Here is how you reference an online article?
+
+If China were to dominate the IoT business, it would bring both possibilities and risks on a global scale. On the one hand, China's dominance may result in lower-cost IoT devices and improved access to technology for people all over the world, fostering global connectedness and technical progress.
+
+On the other side, issues about data privacy, security, and future geopolitical tensions relating to control and influence over the IoT industry may develop. As IoT devices create massive volumes of data, the processing and storage of this information may become a crucial concern, especially if it falls under the control of a single dominating entity.
+
+Find an article (or two) that shed a light on these two questions. Read the article(s)  and write a brief commentary (50-100 words):
+
+Chosen Article: https://www.iresearchchina.com/content/details8_69333.html
+
+The "2022 China's IoT Market Report" by iResearch gives an in-depth examination of China's rapidly rising IoT business. China's IoT sector is evolving at a surprising rate, owing to the country's enormous population, extensive industrial structure, and economic development. Nonetheless, the research emphasizes that China continues to lag behind the United States in IoT technology and ecology, owing to a lack of growth in fundamental core technologies. 
+Chinese IoT breakthroughs are centered on the application layer, with inadequate emphasis on basic components such as sensor chips, where self-sufficiency is barely 10%.
+
+The report's primary result is the predicted increase in the number of IoT-connected devices in China. With the commercialization of 5G technology and the increasing spread of industrial IoT, the number of linked devices is expected to reach 15.6 billion by 2025. Its expansion can be ascribed to the advancement of communication connection technologies like as 5G and LPWAN, which have enabled multi-scenario and multi-device connections. However, the report identifies challenges in the Chinese IoT industry, such as structural oversupply and coexisting shortages, low profitability of IoT enterprises, and the need for improvement in IoT-related chip design capabilities and professional solutions for businesses.
+
+Going ahead, the article identifies a key trend in the IoT industry: the convergence of IoT, privacy computing, and blockchain technologies across numerous industries. The market requirement for data value mining and data security circulation is becoming more pressing as the number of IoT-connected devices and the volume of data created continues to grow. The industry can balance data security and data value extraction by merging privacy computing with blockchain technology, opening up new potential in the IoT ecosystem. This integration is considered to be critical in defining China's IoT sector and releasing its full potential.
+
+
+
 
 ---
 ## Workshop 5 IoT and Global Business
