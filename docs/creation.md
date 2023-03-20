@@ -77,7 +77,7 @@ Although this prototype already looks quite good. I still want to make some chan
 
 ## Final Design
 
-First, after merging the the two smaller cases and adding the ventilation at the bottom, this was the design:
+First, after merging the two smaller cases and adding the ventilation at the bottom, this was the design:
 
 ![Final Design](./images/final.png)
 
