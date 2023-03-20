@@ -105,18 +105,15 @@ These are the features of PocketBase, most of them are not that important for th
 
 - Flexible hosting options: PocketBase can be hosted on various platforms, such as fly.io, providing flexibility in deployment and scaling [8].
 
+If you want to check out PocketBase, you can find some useful links about it here: 
+
+- PocketBase Website: https://pocketbase.io/
+- PocketBase Live Demo: https://pocketbase.io/demo
+- PocketBase Github: https://github.com/pocketbase/pocketbase
+- PocketBase Documentation: https://pocketbase.io/docs
 
 
 
 
-
-
-
-
-
-
-
-You can decide if you want 
-to build your backend completely from scratch or if you want to build it with a specific framework. This is often referred to as a Backend as a Service (BaaS) solution.
 
 
