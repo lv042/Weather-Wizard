@@ -112,7 +112,14 @@ If you want to check out PocketBase, you can find some useful links about it her
 - PocketBase Github: https://github.com/pocketbase/pocketbase
 - PocketBase Documentation: https://pocketbase.io/docs
 
+## How to integrate the backend with PocketBase
 
+Since the Frontend is only a static website, I am planning to provide docker container for the backend which runs both the database and the rest of the backend. This way I can integrate nicely with the existing containers or just host it on a public linux server. At the moment I am considering the following cloud providers:
+
+- DigitalOcean -> A very popular cloud provider which also offers 
+- Fly.io -> A new cloud provider with a very interesting pricing model
+- AWS -> Amazon Web Services
+- BWCloud -> A german cloud provider which is free for students
 
 
 
