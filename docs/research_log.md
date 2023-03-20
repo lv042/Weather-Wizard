@@ -26,6 +26,8 @@ if the commits to our projects weren't important for our grade. So I decided to 
 
 During the last weekend, I also did some research on what backend frameworks to use with Golang. I found out that there are a lot of interesting solutions out there:
 
+#### Web-Frameworks
+
 To build a API with Golang, you can use the following frameworks:
 
 Gin - A lightweight and fast HTTP web framework with a focus on high performance.
@@ -37,7 +39,80 @@ Gorilla - A toolkit of packages for building web applications and services in Go
 
 I have to admit that I am not very familiar with any of these frameworks, but have tried Gin and Fiber during the last weekend.
 Gin and Fiber a very similar structure to each other, but Fiber is a bit more lightweight and has a more modern approach to the code structure, but both are very easy to learn and look
-very similar to the popular Express framework in NodeJS.
+very similar to the popular Express framework in NodeJS. 
+
+#### Databases
+
+For databases, I think the best choice would be one you are already familiar with or want to learn. SQL and NO-SQL databases are both very popular and have their own advantages and disadvantages:
+
+__Use SQL databases when:__
+
+- Your data has a well-defined schema and requires complex querying.
+- Your application requires transactional integrity and ACID compliance.
+- Your application requires high levels of data normalization.
+
+__Use NoSQL databases when:__
+
+- Your data is unstructured or semi-structured.
+- Your application requires high scalability and high write throughput.
+- Your application requires fast data access and real-time analytics.
+
+I think for the Weather Wizard the selection of the database is not that important, because the data is not that complex and the application does not require high scalability or high write throughput. All the mentioned 
+arguments are not very important for such a small application.
+
+
+#### ORM
+
+ORM stands for Object Relational Mapping. It is a technique that lets you query and manipulate data from a database using an object-oriented paradigm.
+It might be not that important for the Weather Wizard, but it is very useful technique to learn. I will try to use an ORM for the backend, because it makes the code more readable and easier to maintain.
+
+The number one framework which is recommended to use with Golang is GORM. It is a very popular ORM framework for Golang and has a lot of features. It is also very easy to use and has a great documentation.
+
+#### BaaS 
+
+Backend as a Service (BaaS) is a cloud-based service that provides a backend for mobile and web applications. I have used Firebase in on of my last group projects for the backend, but I worked on a Rust client and not the backend. Since these BaaS became very popular in the last years
+and I want to get familiar with one of these tools. I think it is a good idea to use one of them for the Weather Wizard.
+
+There are many BaaS providers out there, these are the three most popular ones:
+
+1. Firebase - Firebase is a comprehensive mobile and web development platform that provides real-time databases, authentication, cloud messaging, and hosting. It's backed by Google and has a large community of developers, making it one of the most popular BaaS solutions.
+
+2. AWS Amplify - Amplify is a set of tools and services from Amazon Web Services (AWS) that simplifies the process of building scalable and secure cloud-powered mobile and web applications. It provides a wide range of features, including data storage, user authentication, APIs, and analytics.
+
+3. Parse - Parse is an open-source BaaS platform that provides APIs for data storage, user management, and push notifications. It's easy to set up and provides a flexible and customizable backend for mobile and web applications.
+
+Since our research project is a bit more small scale and I also want to focus on working with Golang, I think the following BaaS provider is the best choice for the Weather Wizard:
+
+##### PocketBase
+
+PocketBase is an open source solution which was founded in 2020 by a team of developers from the United States.
+
+These are the features of PocketBase, most of them are not that important for the Weather Wizard:
+
+- Compact size: PocketBase has a small size of approximately 15 MB, making it lightweight and easy to deploy [1].
+
+- API and SDK support: It offers complete API and SDK support for Dart and JavaScript, enabling developers to create database collections with ease [1].
+
+- Real-time operations: PocketBase supports real-time operations within the SDK and through a web API, which is beneficial for applications that require immediate data updates [1].
+
+- One-file backend: It allows developers to create a one-file backend with all the required functionalities, making it an efficient framework for various applications [2].
+
+- Security features: PocketBase provides SSL encryption to secure data transmissions, access controls to restrict data access, and backup and restore features to protect against data loss [3].
+
+- Integration with popular libraries and frameworks: It can be easily integrated with React, a popular JavaScript library for building user interfaces, and React Context for managing state across components [5].
+
+- Authentication and user management: PocketBase offers authentication features and user management capabilities, making it easier to secure and manage user access to applications [6].
+
+- Flexible hosting options: PocketBase can be hosted on various platforms, such as fly.io, providing flexibility in deployment and scaling [8].
+
+
+
+
+
+
+
+
+
 
 
 
