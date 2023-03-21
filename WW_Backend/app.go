@@ -1,45 +1,31 @@
 package main
 
 import (
-	"github.com/pocketbase/pocketbase"
-	"log"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/pocketbase/dbx"
 )
 
 func main() {
+	db, _ := dbx.Open("mysql", "user:pass@/example")
 
-	//create a new config object
-	config := Config{
-		DefaultDebug:   true,
-		DefaultDataDir: "./pb_data",
+	// build a SELECT query
+	//   SELECT `id`, `name` FROM `users` WHERE `name` LIKE '%Charles%' ORDER BY `id`
+	q := db.Select("id", "name").
+		From("users").
+		Where(dbx.Like("name", "Charles")).
+		OrderBy("id")
 
-		HideStartBanner:  false,
-		DataMaxOpenConns: 10,
-		DataMaxIdleConns: 10,
-		LogsMaxOpenConns: 10,
-		LogsMaxIdleConns: 10,
+	// fetch all rows into a struct array
+	var users []struct {
+		ID, Name string
 	}
+	q.All(&users)
 
-	app := pocketbase.NewWithConfig((*pocketbase.Config)(&config))
-	if err := app.Start(); err != nil {
-		log.Fatal(err)
-	}
+	// build an INSERT query
+	//   INSERT INTO `users` (`name`) VALUES ('James')
+	db.Insert("users", dbx.Params{
+		"name": "James",
+	}).Execute()
 
-	//create a database
-
-}
-
-type Config struct {
-	// optional default values for the console flags
-	DefaultDebug         bool
-	DefaultDataDir       string
-	DefaultEncryptionEnv string
-
-	// hide the default console server info on app startup
-	HideStartBanner bool
-
-	// optional DB configurations
-	DataMaxOpenConns int // default to core.DefaultDataMaxOpenConns
-	DataMaxIdleConns int // default to core.DefaultDataMaxIdleConns
-	LogsMaxOpenConns int // default to core.DefaultLogsMaxOpenConns
-	LogsMaxIdleConns int // default to core.DefaultLogsMaxIdleConns
+	//print the result
 }
