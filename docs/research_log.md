@@ -122,7 +122,12 @@ At the moment I am considering the following cloud providers:
 - AWS -> Amazon Web Services
 - BWCloud -> A german cloud provider which is free for students
 
-After doing some research yesterday, I found out that Pocketbase compiles to only one binary file which runs backend and database at once. This makes it  
+After doing some research yesterday, I found out that Pocketbase compiles to only one binary file which runs backend and database at once. This makes it very easy to deploy the backend on your own device without the need of a cloud provider or a docker container.
+
+## Is Pocketbase usable for a three-week project?
+
+At moment, I am not sure if Pocketbase is usable for a three-week project. I think it is a very interesting project and I would like to use it for the Weather Wizard, but I am not sure if it is stable enough for a three-week project. It seems to have too many features, I won't need. I will try to use it for the backend, but if it does not work out, I will switch to 
+the conventional development of a backend.
 
 
 
