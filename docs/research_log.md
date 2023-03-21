@@ -91,19 +91,19 @@ These are the features of PocketBase, most of them are not that important for th
 
 - Compact size: PocketBase has a small size of approximately 15 MB, making it lightweight and easy to deploy [1].
 
-- API and SDK support: It offers complete API and SDK support for Dart and JavaScript, enabling developers to create database collections with ease [1].
+- API and SDK support: It offers complete API and SDK support for Dart and JavaScript, enabling developers to create database collections with ease.
 
-- Real-time operations: PocketBase supports real-time operations within the SDK and through a web API, which is beneficial for applications that require immediate data updates [1].
+- Real-time operations: PocketBase supports real-time operations within the SDK and through a web API, which is beneficial for applications that require immediate data updates.
 
-- One-file backend: It allows developers to create a one-file backend with all the required functionalities, making it an efficient framework for various applications [2].
+- One-file backend: It allows developers to create a one-file backend with all the required functionalities, making it an efficient framework for various applications.
 
-- Security features: PocketBase provides SSL encryption to secure data transmissions, access controls to restrict data access, and backup and restore features to protect against data loss [3].
+- Security features: PocketBase provides SSL encryption to secure data transmissions, access controls to restrict data access, and backup and restore features to protect against data loss.
 
-- Integration with popular libraries and frameworks: It can be easily integrated with React, a popular JavaScript library for building user interfaces, and React Context for managing state across components [5].
+- Integration with popular libraries and frameworks: It can be easily integrated with React, a popular JavaScript library for building user interfaces, and React Context for managing state across components.
 
-- Authentication and user management: PocketBase offers authentication features and user management capabilities, making it easier to secure and manage user access to applications [6].
+- Authentication and user management: PocketBase offers authentication features and user management capabilities, making it easier to secure and manage user access to applications.
 
-- Flexible hosting options: PocketBase can be hosted on various platforms, such as fly.io, providing flexibility in deployment and scaling [8].
+- Flexible hosting options: PocketBase can be hosted on various platforms, such as fly.io, providing flexibility in deployment and scaling.
 
 If you want to check out PocketBase, you can find some useful links about it here: 
 
@@ -112,14 +112,17 @@ If you want to check out PocketBase, you can find some useful links about it her
 - PocketBase Github: https://github.com/pocketbase/pocketbase
 - PocketBase Documentation: https://pocketbase.io/docs
 
-## How to integrate the backend with PocketBase
+## How to deploy the backend with PocketBase
 
-Since the Frontend is only a static website, I am planning to provide docker container for the backend which runs both the database and the rest of the backend. This way I can integrate nicely with the existing containers or just host it on a public linux server. At the moment I am considering the following cloud providers:
+Since the Frontend is only a static website, I am planning to provide docker container for the backend which runs both the database and the rest of the backend. This way I can integrate nicely with the existing containers or just host it on a public linux server.
+At the moment I am considering the following cloud providers:
 
 - DigitalOcean -> A very popular cloud provider which also offers 
 - Fly.io -> A new cloud provider with a very interesting pricing model
 - AWS -> Amazon Web Services
 - BWCloud -> A german cloud provider which is free for students
+
+After doing some research yesterday, I found out that Pocketbase compiles to only one binary file which runs backend and database at once. This makes it  
 
 
 
