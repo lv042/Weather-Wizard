@@ -1,31 +1,21 @@
 package main
 
 import (
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/pocketbase/dbx"
+	"log"
+
+	"github.com/pocketbase/pocketbase"
+	"github.com/pocketbase/pocketbase/core"
 )
 
 func main() {
-	db, _ := dbx.Open("mysql", "user:pass@/example")
+	app := pocketbase.New()
 
-	// build a SELECT query
-	//   SELECT `id`, `name` FROM `users` WHERE `name` LIKE '%Charles%' ORDER BY `id`
-	q := db.Select("id", "name").
-		From("users").
-		Where(dbx.Like("name", "Charles")).
-		OrderBy("id")
+	app.OnBeforeBootstrap().Add(func(e *core.BootstrapEvent) error {
+		log.Println(e.App)
+		return nil
+	})
 
-	// fetch all rows into a struct array
-	var users []struct {
-		ID, Name string
+	if err := app.Start(); err != nil {
+		log.Fatal(err)
 	}
-	q.All(&users)
-
-	// build an INSERT query
-	//   INSERT INTO `users` (`name`) VALUES ('James')
-	db.Insert("users", dbx.Params{
-		"name": "James",
-	}).Execute()
-
-	//print the result
 }
