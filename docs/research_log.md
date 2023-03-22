@@ -129,6 +129,13 @@ After doing some research yesterday, I found out that Pocketbase compiles to onl
 At moment, I am not sure if Pocketbase is usable for a three-week project. I think it is a very interesting project and I would like to use it for the Weather Wizard, but I am not sure if it is stable enough for a three-week project. It seems to have too many features, I won't need. I will try to use it for the backend, but if it does not work out, I will switch to 
 the conventional development of a backend.
 
+Update trying Pocketbase for a bit now, I can say that it is very easy to set up the backend, if you want to use conventional way of using it. My plan was using it as a Golang framework. 
+That means that Pocketbase will be imported as a proper library and you can extend a lot of the given features. But since all of these features are not that important for the Weather Wizard, I should use Pocketbase as a conventional BaaS provider.
+
+That way my backend setup which I built in PHP would be finished in a few hours:
+
+Since my research is focused on the development with Golang, I won't use Pocketbase anymore, since it doesn't seem too beneficial to use it as a Golang framework.
+
 
 
 

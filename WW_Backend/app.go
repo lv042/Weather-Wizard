@@ -1,10 +1,9 @@
 package main
 
 import (
-	"log"
-
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
+	"log"
 )
 
 func main() {
@@ -16,6 +15,6 @@ func main() {
 	})
 
 	if err := app.Start(); err != nil {
-		log.Fatal(err)
+		log.Fatal("Error: ", err)
 	}
 }
