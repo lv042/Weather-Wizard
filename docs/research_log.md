@@ -132,9 +132,33 @@ the conventional development of a backend.
 Update trying Pocketbase for a bit now, I can say that it is very easy to set up the backend, if you want to use conventional way of using it. My plan was using it as a Golang framework. 
 That means that Pocketbase will be imported as a proper library and you can extend a lot of the given features. But since all of these features are not that important for the Weather Wizard, I should use Pocketbase as a conventional BaaS provider.
 
-That way my backend setup which I built in PHP would be finished in a few hours:
+That way my backend setup which I built in PHP would be finished in a few days:
 
-Since my research is focused on the development with Golang, I won't use Pocketbase anymore, since it doesn't seem too beneficial to use it as a Golang framework.
+This is my finished setup with Pocketbase:
+
+### Admin Login
+
+//Screenshots
+###  Database
+
+//Screenshots
+
+###  API
+
+//Screenshots
+
+### Traffic monitoring
+
+### User management
+
+//Screenshots
+
+Since my research is focused on the development with Golang, I won't use Pocketbase anymore, since it doesn't seem to be beneficial to use it as a Golang framework.
+
+
+## Pcketbase conclusion
+
+For the given use case, Pocketbase is not the best choice. It is a very interesting project and I would like to use it in the future, but not for this project. I'm going to stick with the conventional way of developing a backend with Golang and a database. 
 
 
 
