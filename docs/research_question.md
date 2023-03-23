@@ -7,7 +7,10 @@ My research question is:
 
 ### How can Golang be used to implement a better backend for Weather Wizard?
 
-
+- Full RestAPI
+- Database connection (PostgreSQL)
+- Mobile notifications
+- (User management)
 
 ## Why is it relevant?
 
