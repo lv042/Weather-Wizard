@@ -7,11 +7,6 @@ My research question is:
 
 ### How can Golang be used to implement a better backend for Weather Wizard?
 
-- Full RestAPI
-- Database connection (PostgreSQL)
-- Mobile notifications
-- (User management)
-
 ## Why is it relevant?
 
 Currently, we are using PHP for the backend of Weather Wizard. PHP is a very popular language for web development, but it is not the best language for backend development.
