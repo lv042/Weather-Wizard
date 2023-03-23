@@ -11,6 +11,8 @@ import (
 	"path/filepath"
 )
 
+var insert_sql = "insert.sql"
+var rebuild_sql = "rebuild.sql"
 var db *gorm.DB
 
 func main() {
@@ -47,11 +49,16 @@ func setup_db() {
 	//show tables again
 	log_all_tables()
 
+	//fill db
+	fill_db()
+
+	//show all tables content
+
 }
 
 func run_sql_setup_files() {
 	// Check if SQL file exists
-	sqlFilePath := filepath.Join(".", "sql", "rebuild.sql")
+	sqlFilePath := filepath.Join(".", "sql", rebuild_sql)
 	if _, err := os.Stat(sqlFilePath); os.IsNotExist(err) {
 		panic(fmt.Sprintf("SQL file '%s' not found", sqlFilePath))
 	}
@@ -67,10 +74,37 @@ func run_sql_setup_files() {
 	if err := db.Exec(sql).Error; err != nil {
 		panic(err)
 	}
-	log.Default().Println("Executed rebuild.sql")
+	log.Default().Println("Executed ", rebuild_sql)
 
 	// Show tables again
 	log_all_tables()
+}
+
+func fill_db() {
+	defer func() {
+		if r := recover(); r != nil {
+			log.Default().Println("fill_db() Error: ", r)
+		}
+	}()
+
+	// Check if SQL file exists
+	sqlFilePath := filepath.Join(".", "sql", insert_sql)
+	if _, err := os.Stat(sqlFilePath); os.IsNotExist(err) {
+		panic(fmt.Sprintf("SQL file '%s' not found", sqlFilePath))
+	}
+
+	// Read SQL file
+	sqlBytes, err := ioutil.ReadFile(sqlFilePath)
+	if err != nil {
+		panic(err)
+	}
+	sql := string(sqlBytes)
+
+	// Execute SQL
+	if err := db.Exec(sql).Error; err != nil {
+		panic(err)
+	}
+	log.Default().Println("Executed ", insert_sql)
 }
 
 func log_all_tables() {
