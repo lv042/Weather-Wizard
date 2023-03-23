@@ -162,6 +162,12 @@ For the given use case, Pocketbase is not the best choice. It is a very interest
 
 ## Backend with Golang and a database
 
+Today, I started developing the Golang backend. I am using the following tools:
 
+- Postgres
+- Golang
+- GORM
+- Fiber
+- Docker
 
 
