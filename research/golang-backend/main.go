@@ -1,11 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"io/ioutil"
 	"log"
+	"os"
 	"path/filepath"
 )
 
@@ -42,36 +44,47 @@ func setup_db() {
 	//run sql file
 	run_sql_setup_files()
 
+	//show tables again
+	log_all_tables()
+
 }
 
 func run_sql_setup_files() {
-	// Run SQL file
-	sqlFilePath := filepath.Join(".", "schema.sql")
+	// Check if SQL file exists
+	sqlFilePath := filepath.Join(".", "sql", "rebuild.sql")
+	if _, err := os.Stat(sqlFilePath); os.IsNotExist(err) {
+		panic(fmt.Sprintf("SQL file '%s' not found", sqlFilePath))
+	}
+
+	// Read SQL file
 	sqlBytes, err := ioutil.ReadFile(sqlFilePath)
 	if err != nil {
 		panic(err)
 	}
 	sql := string(sqlBytes)
+
+	// Execute SQL
 	if err := db.Exec(sql).Error; err != nil {
 		panic(err)
 	}
-	log.Default().Println("Executed schema.sql")
+	log.Default().Println("Executed rebuild.sql")
 
 	// Show tables again
 	log_all_tables()
 }
 
 func log_all_tables() {
-	rows, err := db.Raw("SELECT table_name FROM information_schema.tables WHERE table_schema='public'").Rows()
+	rows, err := db.Raw("SELECT table_name FROM information_schema.tables WHERE table_schema='ws'").Rows()
 	if err != nil {
 		log.Default().Println(err)
 	}
-
+	log.Default().Println("Tables: ")
 	for rows.Next() {
 		var table_name string
 		rows.Scan(&table_name)
 		log.Default().Println(table_name)
 	}
+	log.Default().Println("n/")
 }
 
 func print_all_routes() {
