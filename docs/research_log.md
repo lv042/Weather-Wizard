@@ -160,6 +160,8 @@ Since my research is focused on the development with Golang, I won't use Pocketb
 
 For the given use case, Pocketbase is not the best choice. It is a very interesting project and I would like to use it in the future, but not for this project. I'm going to stick with the conventional way of developing a backend with Golang and a database. 
 
+## Backend with Golang and a database
+
 
 
 

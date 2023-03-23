@@ -1,7 +1,7 @@
 # Research question
 
 I want to focus in my research on the web development part. Since I was always interested in building backends and APIs, I always wanted to try the programming language Golang, 
-since its a very popular language for web focussed development. 
+since it's a very popular language for web focussed development. 
 
 My research question is:
 
@@ -12,7 +12,7 @@ My research question is:
 ## Why is it relevant?
 
 Currently, we are using PHP for the backend of Weather Wizard. PHP is a very popular language for web development, but it is not the best language for backend development.
-PHP is still one of the most used languages, but unfortunately it is usage is in decline for a couple years now. These are some of the reasons for that:
+PHP is still one of the most used languages, but unfortunately it is usage is in decline for a couple years now. These are some reasons for that:
 
 - PHP is not a compiled language: it is slower than compiled languages like C, C++ and Java
 
