@@ -84,7 +84,8 @@ func log_all_tables() {
 		rows.Scan(&table_name)
 		log.Default().Println(table_name)
 	}
-	log.Default().Println("n/")
+	//line break
+	log.Default().Println()
 }
 
 func print_all_routes() {
