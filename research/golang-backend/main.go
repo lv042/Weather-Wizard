@@ -4,28 +4,42 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-var fiberApp *fiber.App
+type fiberApp struct {
+	fiberApp *fiber.App
+}
+
+//constructor for fiber
+
+func NewFiberApp() *fiberApp {
+	return &fiberApp{fiberApp: fiber.New()}
+}
 
 func main() {
 	initBackend()
-	fiberApp = fiber.New()
-
-	// Define routes
-	fiberApp.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
-
-	fiberApp.Listen(":3000")
-
 }
 
 func initBackend() {
 	//new db manager object
 	dbManager := NewDBManager("Postgres")
 	dbManager.GetInfo()
-	initFiber()
+
+	//new fiber app object
+	fiberApp := NewFiberApp()
+	fiberApp.InitFiber()
 }
 
-func initFiber() {
+func (f *fiberApp) Listen(address string) {
+	f.fiberApp.Listen(address)
+}
+
+func (f *fiberApp) InitFiber() {
+	f.setupRoutes()
+	f.Listen(":3000")
+}
+
+func (f *fiberApp) setupRoutes() {
+	f.fiberApp.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("Hello World from Fiber!")
+	})
 
 }
