@@ -13,7 +13,10 @@ import (
 
 var insertSql = "insert.sql"
 var rebuildSql = "rebuild.sql"
-var db *gorm.DB
+
+type dbManager struct {
+	db *gorm.DB
+}
 
 func main() {
 	setup_db()
