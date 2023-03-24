@@ -22,8 +22,7 @@ func main() {
 func initBackend() {
 	//new db manager object
 	dbManager := NewDBManager("Postgres")
-	print(dbManager.ToString())
-
+	dbManager.GetInfo()
 	initFiber()
 }
 

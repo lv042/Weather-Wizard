@@ -91,6 +91,17 @@ func (d *dbManager) Log(s string) {
 	log.Default().Println("DatabaseManager: ", s)
 }
 
+func (d *dbManager) GetInfo() {
+	d.Log(fmt.Sprintf("%+v", d))
+}
+
+//sql functions
+
+func (d *dbManager) Query(sql string) *gorm.DB {
+	result := d.db.Raw(sql).Scan(&gorm.Model{})
+	return result
+}
+
 //Additional functions
 
 func (d *dbManager) logAllTables() {
