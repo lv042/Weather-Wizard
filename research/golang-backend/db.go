@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/gofiber/fiber/v2"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"io/ioutil"
@@ -11,54 +10,33 @@ import (
 	"path/filepath"
 )
 
-var insertSql = "insert.sql"
-var rebuildSql = "rebuild.sql"
-
-func main() {
-	setup_db()
-	fiberApp = fiber.New()
-
-	// Define routes
-	fiberApp.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
-
-	fiberApp.Listen(":3000")
-
-}
-
-func init_() {
-
-}
-
-func setup_db() {
+func setup_db(d *dbManager) {
 	dsn := "host=localhost port=5432 user=postgres password=postgres dbname=postgres sslmode=disable"
 	var err error
-	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	d.db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}
 	log.Default().Println("Connected to database")
 
 	//show tables
-	log_all_tables()
+	d.logAllTables()
 
 	//run sql file
-	runSqlSetupFiles()
+	d.runSqlSetupFiles()
 
 	//show tables again
-	log_all_tables()
+	d.logAllTables()
 
 	//fill db
-	fill_db()
+	d.fillDB()
 
 	//show all tables content
 
 }
-
-func runSqlSetupFiles() {
+func (d *dbManager) runSqlSetupFiles() {
 	// Check if SQL file exists
-	sqlFilePath := filepath.Join(".", "sql", rebuildSql)
+	sqlFilePath := filepath.Join(".", "sql", d.rebuildSql)
 	if _, err := os.Stat(sqlFilePath); os.IsNotExist(err) {
 		panic(fmt.Sprintf("SQL file '%s' not found", sqlFilePath))
 	}
@@ -71,14 +49,14 @@ func runSqlSetupFiles() {
 	sql := string(sqlBytes)
 
 	// Execute SQL
-	if err := db.Exec(sql).Error; err != nil {
+	if err := d.db.Exec(sql).Error; err != nil {
 		panic(err)
 	}
-	log.Default().Println("Executed ", rebuildSql)
+	log.Default().Println("Executed ", d.rebuildSql)
 
 }
 
-func fill_db() {
+func (d *dbManager) fillDB() {
 	defer func() {
 		if r := recover(); r != nil {
 			log.Default().Println("fill_db() Error: ", r)
@@ -86,7 +64,7 @@ func fill_db() {
 	}()
 
 	// Check if SQL file exists
-	sqlFilePath := filepath.Join(".", "sql", insertSql)
+	sqlFilePath := filepath.Join(".", "sql", d.insertSql)
 	if _, err := os.Stat(sqlFilePath); os.IsNotExist(err) {
 		panic(fmt.Sprintf("SQL file '%s' not found", sqlFilePath))
 	}
@@ -99,37 +77,18 @@ func fill_db() {
 	sql := string(sqlBytes)
 
 	// Execute SQL
-	if err := db.Exec(sql).Error; err != nil {
+	if err := d.db.Exec(sql).Error; err != nil {
 		panic(err)
 	}
-	log.Default().Println("Executed ", insertSql)
-}
-
-func log_all_tables() {
-	rows, err := db.Raw("SELECT table_name FROM information_schema.tables WHERE table_schema='ws'").Rows()
-	if err != nil {
-		log.Default().Println(err)
-	}
-	log.Default().Println("Tables: ")
-	for rows.Next() {
-		var table_name string
-		rows.Scan(&table_name)
-		log.Default().Println(table_name)
-	}
-	//line break
-	log.Default().Println()
+	log.Default().Println("Executed ", d.insertSql)
 }
 
 type dbManager struct {
-	db   *gorm.DB
-	name string
+	db         *gorm.DB
+	name       string
+	insertSql  string
+	rebuildSql string
 }
-
-//func (e *Employee) SetEmployee(name, phone, email string) {
-//	e.SetName(name)
-//	e.SetPhone(phone)
-//	e.SetEmail(email)
-//}
 
 func (d *dbManager) SetDBManager(db *gorm.DB, name string) {
 	d.SetName(name)
@@ -152,7 +111,22 @@ func (d *dbManager) GetName() string {
 	return d.name
 }
 
+func (d *dbManager) logAllTables() {
+	rows, err := d.db.Raw("SELECT table_name FROM information_schema.tables WHERE table_schema='ws'").Rows()
+	if err != nil {
+		log.Default().Println(err)
+	}
+	log.Default().Println("Tables: ")
+	for rows.Next() {
+		var table_name string
+		rows.Scan(&table_name)
+		log.Default().Println(table_name)
+	}
+	//line break
+	log.Default().Println()
+}
+
 // NewDBManager constructor for dbManager
 func NewDBManager(db *gorm.DB, name string) *dbManager {
-	return &dbManager{db: db, name: name}
+	return &dbManager{db: db, name: name, insertSql: "insert.sql", rebuildSql: "rebuild.sql"}
 }
