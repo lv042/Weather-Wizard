@@ -156,7 +156,7 @@ This is my finished setup with Pocketbase:
 Since my research is focused on the development with Golang, I won't use Pocketbase anymore, since it doesn't seem to be beneficial to use it as a Golang framework.
 
 
-## Pcketbase conclusion
+## Pocketbase conclusion
 
 For the given use case, Pocketbase is not the best choice. It is a very interesting project and I would like to use it in the future, but not for this project. I'm going to stick with the conventional way of developing a backend with Golang and a database. 
 
@@ -169,5 +169,18 @@ Today, I started developing the Golang backend. I am using the following tools:
 - GORM
 - Fiber
 - Docker
+
+## Establishing a connection to the database
+
+This is the database manager. Im trying to develop the backend in oop style. The database manager is responsible for establishing a connection to the database and for executing queries:
+
+![./../research/golang-backend/db.go](./../research/golang-backend/db.go)
+
+I also started developing the basic scheme for Fiber. My fiber app currently looks like this:
+
+![./../research/golang-backend/main.go](./../research/golang-backend/main.go)
+
+I am not entirly sure that the paths works. I will test it later.
+
 
 
