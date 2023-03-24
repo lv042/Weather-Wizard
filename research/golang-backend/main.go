@@ -7,7 +7,7 @@ import (
 var fiberApp *fiber.App
 
 func main() {
-	setup_db()
+	initBackend()
 	fiberApp = fiber.New()
 
 	// Define routes
@@ -20,7 +20,11 @@ func main() {
 }
 
 func initBackend() {
+	//new db manager object
+	dbManager := NewDBManager("Postgres")
+	print(dbManager.ToString())
 
+	initFiber()
 }
 
 func initFiber() {

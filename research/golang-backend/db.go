@@ -20,8 +20,18 @@ type dbManager struct {
 }
 
 // NewDBManager constructor for dbManager
-func NewDBManager(db *gorm.DB, name string) *dbManager {
-	return &dbManager{db: db, name: name, insertSql: "insert.sql", rebuildSql: "rebuild.sql"}
+func NewDBManager(name string) *dbManager {
+	var d = dbManager{db: nil, name: name, insertSql: "insert.sql", rebuildSql: "rebuild.sql"}
+	dsn := "host=localhost port=5432 user=postgres password=postgres dbname=postgres sslmode=disable"
+	var err error
+	d.db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		d.Log("Failed to connect database")
+	}
+	log.Default().Println("DatabaseManager: Connected to database")
+	d.Log("Connected to database")
+
+	return &d
 }
 
 //basic functions
@@ -47,20 +57,13 @@ func (d *dbManager) GetName() string {
 	return d.name
 }
 
+func (d *dbManager) ToString() string {
+	return fmt.Sprintf("DatabaseManager: Running %s ", d.name)
+}
+
 //setup function
 
 func (d *dbManager) setupDb() {
-	dsn := "host=localhost port=5432 user=postgres password=postgres dbname=postgres sslmode=disable"
-	var err error
-	d.db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if err != nil {
-		panic("failed to connect database")
-	}
-	log.Default().Println("Connected to database")
-
-	//show tables
-	d.logAllTables()
-
 	//run sql file
 	d.runSqlSetupFiles()
 
@@ -70,8 +73,22 @@ func (d *dbManager) setupDb() {
 	//fill db
 	d.fillDB()
 
-	//show all tables content
+	//show tables
+	d.logAllTables()
+}
 
+//Misc functions
+
+func (d *dbManager) Close() {
+	db, err := d.db.DB()
+	if err != nil {
+		log.Default().Println(err)
+	}
+	db.Close()
+}
+
+func (d *dbManager) Log(s string) {
+	log.Default().Println("DatabaseManager: ", s)
 }
 
 //Additional functions
@@ -136,6 +153,6 @@ func (d *dbManager) runSqlSetupFiles() {
 	if err := d.db.Exec(sql).Error; err != nil {
 		panic(err)
 	}
-	log.Default().Println("Executed ", d.rebuildSql)
+	d.Log("Executed " + d.rebuildSql)
 
 }
