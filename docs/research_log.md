@@ -180,7 +180,16 @@ I also started developing the basic scheme for Fiber. My fiber app currently loo
 
 ![./../research/golang-backend/main.go](./../research/golang-backend/main.go)
 
-I am not entirly sure that the paths works. I will test it later.
+I am not entirely sure that the paths works. I will test it later.
+
+## Progress of the backend development
+
+I have finished the basic setup of the backend. I have implemented the following features:
+
+- One Hello World API endpoint
+- A proper Logging setup
+- Hot reload setup with Air
+- A database manager which establishes a connection to the database and executes queries
 
 
 
