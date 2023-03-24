@@ -28,7 +28,7 @@ func NewDBManager(name string) *dbManager {
 	if err != nil {
 		d.Log("Failed to connect database")
 	}
-	log.Default().Println("DatabaseManager: Connected to database")
+
 	d.Log("Connected to database")
 
 	return &d
@@ -58,7 +58,7 @@ func (d *dbManager) GetName() string {
 }
 
 func (d *dbManager) ToString() string {
-	return fmt.Sprintf("DatabaseManager: Running %s ", d.name)
+	return fmt.Sprintf("Running %s ", d.name)
 }
 
 //setup function
@@ -82,7 +82,7 @@ func (d *dbManager) setupDb() {
 func (d *dbManager) Close() {
 	db, err := d.db.DB()
 	if err != nil {
-		log.Default().Println(err)
+		d.Log(err.Error())
 	}
 	db.Close()
 }
@@ -96,22 +96,22 @@ func (d *dbManager) Log(s string) {
 func (d *dbManager) logAllTables() {
 	rows, err := d.db.Raw("SELECT table_name FROM information_schema.tables WHERE table_schema='ws'").Rows()
 	if err != nil {
-		log.Default().Println(err)
+		d.Log(err.Error())
 	}
-	log.Default().Println("Tables: ")
+	var log = "Tables: "
+
 	for rows.Next() {
 		var table_name string
 		rows.Scan(&table_name)
-		log.Default().Println(table_name)
+		log += table_name + ", "
 	}
-	//line break
-	log.Default().Println()
+	d.Log(log)
 }
 
 func (d *dbManager) fillDB() {
 	defer func() {
 		if r := recover(); r != nil {
-			log.Default().Println("fill_db() Error: ", r)
+			d.Log(fmt.Sprintf("Failed to fill database: %s", r))
 		}
 	}()
 
@@ -132,7 +132,7 @@ func (d *dbManager) fillDB() {
 	if err := d.db.Exec(sql).Error; err != nil {
 		panic(err)
 	}
-	log.Default().Println("Executed ", d.insertSql)
+	d.Log("Executed " + d.insertSql)
 }
 
 func (d *dbManager) runSqlSetupFiles() {
