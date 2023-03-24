@@ -14,10 +14,6 @@ import (
 var insertSql = "insert.sql"
 var rebuildSql = "rebuild.sql"
 
-type dbManager struct {
-	db *gorm.DB
-}
-
 func main() {
 	setup_db()
 	fiberApp = fiber.New()
@@ -122,4 +118,41 @@ func log_all_tables() {
 	}
 	//line break
 	log.Default().Println()
+}
+
+type dbManager struct {
+	db   *gorm.DB
+	name string
+}
+
+//func (e *Employee) SetEmployee(name, phone, email string) {
+//	e.SetName(name)
+//	e.SetPhone(phone)
+//	e.SetEmail(email)
+//}
+
+func (d *dbManager) SetDBManager(db *gorm.DB, name string) {
+	d.SetName(name)
+	d.SetDB(db)
+}
+
+func (d *dbManager) SetDB(db *gorm.DB) {
+	d.db = db
+}
+
+func (d *dbManager) SetName(name string) {
+	d.name = name
+}
+
+func (d *dbManager) GetDB() *gorm.DB {
+	return d.db
+}
+
+func (d *dbManager) GetName() string {
+	return d.name
+}
+
+// NewDBManager constructor for dbManager
+func NewDBManager(db *gorm.DB, name string) *dbManager {
+	return &dbManager{db: db, name: name}
 }
