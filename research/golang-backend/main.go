@@ -38,8 +38,9 @@ func (f *fiberApp) InitFiber() {
 }
 
 func (f *fiberApp) setupRoutes() {
+	//Get requests
 	f.fiberApp.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello World from Fiber!")
+		return c.SendString("Hello, World!")
 	})
 
 }
