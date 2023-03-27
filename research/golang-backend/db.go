@@ -206,7 +206,40 @@ func (d *dbManager) getWeatherData() (string, error) {
 	return string(jsonString), nil
 }
 
-func (d *dbManager) addWeatherData(data string) {
-	//add weather data to the table we	ather_data
-	d.db.Create(data)
+//Crud operations
+
+type WeatherData struct {
+	Timestamp int64                  `json:"timestamp" gorm:"primaryKey"`
+	Data      map[string]interface{} `json:"data"`
+}
+
+// Read a weather data record by timestamp
+func (d *dbManager) readWeatherData(timestamp string) ([]map[string]interface{}, error) {
+	var data []map[string]interface{}
+	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Find(&data)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return data, nil
+}
+
+// Create a new weather data entry with the given timestamp and data
+func (d *dbManager) createWeatherData(timestamp string, data string) error {
+	result := d.db.Table("weather_data").Create(map[string]interface{}{
+		"timestamp": timestamp,
+		"data":      data,
+	})
+	return result.Error
+}
+
+// Update the weather data entry with the given timestamp
+func (d *dbManager) updateWeatherData(timestamp string, data string) error {
+	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Update("data", data)
+	return result.Error
+}
+
+// Delete the weather data entry with the given timestamp
+func (d *dbManager) deleteWeatherData(timestamp string) error {
+	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Delete(&map[string]interface{}{})
+	return result.Error
 }
