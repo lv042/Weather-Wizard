@@ -190,6 +190,22 @@ func (d *dbManager) logWeatherData() {
 	}
 }
 
+func (d *dbManager) getWeatherData() (string, error) {
+	var data []map[string]interface{}
+	result := d.db.Table("weather_data").Find(&data)
+	if result.Error != nil {
+		return "", result.Error
+	}
+	if result.RowsAffected == 0 {
+		return "", nil
+	}
+	jsonString, err := json.Marshal(data)
+	if err != nil {
+		return "", err
+	}
+	return string(jsonString), nil
+}
+
 func (d *dbManager) addWeatherData(data string) {
 	//add weather data to the table we	ather_data
 	d.db.Create(data)
