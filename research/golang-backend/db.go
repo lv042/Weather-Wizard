@@ -11,18 +11,18 @@ import (
 	"path/filepath"
 )
 
-//dbManager struct
+//DBManager struct
 
-type dbManager struct {
+type DBManager struct {
 	db         *gorm.DB
 	name       string
 	insertSql  string
 	rebuildSql string
 }
 
-// NewDBManager constructor for dbManager
-func NewDBManager(name string) *dbManager {
-	var d = dbManager{db: nil, name: name, insertSql: "insert.sql", rebuildSql: "rebuild.sql"}
+// NewDBManager constructor for DBManager
+func NewDBManager(name string) *DBManager {
+	var d = DBManager{db: nil, name: name, insertSql: "insert.sql", rebuildSql: "rebuild.sql"}
 	dsn := "host=localhost port=5432 user=postgres password=postgres dbname=postgres sslmode=disable"
 	var err error
 	d.db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
@@ -37,34 +37,34 @@ func NewDBManager(name string) *dbManager {
 
 //basic functions
 
-func (d *dbManager) SetDBManager(db *gorm.DB, name string) {
+func (d *DBManager) SetDBManager(db *gorm.DB, name string) {
 	d.SetName(name)
 	d.SetDB(db)
 }
 
-func (d *dbManager) SetDB(db *gorm.DB) {
+func (d *DBManager) SetDB(db *gorm.DB) {
 	d.db = db
 }
 
-func (d *dbManager) SetName(name string) {
+func (d *DBManager) SetName(name string) {
 	d.name = name
 }
 
-func (d *dbManager) GetDB() *gorm.DB {
+func (d *DBManager) GetDB() *gorm.DB {
 	return d.db
 }
 
-func (d *dbManager) GetName() string {
+func (d *DBManager) GetName() string {
 	return d.name
 }
 
-func (d *dbManager) ToString() string {
+func (d *DBManager) ToString() string {
 	return fmt.Sprintf("Running %s ", d.name)
 }
 
 //setup function
 
-func (d *dbManager) setupDb() {
+func (d *DBManager) setupDb() {
 	//run sql file
 	d.runSqlSetupFiles()
 
@@ -80,7 +80,7 @@ func (d *dbManager) setupDb() {
 
 //Misc functions
 
-func (d *dbManager) Close() {
+func (d *DBManager) Close() {
 	db, err := d.db.DB()
 	if err != nil {
 		d.Log(err.Error())
@@ -88,24 +88,24 @@ func (d *dbManager) Close() {
 	db.Close()
 }
 
-func (d *dbManager) Log(s string) {
+func (d *DBManager) Log(s string) {
 	log.Default().Println("DatabaseManager: ", s)
 }
 
-func (d *dbManager) GetInfo() {
+func (d *DBManager) GetInfo() {
 	d.Log(fmt.Sprintf("%+v", d))
 }
 
 //sql functions
 
-func (d *dbManager) Query(sql string) *gorm.DB {
+func (d *DBManager) Query(sql string) *gorm.DB {
 	result := d.db.Raw(sql).Scan(&gorm.Model{})
 	return result
 }
 
 //Additional functions
 
-func (d *dbManager) logAllTables() {
+func (d *DBManager) logAllTables() {
 	rows, err := d.db.Raw("SELECT table_name FROM information_schema.tables WHERE table_schema='ws'").Rows()
 	if err != nil {
 		d.Log(err.Error())
@@ -120,7 +120,7 @@ func (d *dbManager) logAllTables() {
 	d.Log(log)
 }
 
-func (d *dbManager) fillDB() {
+func (d *DBManager) fillDB() {
 	defer func() {
 		if r := recover(); r != nil {
 			d.Log(fmt.Sprintf("Failed to fill database: %s", r))
@@ -147,7 +147,7 @@ func (d *dbManager) fillDB() {
 	d.Log("Executed " + d.insertSql)
 }
 
-func (d *dbManager) runSqlSetupFiles() {
+func (d *DBManager) runSqlSetupFiles() {
 	// Check if SQL file exists
 	sqlFilePath := filepath.Join(".", "sql", d.rebuildSql)
 	if _, err := os.Stat(sqlFilePath); os.IsNotExist(err) {
@@ -169,7 +169,7 @@ func (d *dbManager) runSqlSetupFiles() {
 
 }
 
-func (d *dbManager) logWeatherData() {
+func (d *DBManager) logWeatherData() {
 	var data []map[string]interface{}
 	result := d.db.Table("weather_data").Find(&data)
 	if result.Error != nil {
@@ -190,7 +190,7 @@ func (d *dbManager) logWeatherData() {
 	}
 }
 
-func (d *dbManager) GetWeatherData() (string, error) {
+func (d *DBManager) GetWeatherData() (string, error) {
 	var data []map[string]interface{}
 	result := d.db.Table("weather_data").Find(&data)
 	if result.Error != nil {
@@ -214,7 +214,7 @@ type WeatherData struct {
 }
 
 // ReadWeatherData Read a weather data record by timestamp
-func (d *dbManager) ReadWeatherData(timestamp string) ([]map[string]interface{}, error) {
+func (d *DBManager) ReadWeatherData(timestamp string) ([]map[string]interface{}, error) {
 	var data []map[string]interface{}
 	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Find(&data)
 	if result.Error != nil {
@@ -224,7 +224,7 @@ func (d *dbManager) ReadWeatherData(timestamp string) ([]map[string]interface{},
 }
 
 // CreateWeatherData Create a new weather data entry with the given timestamp and data
-func (d *dbManager) CreateWeatherData(timestamp string, data string) error {
+func (d *DBManager) CreateWeatherData(timestamp string, data string) error {
 	result := d.db.Table("weather_data").Create(map[string]interface{}{
 		"timestamp": timestamp,
 		"data":      data,
@@ -233,13 +233,13 @@ func (d *dbManager) CreateWeatherData(timestamp string, data string) error {
 }
 
 // UpdateWeatherData Update the weather data entry with the given timestamp
-func (d *dbManager) UpdateWeatherData(timestamp string, data string) error {
+func (d *DBManager) UpdateWeatherData(timestamp string, data string) error {
 	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Update("data", data)
 	return result.Error
 }
 
 // DeleteWeatherData Delete the weather data entry with the given timestamp
-func (d *dbManager) DeleteWeatherData(timestamp string) error {
+func (d *DBManager) DeleteWeatherData(timestamp string) error {
 	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Delete(&map[string]interface{}{})
 	return result.Error
 }
