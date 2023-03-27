@@ -191,5 +191,8 @@ I have finished the basic setup of the backend. I have implemented the following
 - Hot reload setup with Air
 - A database manager which establishes a connection to the database and executes queries
 
+## Monday Update 
 
+Today, I finished all the basic CRUD operations in the Database-manager. Now the database manager can deliver to requested information to the Fiber-API. The Get and Delete request are both already working. The other two are still in progress and will be probably finished tomorrow.
+I also plan to give proper status codes to the API responses. At the moment, the API always returns a 200 status code, even if the request failed. Also an error message would be good to have. If I have the time tomorrow I will also restructure my code and put parts of it into separate classes.
 
