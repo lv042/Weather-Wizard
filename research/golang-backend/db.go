@@ -190,7 +190,14 @@ func (d *DBManager) logWeatherData() {
 	}
 }
 
-func (d *DBManager) GetWeatherData() (string, error) {
+//Crud operations
+
+type WeatherData struct {
+	Timestamp string `json:"timestamp"`
+	Data      string `json:"data"`
+}
+
+func (d *DBManager) ReadWeatherData() (string, error) {
 	var data []map[string]interface{}
 	result := d.db.Table("weather_data").Find(&data)
 	if result.Error != nil {
@@ -204,23 +211,6 @@ func (d *DBManager) GetWeatherData() (string, error) {
 		return "", err
 	}
 	return string(jsonString), nil
-}
-
-//Crud operations
-
-type WeatherData struct {
-	Timestamp int64                  `json:"timestamp" gorm:"primaryKey"`
-	Data      map[string]interface{} `json:"data"`
-}
-
-// ReadWeatherData Read a weather data record by timestamp
-func (d *DBManager) ReadWeatherData(timestamp string) ([]map[string]interface{}, error) {
-	var data []map[string]interface{}
-	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Find(&data)
-	if result.Error != nil {
-		return nil, result.Error
-	}
-	return data, nil
 }
 
 // CreateWeatherData Create a new weather data entry with the given timestamp and data
