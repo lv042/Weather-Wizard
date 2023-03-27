@@ -22,6 +22,8 @@ func initBackend() {
 	//new db manager object
 	dbManager := NewDBManager("Postgres")
 	dbManager.GetInfo()
+	dbManager.setupDb()
+	dbManager.logWeatherData()
 
 	//new fiber app object
 	fiberApp := NewFiberApp()

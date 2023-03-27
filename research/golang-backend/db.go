@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -169,15 +168,23 @@ func (d *dbManager) runSqlSetupFiles() {
 
 }
 
-func (d *dbManager) getWeatherData() *sql.Rows {
-	//returns the 5 most recent weather data entries from the table weather_data
-	rows, err := d.db.Raw("SELECT * FROM weather_data ORDER BY id DESC LIMIT 5").Rows()
+func (d *dbManager) logWeatherData() {
+	//log the most recent weather data entries from the table weather_data
+	rows, err := d.db.Raw("SELECT * FROM weather_data").Rows()
 	if err != nil {
 		d.Log(err.Error())
 	}
-	//return rows and dont log them
-
-	return rows
+	//return rows and  log them
+	//print rows
+	for rows.Next() {
+		var id int
+		var temperature float64
+		var humidity float64
+		var pressure float64
+		var date string
+		rows.Scan(&id, &temperature, &humidity, &pressure, &date)
+		d.Log(fmt.Sprintf("ID: %d, Temperature: %f, Humidity: %f, Pressure: %f, Date: %s", id, temperature, humidity, pressure, date))
+	}
 }
 
 func (d *dbManager) addWeatherData(data string) {
