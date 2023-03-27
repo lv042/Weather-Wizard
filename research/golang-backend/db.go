@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -169,21 +170,23 @@ func (d *dbManager) runSqlSetupFiles() {
 }
 
 func (d *dbManager) logWeatherData() {
-	//log the most recent weather data entries from the table weather_data
-	rows, err := d.db.Raw("SELECT * FROM weather_data").Rows()
-	if err != nil {
-		d.Log(err.Error())
+	var data []map[string]interface{}
+	result := d.db.Table("weather_data").Find(&data)
+	if result.Error != nil {
+		d.Log(result.Error.Error())
+		return
 	}
-	//return rows and  log them
-	//print rows
-	for rows.Next() {
-		var id int
-		var temperature float64
-		var humidity float64
-		var pressure float64
-		var date string
-		rows.Scan(&id, &temperature, &humidity, &pressure, &date)
-		d.Log(fmt.Sprintf("ID: %d, Temperature: %f, Humidity: %f, Pressure: %f, Date: %s", id, temperature, humidity, pressure, date))
+	if result.RowsAffected == 0 {
+		d.Log("No weather data found")
+		return
+	}
+	for _, item := range data {
+		jsonString, err := json.Marshal(item)
+		if err != nil {
+			d.Log(err.Error())
+			continue
+		}
+		d.Log(string(jsonString))
 	}
 }
 
