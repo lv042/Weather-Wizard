@@ -196,3 +196,46 @@ I have finished the basic setup of the backend. I have implemented the following
 Today, I finished all the basic CRUD operations in the Database-manager. Now the database manager can deliver to requested information to the Fiber-API. The Get and Delete request are both already working. The other two are still in progress and will be probably finished tomorrow.
 I also plan to give proper status codes to the API responses. At the moment, the API always returns a 200 status code, even if the request failed. Also an error message would be good to have. If I have the time tomorrow I will also restructure my code and put parts of it into separate classes.
 
+## Tuesday
+
+I finished all the api routes. The FiberApp now has the following routes:
+
+```go
+
+	// GET request to retrieve all weather data
+	f.fiberApp.Get("/weather", func(c *fiber.Ctx) error {
+		// ...
+	})
+
+	// POST request to delete weather data by timestamp
+	f.fiberApp.Delete("/weather/delete", func(c *fiber.Ctx) error {
+		// ...
+	})
+
+	// PUT request to update weather data by timestamp
+	f.fiberApp.Put("/weather/update", func(c *fiber.Ctx) error {
+		// ...
+	})
+
+	// POST request to create weather data
+	f.fiberApp.Post("/weather/create", func(c *fiber.Ctx) error {
+		// ...
+	})
+```
+
+The structure is still the same as before:
+
+
+Post request:
+```json
+  {
+		"humidity": 63.8,
+		"light_intensity": 1025.1,
+		"obstacle_detected": false,
+		"pressure": 1016.2,
+		"temperature": 22.1,
+		"timestamp": "2022-03-02T00:00:00Z"
+  }
+```
+
+I also added error codes and status messages as I planned before. The API will now always say that there is an error if the request failed and also tell you if the operation was successful or not. 
