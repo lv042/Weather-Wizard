@@ -205,6 +205,39 @@ type WeatherData struct {
 
 // Crud operations
 
+// GetWeatherDataByTimestampJSON Get weather data by timestamp
+func (d *DBManager) GetWeatherDataByTimestampJSON(jsonStr string) (string, error) {
+	var data struct {
+		Timestamp string `json:"timestamp"`
+	}
+	err := json.Unmarshal([]byte(jsonStr), &data)
+	if err != nil {
+		return "", err
+	}
+
+	timestamp, err := time.Parse(time.RFC3339, data.Timestamp)
+	if err != nil {
+		return "", err
+	}
+
+	var weatherData WeatherData
+	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).First(&weatherData)
+	if result.Error != nil {
+		return "", result.Error
+	}
+
+	if result.RowsAffected == 0 {
+		return "No weather data found for the specified timestamp", nil
+	}
+
+	weatherDataJSON, err := json.Marshal(weatherData)
+	if err != nil {
+		return "", err
+	}
+
+	return string(weatherDataJSON), nil
+}
+
 // GetAllWeatherDataJSON Get all weather data as JSON
 func (d *DBManager) GetAllWeatherDataJSON() ([]byte, error) {
 	var data []WeatherData
@@ -249,7 +282,7 @@ func (d *DBManager) DeleteWeatherDataJSON(jsonStr string) (string, error) {
 	return "Weather data deleted", nil
 }
 
-// Update weather data by timestamp
+// UpdateWeatherDataJSON Update weather data by timestamp
 func (d *DBManager) UpdateWeatherDataJSON(jsonStr string) (string, error) {
 	var data WeatherData
 	err := json.Unmarshal([]byte(jsonStr), &data)
@@ -271,7 +304,7 @@ func (d *DBManager) UpdateWeatherDataJSON(jsonStr string) (string, error) {
 	return "Weather data updated", nil
 }
 
-// Create weather data
+// CreateWeatherDataJSON Create weather data
 func (d *DBManager) CreateWeatherDataJSON(jsonStr string) (string, error) {
 	var data WeatherData
 	err := json.Unmarshal([]byte(jsonStr), &data)
