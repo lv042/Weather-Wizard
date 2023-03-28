@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -9,6 +10,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"time"
 )
 
 //DBManager struct
@@ -190,34 +192,104 @@ func (d *DBManager) logWeatherData() {
 	}
 }
 
-//Crud operations
+//ORM
 
 type WeatherData struct {
-	Timestamp string `json:"timestamp"`
-	Data      string `json:"data"`
+	Timestamp        time.Time `gorm:"column:timestamp"`
+	Temperature      float64   `gorm:"column:temperature"`
+	Humidity         float64   `gorm:"column:humidity"`
+	Pressure         float64   `gorm:"column:pressure"`
+	ObstacleDetected bool      `gorm:"column:obstacle_detected"`
+	LightIntensity   float64   `gorm:"column:light_intensity"`
 }
 
-func (d *DBManager) ReadWeatherData() (string, error) {
-	var data []map[string]interface{}
+// Crud operations
+
+// GetAllWeatherDataJSON Get all weather data as JSON
+func (d *DBManager) GetAllWeatherDataJSON() ([]byte, error) {
+	var data []WeatherData
 	result := d.db.Table("weather_data").Find(&data)
 	if result.Error != nil {
-		return "", result.Error
+		return nil, result.Error
 	}
 	if result.RowsAffected == 0 {
-		return "", nil
+		return nil, errors.New("no weather data found")
 	}
-	jsonString, err := json.Marshal(data)
+	jsonData, err := json.Marshal(data)
+	if err != nil {
+		return nil, err
+	}
+	return jsonData, nil
+}
+
+// DeleteWeatherDataJSON Delete weather data by timestamp
+func (d *DBManager) DeleteWeatherDataJSON(jsonStr string) (string, error) {
+	var data struct {
+		Timestamp string `json:"timestamp"`
+	}
+	err := json.Unmarshal([]byte(jsonStr), &data)
 	if err != nil {
 		return "", err
 	}
-	return string(jsonString), nil
+
+	timestamp, err := time.Parse(time.RFC3339, data.Timestamp)
+	if err != nil {
+		return "", err
+	}
+
+	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Delete(&WeatherData{})
+	if result.Error != nil {
+		return "", result.Error
+	}
+
+	if result.RowsAffected == 0 {
+		return "No weather data found for the specified timestamp", nil
+	}
+
+	return "Weather data deleted", nil
 }
 
-// DeleteWeatherData Delete the weather data entry with the given timestamp
-func (d *DBManager) DeleteWeatherData(timestamp string) (string, error) {
-	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Delete(&map[string]interface{}{})
-	if result.RowsAffected == 0 {
-		return "", fmt.Errorf("no weather data entry found with timestamp %s", timestamp)
+// Update weather data by timestamp
+func (d *DBManager) UpdateWeatherDataJSON(jsonStr string) (string, error) {
+	var data WeatherData
+	err := json.Unmarshal([]byte(jsonStr), &data)
+	if err != nil {
+		return "", err
 	}
-	return fmt.Sprintf(`{"timestamp": "%s"} deleted successfully`, timestamp), result.Error
+
+	timestamp := data.Timestamp
+
+	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Updates(&data)
+	if result.Error != nil {
+		return "", result.Error
+	}
+
+	if result.RowsAffected == 0 {
+		return "No weather data found for the specified timestamp", nil
+	}
+
+	return "Weather data updated", nil
+}
+
+// Create weather data
+func (d *DBManager) CreateWeatherDataJSON(jsonStr string) (string, error) {
+	var data WeatherData
+	err := json.Unmarshal([]byte(jsonStr), &data)
+	if err != nil {
+		return "", err
+	}
+
+	// Check if data with the same timestamp already exists
+	existingData := WeatherData{}
+	result := d.db.Table("weather_data").Where("timestamp = ?", data.Timestamp).First(&existingData)
+	if result.RowsAffected > 0 {
+		return "Weather data already exists for the specified timestamp", nil
+	}
+
+	result = d.db.Table("weather_data").Create(&data)
+	if result.Error != nil {
+		return "", result.Error
+	}
+
+	return "Weather data created", nil
 }
