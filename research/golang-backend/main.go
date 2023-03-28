@@ -67,7 +67,7 @@ func (f *fiberApp) setupRoutes() {
 	})
 
 	// POST request to delete weather data by timestamp
-	f.fiberApp.Post("/weather/delete", func(c *fiber.Ctx) error {
+	f.fiberApp.Delete("/weather/delete", func(c *fiber.Ctx) error {
 		// get JSON data from request body
 		jsonStr := string(c.Body())
 
@@ -80,7 +80,7 @@ func (f *fiberApp) setupRoutes() {
 	})
 
 	// POST request to update weather data by timestamp
-	f.fiberApp.Post("/weather/update", func(c *fiber.Ctx) error {
+	f.fiberApp.Put("/weather/update", func(c *fiber.Ctx) error {
 		// get JSON data from request body
 		jsonStr := string(c.Body())
 
