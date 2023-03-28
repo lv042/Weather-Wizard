@@ -239,3 +239,5 @@ Post request:
 ```
 
 I also added error codes and status messages as I planned before. The API will now always say that there is an error if the request failed and also tell you if the operation was successful or not. 
+
+Middleware was also introduced to log all requests in and output of an API call. This is very useful for debugging and also for monitoring the API.

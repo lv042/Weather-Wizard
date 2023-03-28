@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -43,7 +44,24 @@ func (f *fiberApp) ListAllHandlers() {
 	f.fiberApp.GetRoutes(true)
 }
 
+func logMiddleware(c *fiber.Ctx) error {
+	// log input
+	fmt.Println("Input:", string(c.Body()))
+
+	// continue processing the request
+	err := c.Next()
+
+	// log output
+	fmt.Println("Output:", string(c.Response().Body()))
+
+	return err
+}
+
 func (f *fiberApp) setupRoutes() {
+
+	// add middleware to log input and output for all routes
+	f.fiberApp.Use(logMiddleware)
+
 	// GET request to retrieve weather data by timestamp
 	f.fiberApp.Get("/weather/:timestamp", func(c *fiber.Ctx) error {
 		timestamp := c.Params("timestamp")
