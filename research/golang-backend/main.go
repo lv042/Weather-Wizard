@@ -39,6 +39,10 @@ func (f *fiberApp) InitFiber() {
 	f.Listen(":3000")
 }
 
+func (f *fiberApp) ListAllHandlers() {
+	f.fiberApp.GetRoutes(true)
+}
+
 func (f *fiberApp) setupRoutes() {
 	// GET request to retrieve weather data by timestamp
 	f.fiberApp.Get("/weather/:timestamp", func(c *fiber.Ctx) error {
