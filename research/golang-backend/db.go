@@ -213,23 +213,11 @@ func (d *DBManager) ReadWeatherData() (string, error) {
 	return string(jsonString), nil
 }
 
-// CreateWeatherData Create a new weather data entry with the given timestamp and data
-func (d *DBManager) CreateWeatherData(timestamp string, data string) error {
-	result := d.db.Table("weather_data").Create(map[string]interface{}{
-		"timestamp": timestamp,
-		"data":      data,
-	})
-	return result.Error
-}
-
-// UpdateWeatherData Update the weather data entry with the given timestamp
-func (d *DBManager) UpdateWeatherData(timestamp string, data string) error {
-	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Update("data", data)
-	return result.Error
-}
-
 // DeleteWeatherData Delete the weather data entry with the given timestamp
-func (d *DBManager) DeleteWeatherData(timestamp string) error {
+func (d *DBManager) DeleteWeatherData(timestamp string) (string, error) {
 	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Delete(&map[string]interface{}{})
-	return result.Error
+	if result.RowsAffected == 0 {
+		return "", fmt.Errorf("no weather data entry found with timestamp %s", timestamp)
+	}
+	return fmt.Sprintf(`{"timestamp": "%s"} deleted successfully`, timestamp), result.Error
 }
