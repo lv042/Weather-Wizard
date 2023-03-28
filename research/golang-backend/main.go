@@ -40,46 +40,64 @@ func (f *fiberApp) InitFiber() {
 }
 
 func (f *fiberApp) setupRoutes() {
-	// Get all weather data
-	f.fiberApp.Get("/api/weather_data", func(c *fiber.Ctx) error {
-		data, err := dbManager.GetAllWeatherDataJSON()
+	// GET request to retrieve weather data by timestamp
+	f.fiberApp.Get("/weather/:timestamp", func(c *fiber.Ctx) error {
+		timestamp := c.Params("timestamp")
+
+		// call GetWeatherDataByTimestampJSON method from dbManager object
+		weatherData, err := dbManager.GetWeatherDataByTimestampJSON(timestamp)
 		if err != nil {
-			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-				"message": err.Error(),
-			})
+			return c.SendString(err.Error())
 		}
-		return c.Send(data)
+		return c.SendString(weatherData)
 	})
 
-	// Get weather data by timestamp
-	f.fiberApp.Post("/api/weather_data/timestamp", func(c *fiber.Ctx) error {
-		data := new(struct {
-			Timestamp string `json:"timestamp"`
-		})
-		if err := c.BodyParser(data); err != nil {
-			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-				"message": "Invalid request body",
-			})
-		}
-		result, err := dbManager.GetWeatherDataByTimestampJSON(string(c.Body()))
+	// GET request to retrieve all weather data
+	f.fiberApp.Get("/weather", func(c *fiber.Ctx) error {
+		// call GetAllWeatherDataJSON method from dbManager object
+		weatherData, err := dbManager.GetAllWeatherDataJSON()
 		if err != nil {
-			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-				"message": err.Error(),
-			})
+			return c.SendString(err.Error())
+		}
+		return c.Send(weatherData)
+	})
+
+	// POST request to delete weather data by timestamp
+	f.fiberApp.Post("/weather/delete", func(c *fiber.Ctx) error {
+		// get JSON data from request body
+		jsonStr := string(c.Body())
+
+		// call DeleteWeatherDataJSON method from dbManager object
+		result, err := dbManager.DeleteWeatherDataJSON(jsonStr)
+		if err != nil {
+			return c.SendString(err.Error())
 		}
 		return c.SendString(result)
 	})
 
-	// Create weather data
-	f.fiberApp.Post("/api/weather_data", func(c *fiber.Ctx) error {
-		result, err := dbManager.CreateWeatherDataJSON(string(c.Body()))
+	// POST request to update weather data by timestamp
+	f.fiberApp.Post("/weather/update", func(c *fiber.Ctx) error {
+		// get JSON data from request body
+		jsonStr := string(c.Body())
+
+		// call UpdateWeatherDataJSON method from dbManager object
+		result, err := dbManager.UpdateWeatherDataJSON(jsonStr)
 		if err != nil {
-			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-				"message": err.Error(),
-			})
+			return c.SendString(err.Error())
 		}
-		return c.JSON(fiber.Map{
-			"message": result,
-		})
+		return c.SendString(result)
+	})
+
+	// POST request to create weather data
+	f.fiberApp.Post("/weather/create", func(c *fiber.Ctx) error {
+		// get JSON data from request body
+		jsonStr := string(c.Body())
+
+		// call CreateWeatherDataJSON method from dbManager object
+		result, err := dbManager.CreateWeatherDataJSON(jsonStr)
+		if err != nil {
+			return c.SendString(err.Error())
+		}
+		return c.SendString(result)
 	})
 }
