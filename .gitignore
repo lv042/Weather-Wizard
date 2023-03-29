@@ -1,3 +1,4 @@
 .idea/
 .target/idea/encodings.xml
 .target/idea/inspectionProfiles/Project_Default.xml
+/research/golang-backend/tmp/
