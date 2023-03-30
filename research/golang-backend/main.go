@@ -9,11 +9,12 @@ func main() {
 
 func initBackend() {
 	//new db manager object
-	dbManager = NewDBManager("test")
+	dbManager = NewDBManager("Postgres", "host=localhost port=5432 user=postgres password=postgres dbname=postgres sslmode=disable")
 	dbManager.GetInfo()
 	dbManager.setupDb()
 
 	//new fiber app object
 	fiberApp = NewFiberApp()
 	fiberApp.InitFiber()
+
 }

@@ -10,7 +10,15 @@ type FiberApp struct {
 	fiberApp *fiber.App
 }
 
-// constructor for fiber
+func (f *FiberApp) Log(message string) {
+	log.Default().Println("FiberApp: ", message)
+}
+
+func (f *FiberApp) GetInfo() {
+	f.Log(fmt.Sprintf("%+v", f))
+}
+
+// NewFiberApp constructor for fiber
 func NewFiberApp() *FiberApp {
 	return &FiberApp{fiberApp: fiber.New()}
 }
@@ -28,23 +36,23 @@ func (f *FiberApp) ListAllHandlers() {
 	f.fiberApp.GetRoutes(true)
 }
 
-func logMiddleware(f *fiber.Ctx) error {
+func (f *FiberApp) logMiddleware(c *fiber.Ctx) error {
 	// log input
-	fmt.Println("Input:", string(f.Body()))
+	f.Log("Input: " + string(c.Body()))
 
 	// continue processing the request
-	err := f.Next()
+	err := c.Next()
 
 	// log output
-	fmt.Println("Output:", string(f.Response().Body()))
+	f.Log("Output: " + string(c.Response().Body()))
 
 	return err
 }
 
 func (f *FiberApp) setupRoutes() {
 
-	// add middleware to log input and output for all routes
-	f.fiberApp.Use(logMiddleware)
+	// add middleware to Log input and output for all routes
+	f.fiberApp.Use(f.logMiddleware)
 
 	// GET request to retrieve weather data by timestamp
 	f.fiberApp.Get("/weather/:timestamp", func(c *fiber.Ctx) error {
@@ -106,12 +114,4 @@ func (f *FiberApp) setupRoutes() {
 		}
 		return c.SendString(result)
 	})
-}
-
-func (f *FiberApp) Log(message string) {
-	log.Default().Println("FiberApp: ", message)
-}
-
-func (f *FiberApp) GetInfo() {
-	f.Log(fmt.Sprintf("%+v", f))
 }

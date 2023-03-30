@@ -23,9 +23,9 @@ type DBManager struct {
 }
 
 // NewDBManager constructor for DBManager
-func NewDBManager(name string) *DBManager {
+func NewDBManager(name string, dsn string) *DBManager {
 	var d = DBManager{db: nil, name: name, insertSql: "insert.sql", rebuildSql: "rebuild.sql"}
-	dsn := "host=localhost port=5432 user=postgres password=postgres dbname=postgres sslmode=disable"
+
 	var err error
 	d.db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
@@ -192,8 +192,7 @@ func (d *DBManager) logWeatherData() {
 	}
 }
 
-//ORM
-
+// WeatherData ORM with GORM
 type WeatherData struct {
 	Timestamp        time.Time `gorm:"column:timestamp"`
 	Temperature      float64   `gorm:"column:temperature"`
@@ -292,7 +291,24 @@ func (d *DBManager) UpdateWeatherDataJSON(jsonStr string) (string, error) {
 
 	timestamp := data.Timestamp
 
-	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Updates(&data)
+	// Get the current record from the database
+	var currentData WeatherData
+	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).First(&currentData)
+	if result.Error != nil {
+		return "", result.Error
+	}
+
+	// Check if the data being updated is the same as the current data in the database
+	if currentData.Temperature == data.Temperature &&
+		currentData.Humidity == data.Humidity &&
+		currentData.Pressure == data.Pressure &&
+		currentData.ObstacleDetected == data.ObstacleDetected &&
+		currentData.LightIntensity == data.LightIntensity {
+		return "No changes to update for the specified timestamp", nil
+	}
+
+	// Update the record in the database
+	result = d.db.Table("weather_data").Where("timestamp = ?", timestamp).Updates(&data)
 	if result.Error != nil {
 		return "", result.Error
 	}
