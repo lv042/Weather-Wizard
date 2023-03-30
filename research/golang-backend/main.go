@@ -2,6 +2,7 @@ package main
 
 var dbManager *DBManager
 var fiberApp *FiberApp
+var metricsManager *Metrics
 
 func main() {
 	initBackend()
@@ -16,4 +17,7 @@ func initBackend() {
 	//new fiber app object
 	fiberApp = NewFiberApp()
 	fiberApp.InitFiber()
+
+	//new metricsManager object
+	metricsManager = NewMetrics()
 }

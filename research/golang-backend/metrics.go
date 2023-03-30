@@ -18,3 +18,7 @@ func (m *Metrics) IncrementErrorCount() {
 func (m *Metrics) GetMetrics() (int64, int64) {
 	return atomic.LoadInt64(&m.RequestCount), atomic.LoadInt64(&m.ErrorCount)
 }
+
+func NewMetrics() *Metrics {
+	return &Metrics{RequestCount: 0, ErrorCount: 0}
+}

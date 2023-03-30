@@ -150,4 +150,19 @@ func (f *FiberApp) setupRoutes() {
 		}
 		return c.SendString(result)
 	})
+
+	f.fiberApp.Get("/metrics", func(c *fiber.Ctx) error {
+		requestCount, errorCount := metricsManager.GetMetrics()
+		return c.JSON(fiber.Map{
+			"request_count": requestCount,
+			"error_count":   errorCount,
+		})
+	})
+}
+
+func requestCountMiddleware(metrics *Metrics) fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		metrics.IncrementRequestCount()
+		return c.Next()
+	}
 }
