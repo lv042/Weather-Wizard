@@ -14,6 +14,10 @@ func (f *FiberApp) Log(message string) {
 	log.Default().Println("FiberApp: ", message)
 }
 
+func (f *FiberApp) LogError(message string) {
+	log.Fatal("FiberApp Error: ", message)
+}
+
 func (f *FiberApp) GetInfo() {
 	f.Log(fmt.Sprintf("%+v", f))
 }

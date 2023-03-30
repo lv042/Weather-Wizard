@@ -94,6 +94,10 @@ func (d *DBManager) Log(s string) {
 	log.Default().Println("DatabaseManager: ", s)
 }
 
+func (d *DBManager) LogError(message string) {
+	log.Fatal("DatabaseManager: ", message)
+}
+
 func (d *DBManager) GetInfo() {
 	d.Log(fmt.Sprintf("%+v", d))
 }
