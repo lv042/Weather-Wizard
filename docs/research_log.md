@@ -226,7 +226,7 @@ I finished all the api routes. The FiberApp now has the following routes:
 The structure is still the same as before:
 
 
-Post request:
+Post request:       
 ```json
   {
 		"humidity": 63.8,
