@@ -2,7 +2,6 @@ package main
 
 var dbManager *DBManager
 var fiberApp *FiberApp
-var metricsManager *Metrics
 
 func main() {
 	initBackend()
@@ -13,9 +12,6 @@ func initBackend() {
 	dbManager = NewDBManager("Postgres", "host=localhost port=5432 user=postgres password=postgres dbname=postgres sslmode=disable")
 	dbManager.GetInfo()
 	dbManager.setupDb()
-
-	//new metricsManager object
-	metricsManager = NewMetrics()
 
 	//new fiber app object
 	fiberApp = NewFiberApp()

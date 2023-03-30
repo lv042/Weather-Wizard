@@ -11,6 +11,7 @@ import (
 
 type FiberApp struct {
 	fiberApp *fiber.App
+	metrics  *Metrics
 }
 
 func (f *FiberApp) Log(message string) {
@@ -28,7 +29,10 @@ func (f *FiberApp) GetInfo() {
 
 // NewFiberApp constructor for fiber
 func NewFiberApp() *FiberApp {
-	return &FiberApp{fiberApp: fiber.New()}
+	return &FiberApp{
+		fiberApp: fiber.New(),
+		metrics:  NewMetrics(),
+	}
 }
 
 func (f *FiberApp) Listen(address string) {
@@ -85,7 +89,7 @@ func (f *FiberApp) setupRoutes() {
 	f.fiberApp.Use(f.logMiddleware)
 
 	//add middleware to monitor all routes
-	f.fiberApp.Use(f.requestCountMiddleware)
+	f.fiberApp.Use(f.requestCountMiddleware())
 
 	// GET request to retrieve weather data by timestamp
 	f.fiberApp.Get("/weather/:timestamp", func(c *fiber.Ctx) error {
@@ -155,7 +159,7 @@ func (f *FiberApp) setupRoutes() {
 	})
 
 	f.fiberApp.Get("/metrics", func(c *fiber.Ctx) error {
-		requestCount, errorCount := metricsManager.GetMetrics()
+		requestCount, errorCount := f.metrics.GetMetrics()
 		return c.JSON(fiber.Map{
 			"request_count": requestCount,
 			"error_count":   errorCount,
@@ -163,9 +167,9 @@ func (f *FiberApp) setupRoutes() {
 	})
 }
 
-func (f *FiberApp) requestCountMiddleware(metrics *Metrics) fiber.Handler {
+func (f *FiberApp) requestCountMiddleware() fiber.Handler {
 	return func(c *fiber.Ctx) error {
-		metrics.IncrementRequestCount()
+		f.metrics.IncrementRequestCount()
 		return c.Next()
 	}
 }
