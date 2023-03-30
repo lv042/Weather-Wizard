@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/fatih/color"
 	"github.com/gofiber/fiber/v2"
 	"log"
 )
@@ -15,7 +16,8 @@ func (f *FiberApp) Log(message string) {
 }
 
 func (f *FiberApp) LogError(message string) {
-	log.Fatal("FiberApp Error: ", message)
+	red := color.New(color.FgRed).SprintFunc()
+	log.Fatal("FiberApp Error: ", red(message))
 }
 
 func (f *FiberApp) GetInfo() {

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/fatih/color"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"io/ioutil"
@@ -95,7 +96,8 @@ func (d *DBManager) Log(s string) {
 }
 
 func (d *DBManager) LogError(message string) {
-	log.Fatal("DatabaseManager: ", message)
+	red := color.New(color.FgRed).SprintFunc()
+	log.Fatal("DatabaseManager: ", red(message))
 }
 
 func (d *DBManager) GetInfo() {
@@ -157,22 +159,25 @@ func (d *DBManager) runSqlSetupFiles() {
 	// Check if SQL file exists
 	sqlFilePath := filepath.Join(".", "sql", d.rebuildSql)
 	if _, err := os.Stat(sqlFilePath); os.IsNotExist(err) {
-		panic(fmt.Sprintf("SQL file '%s' not found", sqlFilePath))
+		d.LogError(fmt.Sprintf("SQL file '%s' not found", sqlFilePath))
+		return
 	}
 
 	// Read SQL file
 	sqlBytes, err := ioutil.ReadFile(sqlFilePath)
 	if err != nil {
-		panic(err)
+		d.LogError(err.Error())
+		return
 	}
 	sql := string(sqlBytes)
 
 	// Execute SQL
 	if err := d.db.Exec(sql).Error; err != nil {
-		panic(err)
+		d.LogError(err.Error())
+		return
 	}
-	d.Log("Executed " + d.rebuildSql)
 
+	d.Log("Executed " + d.rebuildSql)
 }
 
 func (d *DBManager) logWeatherData() {
