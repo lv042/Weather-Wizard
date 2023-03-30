@@ -11,6 +11,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
 	"time"
 )
 
@@ -215,6 +216,12 @@ type WeatherData struct {
 
 // GetWeatherDataByTimestampJSON Get weather data by timestamp
 func (d *DBManager) GetWeatherDataByTimestampJSON(timestamp string) (string, error) {
+	// Validate the timestamp format using a regular expression
+	validTimestamp := regexp.MustCompile(`^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$`)
+	if !validTimestamp.MatchString(timestamp) {
+		return "", fmt.Errorf("Invalid timestamp format: %s", timestamp)
+	}
+
 	// Parse the timestamp
 	timestampParsed, err := time.Parse(time.RFC3339, timestamp)
 	if err != nil {
