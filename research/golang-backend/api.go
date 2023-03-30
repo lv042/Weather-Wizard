@@ -84,6 +84,9 @@ func (f *FiberApp) setupRoutes() {
 	// add middleware to Log input and output for all routes
 	f.fiberApp.Use(f.logMiddleware)
 
+	//add middleware to monitor all routes
+	f.fiberApp.Use(f.requestCountMiddleware)
+
 	// GET request to retrieve weather data by timestamp
 	f.fiberApp.Get("/weather/:timestamp", func(c *fiber.Ctx) error {
 		timestamp := c.Params("timestamp")
@@ -160,7 +163,7 @@ func (f *FiberApp) setupRoutes() {
 	})
 }
 
-func requestCountMiddleware(metrics *Metrics) fiber.Handler {
+func (f *FiberApp) requestCountMiddleware(metrics *Metrics) fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		metrics.IncrementRequestCount()
 		return c.Next()

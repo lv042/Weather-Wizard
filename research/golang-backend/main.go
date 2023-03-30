@@ -14,10 +14,10 @@ func initBackend() {
 	dbManager.GetInfo()
 	dbManager.setupDb()
 
-	//new fiber app object
-	fiberApp = NewFiberApp()
-	fiberApp.InitFiber()
-
 	//new metricsManager object
 	metricsManager = NewMetrics()
+
+	//new fiber app object
+	fiberApp = NewFiberApp()
+	fiberApp.InitFiber() //This must be the last thing to do
 }
