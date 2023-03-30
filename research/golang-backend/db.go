@@ -30,7 +30,7 @@ func NewDBManager(name string, dsn string) *DBManager {
 	var err error
 	d.db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		d.Log("Failed to connect database")
+		d.LogError("Failed to connect database")
 	}
 
 	d.Log("Connected to database")

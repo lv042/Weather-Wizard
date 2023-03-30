@@ -16,5 +16,4 @@ func initBackend() {
 	//new fiber app object
 	fiberApp = NewFiberApp()
 	fiberApp.InitFiber()
-
 }

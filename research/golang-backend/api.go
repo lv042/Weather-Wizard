@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/fatih/color"
 	"github.com/gofiber/fiber/v2"
@@ -43,14 +44,36 @@ func (f *FiberApp) ListAllHandlers() {
 }
 
 func (f *FiberApp) logMiddleware(c *fiber.Ctx) error {
-	// log input
-	f.Log("Input: " + string(c.Body()))
+	// Log request method and URL
+	f.Log(fmt.Sprintf("Request: %s %s", c.Method(), c.Path()))
 
-	// continue processing the request
+	// Log request headers
+	headers, _ := json.Marshal(c.Request())
+	f.Log(fmt.Sprintf("Request Headers: %s", headers))
+
+	// Log request body
+	body := c.Request().Body()
+	f.Log(fmt.Sprintf("Request Body: %s", body))
+
+	// Restore the request body for further processing
+	c.Request().SetBody(body)
+
+	// Continue processing the request
 	err := c.Next()
 
-	// log output
-	f.Log("Output: " + string(c.Response().Body()))
+	// Log response status code
+	f.Log(fmt.Sprintf("Response: %d", c.Response().StatusCode()))
+
+	// Log response headers
+	headers, _ = json.Marshal(c.Response().Header)
+	f.Log(fmt.Sprintf("Response Headers: %s", headers))
+
+	// Log response body
+	body = c.Response().Body()
+	f.Log(fmt.Sprintf("Response Body: %s \n\n\n", body))
+
+	// Restore the response body for further processing
+	c.Response().SetBody(body)
 
 	return err
 }
