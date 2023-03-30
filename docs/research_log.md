@@ -241,3 +241,8 @@ Post request:
 I also added error codes and status messages as I planned before. The API will now always say that there is an error if the request failed and also tell you if the operation was successful or not. 
 
 Middleware was also introduced to log all requests in and output of an API call. This is very useful for debugging and also for monitoring the API.
+
+# Thursday
+
+I fixed some issues in the api routes. I also improved the logging systems, each class has its own logger now which also has different log levels, which also have different colors. This makes it easier to distinguish between different log levels.
+The middleware was also improved, now the whole request and response is logged with great detail. This is very useful for debugging and also for monitoring the API.
