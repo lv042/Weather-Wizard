@@ -214,22 +214,15 @@ type WeatherData struct {
 // Crud operations
 
 // GetWeatherDataByTimestampJSON Get weather data by timestamp
-func (d *DBManager) GetWeatherDataByTimestampJSON(jsonStr string) (string, error) {
-	var data struct {
-		Timestamp string `json:"timestamp"`
-	}
-	err := json.Unmarshal([]byte(jsonStr), &data)
-	if err != nil {
-		return "", err
-	}
-
-	timestamp, err := time.Parse(time.RFC3339, data.Timestamp)
+func (d *DBManager) GetWeatherDataByTimestampJSON(timestamp string) (string, error) {
+	// Parse the timestamp
+	timestampParsed, err := time.Parse(time.RFC3339, timestamp)
 	if err != nil {
 		return "", err
 	}
 
 	var weatherData WeatherData
-	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).First(&weatherData)
+	result := d.db.Table("weather_data").Where("timestamp = ?", timestampParsed).First(&weatherData)
 	if result.Error != nil {
 		return "", result.Error
 	}

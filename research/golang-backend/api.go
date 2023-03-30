@@ -6,6 +6,7 @@ import (
 	"github.com/fatih/color"
 	"github.com/gofiber/fiber/v2"
 	"log"
+	"net/url"
 )
 
 type FiberApp struct {
@@ -87,8 +88,14 @@ func (f *FiberApp) setupRoutes() {
 	f.fiberApp.Get("/weather/:timestamp", func(c *fiber.Ctx) error {
 		timestamp := c.Params("timestamp")
 
+		// URL-decode the timestamp
+		decodedTimestamp, err := url.QueryUnescape(timestamp)
+		if err != nil {
+			return c.Status(fiber.StatusBadRequest).SendString("Invalid timestamp format")
+		}
+
 		// call GetWeatherDataByTimestampJSON method from dbManager object
-		weatherData, err := dbManager.GetWeatherDataByTimestampJSON(timestamp)
+		weatherData, err := dbManager.GetWeatherDataByTimestampJSON(decodedTimestamp)
 		if err != nil {
 			return c.SendString(err.Error())
 		}
