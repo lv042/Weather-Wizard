@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gofiber/fiber/v2"
+	"log"
 )
 
 type FiberApp struct {
@@ -105,4 +106,12 @@ func (f *FiberApp) setupRoutes() {
 		}
 		return c.SendString(result)
 	})
+}
+
+func (f *FiberApp) Log(message string) {
+	log.Default().Println("FiberApp: ", message)
+}
+
+func (f *FiberApp) GetInfo() {
+	f.Log(fmt.Sprintf("%+v", f))
 }
