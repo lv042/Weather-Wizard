@@ -247,3 +247,9 @@ Middleware was also introduced to log all requests in and output of an API call.
 I fixed some issues in the api routes. I also improved the logging systems, each class has its own logger now which also has different log levels, which also have different colors. This makes it easier to distinguish between different log levels.
 The middleware was also improved, now the whole request and response is logged with great detail. This is very useful for debugging and also for monitoring the API.
 Finally also added a proper Metric system which can be used to monitor all API calls, It distinguishes between Errors and Successes at the moment and also has its own route for Grafana to display the data.
+
+# Grafana
+
+I started developing a Grafana dashboard for the Weather Wizard. At the moment it can monitor all the Postgres tables. I also want to integrate the metric system, but I am currently having network issues with my Grafana container. I will try to fix it tomorrow.
+
+
