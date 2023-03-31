@@ -2,7 +2,7 @@ version: '3.8'
 services:
   db:
     container_name: postgres
-    image: postgres:14.1-alpine
+    image: postgres:12-alpine
     restart: always
     environment:
       - POSTGRES_USER=postgres
@@ -12,8 +12,8 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
 
-  # Grafana
   grafana:
+    container_name: grafana
     image: grafana/grafana:7.5.7
     ports:
       - "3000:3000"
@@ -21,12 +21,9 @@ services:
     volumes:
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
       - grafana-data:/var/lib/grafana
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+
 
 volumes:
   db:
     driver: local
   grafana-data:
-    driver: local

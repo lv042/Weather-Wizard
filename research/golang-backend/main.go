@@ -15,5 +15,5 @@ func initBackend() {
 
 	//new fiber app object
 	fiberApp = NewFiberApp()
-	fiberApp.InitFiber() //This must be the last thing to do
+	fiberApp.InitFiber() //This must be the last thing since it starts the server
 }
