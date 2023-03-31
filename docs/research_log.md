@@ -252,4 +252,6 @@ Finally also added a proper Metric system which can be used to monitor all API c
 
 I started developing a Grafana dashboard for the Weather Wizard. At the moment it can monitor all the Postgres tables. I also want to integrate the metric system, but I am currently having network issues with my Grafana container. I will try to fix it tomorrow.
 
+Unfortunately, a lot of the changes inside grafana are not displayed in the git commits, because grafana is running in a docker container.
+
 
