@@ -41,7 +41,7 @@ func (f *FiberApp) Listen(address string) {
 
 func (f *FiberApp) InitFiber() {
 	f.setupRoutes()
-	f.Listen(":3000")
+	f.Listen(":3001")
 }
 
 func (f *FiberApp) ListAllHandlers() {
@@ -92,7 +92,7 @@ func (f *FiberApp) setupRoutes() {
 	f.fiberApp.Use(f.requestCountMiddleware())
 
 	// GET request to retrieve weather data by timestamp
-	f.fiberApp.Get("/weather/:timestamp", func(c *fiber.Ctx) error {
+	f.fiberApp.Get("api/weather/:timestamp", func(c *fiber.Ctx) error {
 		timestamp := c.Params("timestamp")
 
 		// URL-decode the timestamp
@@ -110,7 +110,7 @@ func (f *FiberApp) setupRoutes() {
 	})
 
 	// GET request to retrieve all weather data
-	f.fiberApp.Get("/weather", func(c *fiber.Ctx) error {
+	f.fiberApp.Get("api/weather", func(c *fiber.Ctx) error {
 		// call GetAllWeatherDataJSON method from dbManager object
 		weatherData, err := dbManager.GetAllWeatherDataJSON()
 		if err != nil {
@@ -120,7 +120,7 @@ func (f *FiberApp) setupRoutes() {
 	})
 
 	// POST request to delete weather data by timestamp
-	f.fiberApp.Delete("/weather/delete", func(c *fiber.Ctx) error {
+	f.fiberApp.Delete("api/weather/delete", func(c *fiber.Ctx) error {
 		// get JSON data from request body
 		jsonStr := string(c.Body())
 
@@ -133,7 +133,7 @@ func (f *FiberApp) setupRoutes() {
 	})
 
 	// POST request to update weather data by timestamp
-	f.fiberApp.Put("/weather/update", func(c *fiber.Ctx) error {
+	f.fiberApp.Put("api/weather/update", func(c *fiber.Ctx) error {
 		// get JSON data from request body
 		jsonStr := string(c.Body())
 
@@ -146,7 +146,7 @@ func (f *FiberApp) setupRoutes() {
 	})
 
 	// POST request to create weather data
-	f.fiberApp.Post("/weather/create", func(c *fiber.Ctx) error {
+	f.fiberApp.Post("api/weather/create", func(c *fiber.Ctx) error {
 		// get JSON data from request body
 		jsonStr := string(c.Body())
 
@@ -158,7 +158,7 @@ func (f *FiberApp) setupRoutes() {
 		return c.SendString(result)
 	})
 
-	f.fiberApp.Get("/metrics", func(c *fiber.Ctx) error {
+	f.fiberApp.Get("api/metrics", func(c *fiber.Ctx) error {
 		requestCount, errorCount := f.metrics.GetMetrics()
 		return c.JSON(fiber.Map{
 			"request_count": requestCount,
