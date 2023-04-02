@@ -85,11 +85,14 @@ func (f *FiberApp) logMiddleware(c *fiber.Ctx) error {
 
 func (f *FiberApp) setupRoutes() {
 
-	// add middleware to Log input and output for all routes
+	// add middleware to log input and output for all routes
 	f.fiberApp.Use(f.logMiddleware)
 
-	//add middleware to monitor all routes
-	f.fiberApp.Use(f.requestCountMiddleware())
+	// add middleware to monitor all routes
+	f.fiberApp.Use(func(c *fiber.Ctx) error {
+		f.metrics.IncrementRequestCount(c.Route().Path)
+		return c.Next()
+	})
 
 	// GET request to retrieve weather data by timestamp
 	f.fiberApp.Get("api/weather/:timestamp", func(c *fiber.Ctx) error {
@@ -104,6 +107,7 @@ func (f *FiberApp) setupRoutes() {
 		// call GetWeatherDataByTimestampJSON method from dbManager object
 		weatherData, err := dbManager.GetWeatherDataByTimestampJSON(decodedTimestamp)
 		if err != nil {
+			f.metrics.IncrementErrorCount(c.Route().Path)
 			return c.SendString(err.Error())
 		}
 		return c.SendString(weatherData)
@@ -114,6 +118,7 @@ func (f *FiberApp) setupRoutes() {
 		// call GetAllWeatherDataJSON method from dbManager object
 		weatherData, err := dbManager.GetAllWeatherDataJSON()
 		if err != nil {
+			f.metrics.IncrementErrorCount(c.Route().Path)
 			return c.SendString(err.Error())
 		}
 		return c.Send(weatherData)
@@ -127,6 +132,7 @@ func (f *FiberApp) setupRoutes() {
 		// call DeleteWeatherDataJSON method from dbManager object
 		result, err := dbManager.DeleteWeatherDataJSON(jsonStr)
 		if err != nil {
+			f.metrics.IncrementErrorCount(c.Route().Path)
 			return c.SendString(err.Error())
 		}
 		return c.SendString(result)
@@ -140,6 +146,7 @@ func (f *FiberApp) setupRoutes() {
 		// call UpdateWeatherDataJSON method from dbManager object
 		result, err := dbManager.UpdateWeatherDataJSON(jsonStr)
 		if err != nil {
+			f.metrics.IncrementErrorCount(c.Route().Path)
 			return c.SendString(err.Error())
 		}
 		return c.SendString(result)
@@ -153,23 +160,15 @@ func (f *FiberApp) setupRoutes() {
 		// call CreateWeatherDataJSON method from dbManager object
 		result, err := dbManager.CreateWeatherDataJSON(jsonStr)
 		if err != nil {
+			f.metrics.IncrementErrorCount(c.Route().Path)
 			return c.SendString(err.Error())
 		}
 		return c.SendString(result)
 	})
 
+	// GET request to retrieve metrics
 	f.fiberApp.Get("api/metrics", func(c *fiber.Ctx) error {
-		requestCount, errorCount := f.metrics.GetMetrics()
-		return c.JSON(fiber.Map{
-			"request_count": requestCount,
-			"error_count":   errorCount,
-		})
+		metrics := f.metrics.GetMetrics()
+		return c.JSON(metrics)
 	})
-}
-
-func (f *FiberApp) requestCountMiddleware() fiber.Handler {
-	return func(c *fiber.Ctx) error {
-		f.metrics.IncrementRequestCount()
-		return c.Next()
-	}
 }

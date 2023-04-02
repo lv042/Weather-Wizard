@@ -1,24 +1,39 @@
 package main
 
-import "sync/atomic"
+import (
+	"sync"
+)
 
 type Metrics struct {
-	RequestCount int64
-	ErrorCount   int64
-}
-
-func (m *Metrics) IncrementRequestCount() {
-	atomic.AddInt64(&m.RequestCount, 1)
-}
-
-func (m *Metrics) IncrementErrorCount() {
-	atomic.AddInt64(&m.ErrorCount, 1)
-}
-
-func (m *Metrics) GetMetrics() (int64, int64) {
-	return atomic.LoadInt64(&m.RequestCount), atomic.LoadInt64(&m.ErrorCount)
+	requestCount map[string]int
+	errorCount   map[string]int
+	mutex        sync.Mutex
 }
 
 func NewMetrics() *Metrics {
-	return &Metrics{RequestCount: 0, ErrorCount: 0}
+	return &Metrics{
+		requestCount: make(map[string]int),
+		errorCount:   make(map[string]int),
+	}
+}
+
+func (m *Metrics) IncrementRequestCount(route string) {
+	m.mutex.Lock()
+	defer m.mutex.Unlock()
+	m.requestCount[route]++
+}
+
+func (m *Metrics) IncrementErrorCount(route string) {
+	m.mutex.Lock()
+	defer m.mutex.Unlock()
+	m.errorCount[route]++
+}
+
+func (m *Metrics) GetMetrics() map[string]interface{} {
+	m.mutex.Lock()
+	defer m.mutex.Unlock()
+	return map[string]interface{}{
+		"requestCount": m.requestCount,
+		"errorCount":   m.errorCount,
+	}
 }
