@@ -13,6 +13,21 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
 
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    volumes:
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - grafana-data:/var/lib/grafana
+      - ./grafana/plugins:/var/lib/grafana/plugins
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+
+
 volumes:
   db:
     driver: local
