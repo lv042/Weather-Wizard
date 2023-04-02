@@ -198,4 +198,24 @@ func (f *FiberApp) setupRoutes() {
 		//return main html page
 		return c.SendFile("./web/index.html")
 	})
+
+	f.fiberApp.Post("/api/notifications", func(c *fiber.Ctx) error {
+		// Parse the JSON data into a NotificationConfig struct
+		var config NotificationConfig
+		if err := c.BodyParser(&config); err != nil {
+			return err
+		}
+
+		// Set up the email and toggle switch
+		setupEmail(config.Email, config.Enabled)
+
+		// Return a success message
+		return c.SendString("Email and toggle switch have been set up successfully")
+	})
+
+}
+
+type NotificationConfig struct {
+	Email   string `json:"email"`
+	Enabled bool   `json:"enabled"`
 }

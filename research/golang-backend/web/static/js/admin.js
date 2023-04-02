@@ -16,7 +16,7 @@ var header = document.getElementById('name');
 // Add a click event listener to the h1 element
 header.addEventListener('click', function() {
     // Reload the page when the h1 element is clicked
-    location.reload();
+    location.href = '/';
 });
 
 window.addEventListener('resize', function() {
