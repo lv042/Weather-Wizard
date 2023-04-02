@@ -130,7 +130,7 @@ Plotly.newPlot('pressure', pres_data, pres_layout);
 function updateTemperatureGraph() {
     // Send an AJAX request to fetch the latest temperature data
     $.ajax({
-        url: 'index.php?action=weather_data',
+        url: '/api/weather',
         method: 'GET',
         success: function(data) {
             // Parse the JSON data

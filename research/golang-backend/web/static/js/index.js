@@ -30,7 +30,7 @@ var temp_layout = {
     title: 'Temperature',
     xaxis: {
         showgrid: false,
-        tickformat: '%m/%d %H:%M:%S',
+        tickformat: '%Y-%m-%d %H:%M:%S',
         automargin: true,
         gridcolor: 'white'
     },
@@ -56,7 +56,7 @@ var hum_layout = {
     title: 'Humidity',
     xaxis: {
         showgrid: false,
-        tickformat: '%m/%d %H:%M:%S',
+        tickformat: '%Y-%m-%d %H:%M:%S',
         automargin: true,
         gridcolor: 'white'
     },
@@ -82,9 +82,8 @@ var light_layout = {
     title: 'Light Intensity',
     xaxis: {
         showgrid: false,
-        tickformat: '%m/%d %H:%M:%S',
-        automargin: true
-        ,
+        tickformat: '%Y-%m-%d %H:%M:%S',
+        automargin: true,
     },
     yaxis: {
         title: 'Light Intensity (lux)',
@@ -95,6 +94,7 @@ var light_layout = {
     plot_bgcolor: 'transparent',
     paper_bgcolor: 'transparent'
 };
+
 Plotly.newPlot('light', light_data, light_layout);
 
 // pressure graph
@@ -108,7 +108,7 @@ var pres_layout = {
     title: 'Air Pressure',
     xaxis: {
         showgrid: false,
-        tickformat: '%m/%d %H:%M:%S',
+        tickformat: '%Y-%m-%d %H:%M:%S',
         automargin: true,
         gridcolor: 'white'
 
@@ -130,7 +130,7 @@ Plotly.newPlot('pressure', pres_data, pres_layout);
 function updateTemperatureGraph() {
     // Send an AJAX request to fetch the latest temperature data
     $.ajax({
-        url: 'index.php?action=weather_data',
+        url: 'api/weather',
         method: 'GET',
         success: function(data) {
             // Parse the JSON data
@@ -144,14 +144,16 @@ function updateTemperatureGraph() {
             var light = [];
             var pressure = [];
             for (var i = 0; i < jsonData.length; i++) {
-
                 //Adds the data to the arrays
-                timestamps.push(new Date(jsonData[i].timestamp));
-                temperatures.push(jsonData[i].temperature);
-                humidities.push(jsonData[i].humidity);
-                light.push(jsonData[i].light_intensity);
-                pressure.push(jsonData[i].pressure);
+                timestamps.push(jsonData[i].Timestamp);
+                temperatures.push(jsonData[i].Temperature);
+                humidities.push(jsonData[i].Humidity);
+                light.push(jsonData[i].LightIntensity);
+                pressure.push(jsonData[i].Pressure);
             }
+
+
+
             //Update temperature graph
             // Update the temperature trace with the new data
             var temperatureTrace = {
@@ -166,6 +168,8 @@ function updateTemperatureGraph() {
             };
 
             Plotly.newPlot('temperature', [temperatureTrace], temp_layout);
+            console.log(temperatureTrace);
+
 
             //Update humidity graph
             // Update the humidity trace with the new data
@@ -212,9 +216,11 @@ function updateTemperatureGraph() {
 
             Plotly.newPlot('pressure', [pressureTrace], pres_layout);
 
-            }
+        }
     });
 }
+
+
 
 
 // Call the updateTemperatureGraph function every 10 seconds
