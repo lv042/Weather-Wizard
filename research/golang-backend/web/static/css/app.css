@@ -1,0 +1,43 @@
+html, body {margin: 0; padding: 0; font-family: 'Raleway', sans-serif;}
+
+html {
+    background-image: url("../images/background.jpg");
+    overflow-x: hidden !important;
+}
+
+#nav{
+    color: white;
+    font-size: 1vw;
+    padding : 1vw;
+}
+
+#name{
+    font-size: 2vw;
+    margin-top: 1vw;
+    margin-left: 1vw;
+    padding: 1vw;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: inset 0 0 0 0 white;
+    color: white;
+    transition: color .3s ease-in-out, box-shadow .1s ease-in-out;
+}
+
+#name:hover{
+    box-shadow: inset 500px 0 0 0 white;
+    padding: 1vw;
+    color: #76C7D1;
+}
+
+#graphs {
+    height: calc(100% - 50px); /* Subtract nav height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.graph {
+    height: available;
+    width: 100%;
+}

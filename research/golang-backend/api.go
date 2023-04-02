@@ -88,6 +88,9 @@ func (f *FiberApp) setupRoutes() {
 	// add middleware to log input and output for all routes
 	f.fiberApp.Use(f.logMiddleware)
 
+	// Serve static files from the "static" directory
+	f.fiberApp.Static("/", "./web")
+
 	// GET request to retrieve weather data by timestamp
 	f.fiberApp.Get("api/weather/:timestamp", func(c *fiber.Ctx) error {
 		timestamp := c.Params("timestamp")
@@ -181,5 +184,18 @@ func (f *FiberApp) setupRoutes() {
 
 		f.metrics.IncrementRequestCount(c.Route().Path)
 		return c.JSON(metrics)
+	})
+
+	// Protect the admin routes with basic authentication
+	f.fiberApp.Use(BasicAuth("users.json", "Admin Access"))
+	f.fiberApp.Get("/admin", func(c *fiber.Ctx) error {
+		return c.SendString("Admin Page")
+	})
+
+	//main page
+	f.fiberApp.Get("/", func(c *fiber.Ctx) error {
+		f.metrics.IncrementRequestCount(c.Route().Path)
+		//return main html page
+		return c.SendFile("./web/index.html")
 	})
 }
