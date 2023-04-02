@@ -5,10 +5,10 @@
 <head>
     <title>Weather Wizard</title>
     <meta charset="UTF-8">
-    <meta content="This is an example website." name="description">
+    <meta content="This is the IOT Weather Wizard" name="description">
     <meta content="IOT, graphs, weather" name="keywords">
     <link href="static/css/app.css" rel="stylesheet">
-    <link href="./static/images/icon.png" rel="icon">
+    <link rel="icon" type="image/x-icon" href="./static/images/logo.svg">
 
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
@@ -20,6 +20,18 @@
 <body id="main">
 <div id="nav">
     <h1 id="name">Weather Wizard</h1>
+    <div id="nav-icons">
+        <div class="button-35" onclick="location.href='/admin';">Login</div>
+        <div class="button-35" onclick="location.href='https://github.com/lv042';">Github</div>
+        <div class="button-35" onclick="location.href='mailto:luca.v.kannen@gmail.com';">Mail</div>
+
+        <a href="#" onclick="location.reload();">
+            <img src="static/images/reload.svg" id="ani" alt="Ani" />
+        </a>
+
+    </div>
+</div>
+
 </div>
 <div id="graphs">
     <div class="graph" id="temperature"></div>
