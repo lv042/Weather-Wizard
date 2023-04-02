@@ -107,20 +107,16 @@ html {
     width: 100%;
 }
 
-#mail{
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-}
 
-/* CSS code for the notification box */
 #notification-box {
     width: 100%;
     background-color: white;
     padding: 20px;
     margin-top: 50px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 .notification-content {
@@ -178,7 +174,7 @@ html {
 }
 
 .toggle-switch input[type="checkbox"]:checked + label {
-    background-color: #3cba54;
+    background-color: #8B0000;
 }
 
 .toggle-switch input[type="checkbox"]:checked + label::after {

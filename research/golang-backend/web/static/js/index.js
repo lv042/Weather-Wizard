@@ -220,7 +220,7 @@ function updateTemperatureGraph() {
     });
 }
 
-
+//mails
 
 
 // Call the updateTemperatureGraph function every 10 seconds
@@ -242,5 +242,65 @@ window.addEventListener('resize', function() {
 });
 
 
+// Get the toggle switch element
+var toggle = document.getElementById('toggle');
+
+// Get the email input element
+var emailInput = document.getElementById('email');
+
+// Add an event listener to the toggle switch
+toggle.addEventListener('change', function() {
+    // If the toggle switch is checked
+    if (toggle.checked) {
+        // Get the value of the email input
+        var email = emailInput.value;
+
+        // If the email is not empty
+        if (email.trim() !== '') {
+            // Send a POST request to the backend
+            fetch('/api/notifications', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    enabled: true
+                })
+            })
+                .then(function(response) {
+                    if (response.ok) {
+                        console.log('Email registered successfully');
+                    } else {
+                        console.log('Error registering email');
+                    }
+                })
+                .catch(function(error) {
+                    console.log('Error registering email:', error);
+                });
+        }
+    } else {
+        // Send a POST request to the backend to disable email notifications
+        fetch('/api/notifications', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                enabled: false
+            })
+        })
+            .then(function(response) {
+                if (response.ok) {
+                    console.log('Email notifications disabled successfully');
+                } else {
+                    console.log('Error disabling email notifications');
+                }
+            })
+            .catch(function(error) {
+                console.log('Error disabling email notifications:', error);
+            });
+    }
+});
 
 
