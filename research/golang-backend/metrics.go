@@ -17,16 +17,24 @@ func NewMetrics() *Metrics {
 	}
 }
 
-func (m *Metrics) IncrementRequestCount(route string) {
+func (m *Metrics) IncrementRequestCount(key string) {
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
-	m.requestCount[route]++
+	if _, ok := m.requestCount[key]; !ok {
+		m.requestCount[key] = 1
+	} else {
+		m.requestCount[key]++
+	}
 }
 
-func (m *Metrics) IncrementErrorCount(route string) {
+func (m *Metrics) IncrementErrorCount(key string) {
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
-	m.errorCount[route]++
+	if _, ok := m.errorCount[key]; !ok {
+		m.errorCount[key] = 1
+	} else {
+		m.errorCount[key]++
+	}
 }
 
 func (m *Metrics) GetMetrics() map[string]interface{} {

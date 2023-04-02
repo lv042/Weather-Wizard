@@ -88,12 +88,6 @@ func (f *FiberApp) setupRoutes() {
 	// add middleware to log input and output for all routes
 	f.fiberApp.Use(f.logMiddleware)
 
-	// add middleware to monitor all routes
-	f.fiberApp.Use(func(c *fiber.Ctx) error {
-		f.metrics.IncrementRequestCount(c.Route().Path)
-		return c.Next()
-	})
-
 	// GET request to retrieve weather data by timestamp
 	f.fiberApp.Get("api/weather/:timestamp", func(c *fiber.Ctx) error {
 		timestamp := c.Params("timestamp")
@@ -110,6 +104,8 @@ func (f *FiberApp) setupRoutes() {
 			f.metrics.IncrementErrorCount(c.Route().Path)
 			return c.SendString(err.Error())
 		}
+
+		f.metrics.IncrementRequestCount(c.Route().Path)
 		return c.SendString(weatherData)
 	})
 
@@ -121,6 +117,8 @@ func (f *FiberApp) setupRoutes() {
 			f.metrics.IncrementErrorCount(c.Route().Path)
 			return c.SendString(err.Error())
 		}
+
+		f.metrics.IncrementRequestCount(c.Route().Path)
 		return c.Send(weatherData)
 	})
 
@@ -133,9 +131,16 @@ func (f *FiberApp) setupRoutes() {
 		result, err := dbManager.DeleteWeatherDataJSON(jsonStr)
 		if err != nil {
 			f.metrics.IncrementErrorCount(c.Route().Path)
-			return c.SendString(err.Error())
+			fmt.Println("Failed to delete weather data:", err)
+			return c.SendStatus(fiber.StatusInternalServerError)
 		}
-		return c.SendString(result)
+		if result == "No weather data found for the specified timestamp" {
+			f.metrics.IncrementErrorCount(c.Route().Path)
+			return c.SendStatus(fiber.StatusNotFound)
+		}
+
+		f.metrics.IncrementRequestCount(c.Route().Path)
+		return c.SendString("Weather data deleted successfully.")
 	})
 
 	// POST request to update weather data by timestamp
@@ -149,6 +154,8 @@ func (f *FiberApp) setupRoutes() {
 			f.metrics.IncrementErrorCount(c.Route().Path)
 			return c.SendString(err.Error())
 		}
+
+		f.metrics.IncrementRequestCount(c.Route().Path)
 		return c.SendString(result)
 	})
 
@@ -163,12 +170,16 @@ func (f *FiberApp) setupRoutes() {
 			f.metrics.IncrementErrorCount(c.Route().Path)
 			return c.SendString(err.Error())
 		}
+
+		f.metrics.IncrementRequestCount(c.Route().Path)
 		return c.SendString(result)
 	})
 
 	// GET request to retrieve metrics
 	f.fiberApp.Get("api/metrics", func(c *fiber.Ctx) error {
 		metrics := f.metrics.GetMetrics()
+
+		f.metrics.IncrementRequestCount(c.Route().Path)
 		return c.JSON(metrics)
 	})
 }
