@@ -106,3 +106,100 @@ html {
     height: available;
     width: 100%;
 }
+
+#mail{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+/* CSS code for the notification box */
+#notification-box {
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    margin-top: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notification-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.notification-content h2 {
+    font-size: 32px;
+    margin: 0;
+}
+
+.notification-content p {
+    font-size: 18px;
+    margin: 0 0 20px 0;
+}
+
+.toggle-switch {
+    display: inline-block;
+    position: relative;
+    margin-left: 20px;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-switch label {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 34px;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: background-color 0.3s;
+}
+
+.toggle-switch label::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+.toggle-switch input[type="checkbox"]:checked + label {
+    background-color: #3cba54;
+}
+
+.toggle-switch input[type="checkbox"]:checked + label::after {
+    transform: translateX(26px);
+}
+
+.email-input {
+    display: flex;
+    gap: 0.5vw;
+}
+
+.email-input label {
+    display: inline-block;
+    width: 50px;
+    margin-right: 10px;
+}
+
+.email-input input[type="email"] {
+    width: 200px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}

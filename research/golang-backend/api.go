@@ -189,7 +189,7 @@ func (f *FiberApp) setupRoutes() {
 	// Protect the admin routes with basic authentication
 	f.fiberApp.Use(BasicAuth("users.json", "Admin Access"))
 	f.fiberApp.Get("/admin", func(c *fiber.Ctx) error {
-		return c.SendString("Admin Page")
+		return c.SendFile("./web/admin.html")
 	})
 
 	//main page

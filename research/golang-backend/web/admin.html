@@ -1,10 +1,54 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+  <title>Weather Wizard</title>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta content="This is the IOT Weather Wizard" name="description">
+  <meta content="IOT, graphs, weather" name="keywords">
+  <link href="static/css/app.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="./static/images/logo.svg">
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.clouds.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta http-equiv="expires" content="0">
+  <script defer src="static/js/admin.js"></script>
 </head>
-<body>
-$END$
+
+<body id="main">
+<div id="nav">
+  <h1 id="name">Admin Interface</h1>
+  <div id="nav-icons">
+
+    <a href="#" onclick="location.reload();">
+      <img src="static/images/reload.svg" id="ani" alt="Ani" />
+    </a>
+
+  </div>
+</div>
+
+<div id="RequestCount"></div>
+<div id="ErrorCount"></div>
+
+<div id="notification-box">
+  <div class="notification-content">
+    <h2>Error Notifications</h2>
+    <p>Receive email</p>
+
+    <div class="email-input">
+      <div class="toggle-switch">
+        <input type="checkbox" id="toggle" name="toggle" />
+        <label for="toggle"></label>
+      </div>
+
+      <input type="email" id="email" name="email" placeholder="Enter your email address" />
+    </div>
+  </div>
+</div>
+
 </body>
+
 </html>
