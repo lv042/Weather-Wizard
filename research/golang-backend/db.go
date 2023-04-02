@@ -291,6 +291,7 @@ func (d *DBManager) DeleteWeatherDataJSON(jsonStr string) (string, error) {
 }
 
 // UpdateWeatherDataJSON Update weather data by timestamp
+// UpdateWeatherDataJSON Update weather data by timestamp
 func (d *DBManager) UpdateWeatherDataJSON(jsonStr string) (string, error) {
 	var data WeatherData
 	err := json.Unmarshal([]byte(jsonStr), &data)
@@ -298,32 +299,28 @@ func (d *DBManager) UpdateWeatherDataJSON(jsonStr string) (string, error) {
 		return "", err
 	}
 
-	timestamp := data.Timestamp
-
-	// Get the current record from the database
-	var currentData WeatherData
-	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).First(&currentData)
+	// Check if data with the same timestamp already exists
+	existingData := WeatherData{}
+	result := d.db.Table("weather_data").Where("timestamp = ?", data.Timestamp).First(&existingData)
 	if result.Error != nil {
 		return "", result.Error
 	}
-
-	// Check if the data being updated is the same as the current data in the database
-	if currentData.Temperature == data.Temperature &&
-		currentData.Humidity == data.Humidity &&
-		currentData.Pressure == data.Pressure &&
-		currentData.ObstacleDetected == data.ObstacleDetected &&
-		currentData.LightIntensity == data.LightIntensity {
-		return "No changes to update for the specified timestamp", nil
-	}
-
-	// Update the record in the database
-	result = d.db.Table("weather_data").Where("timestamp = ?", timestamp).Updates(&data)
-	if result.Error != nil {
-		return "", result.Error
-	}
-
 	if result.RowsAffected == 0 {
 		return "No weather data found for the specified timestamp", nil
+	}
+
+	// Update the weather data
+	result = d.db.Table("weather_data").
+		Where("timestamp = ?", data.Timestamp).
+		Updates(WeatherData{
+			Temperature:      data.Temperature,
+			Humidity:         data.Humidity,
+			Pressure:         data.Pressure,
+			ObstacleDetected: data.ObstacleDetected,
+			LightIntensity:   data.LightIntensity,
+		})
+	if result.Error != nil {
+		return "", result.Error
 	}
 
 	return "Weather data updated", nil
