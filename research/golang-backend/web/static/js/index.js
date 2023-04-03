@@ -9,6 +9,8 @@ VANTA.CLOUDS({
     speed: 1.00
 })
 
+var font_color = font_color;
+
 //Update the temperature graph in the beginning
 updateTemperatureGraph();
 
@@ -32,12 +34,14 @@ var temp_layout = {
         showgrid: false,
         tickformat: '%Y-%m-%d %H:%M:%S',
         automargin: true,
-        gridcolor: 'white'
+        gridcolor: font_color
     },
     yaxis: {
         title: 'Temperature (°C)',
         showline: false,
-        gridcolor: 'white'
+        gridcolor: font_color,
+        showgrid: false,
+        dtick: 10000,
     },
     margin: ly_margin,
     plot_bgcolor: 'transparent',
@@ -58,12 +62,14 @@ var hum_layout = {
         showgrid: false,
         tickformat: '%Y-%m-%d %H:%M:%S',
         automargin: true,
-        gridcolor: 'white'
+        gridcolor: font_color
     },
     yaxis: {
         title: 'Humidity (%)',
         showline: false,
-        gridcolor: 'white'
+        gridcolor: font_color,
+        showgrid: false,
+        dtick: 10000,
     },
     margin: ly_margin,
     plot_bgcolor: 'transparent',
@@ -84,11 +90,14 @@ var light_layout = {
         showgrid: false,
         tickformat: '%Y-%m-%d %H:%M:%S',
         automargin: true,
+        showline: false
     },
     yaxis: {
         title: 'Light Intensity (lux)',
         showline: false,
-        gridcolor: 'white'
+        gridcolor: font_color,
+        showgrid: false,
+        dtick: 10000,
     },
     margin: ly_margin,
     plot_bgcolor: 'transparent',
@@ -108,22 +117,32 @@ var pres_layout = {
     title: 'Air Pressure',
     xaxis: {
         showgrid: false,
+        showline: false,
         tickformat: '%Y-%m-%d %H:%M:%S',
         automargin: true,
-        gridcolor: 'white'
+        gridcolor: font_color,
+        color : font_color
 
     },
     yaxis: {
         title: 'Air Pressure (hPa)',
         showline: false,
-        gridcolor: 'white',
+        gridcolor: font_color,
         //changes the step size of the y-axis
-        dtick: 1
+        dtick: 10000,
+        color: font_color,
+        showgrid: false,
     },
     margin: ly_margin,
     plot_bgcolor: 'transparent',
-    paper_bgcolor: 'transparent'
+    paper_bgcolor: 'transparent',
+    color: font_color,
+    colorway: [font_color]
 };
+
+
+
+
 
 Plotly.newPlot('pressure', pres_data, pres_layout);
 
