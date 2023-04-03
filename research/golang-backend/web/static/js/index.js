@@ -260,15 +260,19 @@ window.addEventListener('resize', function() {
     location.reload();
 });
 
+// Get the submit button element
+var submitButton = document.getElementById('submit');
 
-// Get the toggle switch element
-var toggle = document.getElementById('toggle');
+// Add an event listener to the submit button
+submitButton.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default form submission
 
-// Get the email input element
-var emailInput = document.getElementById('email');
+    // Get the toggle switch element
+    var toggle = document.getElementById('toggle');
 
-// Add an event listener to the toggle switch
-toggle.addEventListener('change', function() {
+    // Get the email input element
+    var emailInput = document.getElementById('email');
+
     // If the toggle switch is checked
     if (toggle.checked) {
         // Get the value of the email input
@@ -321,5 +325,3 @@ toggle.addEventListener('change', function() {
             });
     }
 });
-
-
