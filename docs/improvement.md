@@ -31,8 +31,15 @@ func initBackend() {
 	fiberApp.InitFiber() //This must be the last thing since it starts the server
 }
 ```
+Im using Golang language for the backend of Weather Wizard. before talking about the implementation of the backend, I will explain the language itself.
+Golang is a compiled language, which means that the code is compiled to machine code before it is executed. This makes it much faster than interpreted languages like PHP.
+Golang is also a statically typed language, which means that you have to define the type of variable when you declare it. This makes it easier to find bugs in your code.
+It is also garbage collected language like Java, which means that you don't have to worry about memory management like in C or C++. The garbage collector will clean up after you.
+Furthermore, Golang is a concurrent language, which means that you can run multiple threads at the same time. This is very useful for web development, since you can run multiple
+requests at the same time. It is language that is very easy to learn and has a lot of useful features. This makes it a very popular language for backend development.
 
-First of all I should mention that programming in Golang is rather functional than object oriented. This means that there are no classes, but instead
+
+First of all I should mention that programming in Golang is rather functional than object-oriented. This means that there are no classes, but instead
 you can use structs. A struct is a collection of fields. In the example above you can see that I created a new `DBManager` and `FiberApp` struct. These objects
 are managing the api and the database. I will go into more detail about these objects later. 
 
@@ -42,7 +49,7 @@ are managing the api and the database. I will go into more detail about these ob
 During writing this assignment it is much easier to follow if you have a look at the architecture first.
 
 Main architecture:
-
+3
 
 SUBSTANTIATION.
 The improvement proposals are substantiated with explicit links to your research outcomes.
