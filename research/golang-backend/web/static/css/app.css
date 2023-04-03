@@ -184,6 +184,7 @@ html {
 .email-input {
     display: flex;
     gap: 0.5vw;
+
 }
 
 .email-input label {

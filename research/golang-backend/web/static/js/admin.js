@@ -114,14 +114,19 @@ fetchData().then(r => console.log(r));
 // Call the fetchData function to fetch the data in the background
 setInterval(fetchData, 10000);
 
-// Get the toggle switch element
-var toggle = document.getElementById('toggle');
+// Get the submit button element
+var submitButton = document.getElementById('submit');
 
-// Get the email input element
-var emailInput = document.getElementById('email');
+// Add an event listener to the submit button
+submitButton.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    console.log('Button clicked');
+    // Get the toggle switch element
+    var toggle = document.getElementById('toggle');
 
-// Add an event listener to the toggle switch
-toggle.addEventListener('change', function() {
+    // Get the email input element
+    var emailInput = document.getElementById('email');
+
     // If the toggle switch is checked
     if (toggle.checked) {
         // Get the value of the email input
