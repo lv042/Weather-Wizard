@@ -295,8 +295,212 @@ func (d *DBManager) logAllTables() {
 }
 ```
 
-```go
+But to get to the most important part of the database manager, we have to look at the CRUD functions. These functions are used to create, read, update and delete data from the database and are essential for the Rest API.
 
+To manipulate all data from the database I used a GORM model which is a struct that represents a table in the database. The ORM is defined in like this:
+
+
+```go 
+// WeatherData ORM 
+type WeatherData struct {
+	Timestamp        time.Time `gorm:"column:timestamp"`
+	Temperature      float64   `gorm:"column:temperature"`
+	Humidity         float64   `gorm:"column:humidity"`
+	Pressure         float64   `gorm:"column:pressure"`
+	ObstacleDetected bool      `gorm:"column:obstacle_detected"`
+	LightIntensity   float64   `gorm:"column:light_intensity"`
+}
+```
+
+Next we have different functions which are used to manipulate data:
+
+
+This function is used to gather all weather data from one specific timestamps and returns like all of my CRUD functions a JSON string:
+```go
+func (d *DBManager) GetWeatherDataByTimestampJSON(timestamp string) (string, error) {
+	// Validate the format of the input timestamp using a regular expression
+	validTimestamp := regexp.MustCompile(`^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$`)
+	if !validTimestamp.MatchString(timestamp) {
+		// Return an error if the format is invalid
+		return "", fmt.Errorf("Invalid timestamp format: %s", timestamp)
+	}
+
+	// Parse the timestamp string into a time.Time value
+	timestampParsed, err := time.Parse(time.RFC3339, timestamp)
+	if err != nil {
+		// Return the error if there was a problem parsing the timestamp
+		return "", err
+	}
+
+	// Retrieve the weather data with the specified timestamp
+	var weatherData WeatherData
+	result := d.db.Table("weather_data").Where("timestamp = ?", timestampParsed).First(&weatherData)
+	if result.Error != nil {
+		// Return the error if there was a problem retrieving the data
+		return "", result.Error
+	}
+
+	// Check if no rows were affected (i.e. no data was found)
+	if result.RowsAffected == 0 {
+		// Return a message indicating that no data was found
+		return "No weather data found for the specified timestamp", nil
+	}
+
+	// Marshal the weather data into a JSON string
+	weatherDataJSON, err := json.Marshal(weatherData)
+	if err != nil {
+		// Return the error if there was a problem marshaling the data
+		return "", err
+	}
+
+	// Return the JSON string
+	return string(weatherDataJSON), nil
+}
+```
+
+In contrast, this function returns all weather data from the database, not just one specific timestamp:
+```go
+func (d *DBManager) GetAllWeatherDataJSON() ([]byte, error) {
+	// Retrieve all weather data records
+	var data []WeatherData
+	result := d.db.Table("weather_data").Find(&data)
+	if result.Error != nil {
+		// Return the error if there was a problem retrieving the data
+		return nil, result.Error
+	}
+	if result.RowsAffected == 0 {
+		// Return an error if no data was found
+		return nil, errors.New("no weather data found")
+	}
+
+	// Marshal the weather data into a JSON string
+	jsonData, err := json.Marshal(data)
+	if err != nil {
+		// Return the error if there was a problem marshaling the data
+		return nil, err
+	}
+
+	// Return the JSON string
+	return jsonData, nil
+}
+```
+
+Of course, we also want to be able to delete data. This function uses a timestamp to delete a specific weather data record:
+```go
+func (d *DBManager) DeleteWeatherDataJSON(jsonStr string) (string, error) {
+	// Unmarshal the JSON string into a struct
+	var data struct {
+		Timestamp string `json:"timestamp"`
+	}
+	err := json.Unmarshal([]byte(jsonStr), &data)
+	if err != nil {
+		// Return the error if there was a problem unmarshaling the JSON
+		return "", err
+	}
+
+	// Parse the "timestamp" field into a time.Time value
+	timestamp, err := time.Parse(time.RFC3339, data.Timestamp)
+	if err != nil {
+		// Return the error if there was a problem parsing the timestamp
+		return "", err
+	}
+
+	// Delete the weather data with the specified timestamp
+	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Delete(&WeatherData{})
+	if result.Error != nil {
+		// Return the error if there was a problem deleting the data
+		return "", result.Error
+	}
+
+	// Check if no rows were affected (i.e. no data was found)
+	if result.RowsAffected == 0 {
+		// Return a message indicating that no data was found
+		return "No weather data found for the specified timestamp", nil
+	}
+
+	// Return a success message
+	return "Weather data deleted", nil
+}
+```
+
+To update data we also need a timestamp to identify the entry we want to update with this function:
+```go
+func (d *DBManager) UpdateWeatherDataJSON(jsonStr string) (string, error) {
+// Unmarshal the JSON string into a `WeatherData` struct
+var data WeatherData
+err := json.Unmarshal([]byte(jsonStr), &data)
+if err != nil {
+// Return the error if there was a problem unmarshaling the JSON
+return "", err
+}
+
+// Retrieve the existing weather data with the same timestamp
+existingData := WeatherData{}
+result := d.db.Table("weather_data").Where("timestamp = ?", data.Timestamp).First(&existingData)
+if result.Error != nil {
+// Return the error if there was a problem retrieving the existing data
+return "", result.Error
+}
+if result.RowsAffected == 0 {
+// Return a message indicating that no data was found
+return "No weather data found for the specified timestamp", nil
+}
+
+// Update the existing weather data
+result = d.db.Table("weather_data").
+Where("timestamp = ?", data.Timestamp).
+Updates(WeatherData{
+Temperature:      data.Temperature,
+Humidity:         data.Humidity,
+Pressure:         data.Pressure,
+ObstacleDetected: data.ObstacleDetected,
+LightIntensity:   data.LightIntensity,
+})
+if result.Error != nil {
+// Return the error if there was a problem updating the data
+return "", result.Error
+}
+
+// Return a success message
+return "Weather data updated", nil
+}
+
+
+```
+
+Lastly, we want to create new weather records. This function takes in a JSON string and creates the record in the database:
+```go
+func (d *DBManager) CreateWeatherDataJSON(jsonStr string) (string, error) {
+// Unmarshal the JSON string into a `WeatherData` struct
+var data WeatherData
+err := json.Unmarshal([]byte(jsonStr), &data)
+if err != nil {
+// Return the error if there was a problem unmarshaling the JSON
+return "", err
+}
+
+// Check if data with the same timestamp already exists
+existingData := WeatherData{}
+result := d.db.Table("weather_data").Where("timestamp = ?", data.Timestamp).First(&existingData)
+if result.RowsAffected > 0 {
+// Return a message indicating that the data already exists
+return "Weather data already exists for the specified timestamp", nil
+}
+
+// Create the weather data
+result = d.db.Table("weather_data").Create(&data)
+if result.Error != nil {
+// Return the error if there was a problem creating the data
+return "", result.Error
+}
+
+// Return a success message
+return "Weather data created", nil
+}
+```
+
+All these operations are getting called by the FiberApp, the second essential component of the application. The FiberApp is also an object that is instantiated in the main function. 
+It is responsible 
 
 
 

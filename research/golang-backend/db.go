@@ -243,7 +243,7 @@ func (d *DBManager) logWeatherData() {
 	}
 }
 
-// WeatherData ORM with GORM
+// WeatherData ORM
 type WeatherData struct {
 	Timestamp        time.Time `gorm:"column:timestamp"`
 	Temperature      float64   `gorm:"column:temperature"`
@@ -257,100 +257,129 @@ type WeatherData struct {
 
 // GetWeatherDataByTimestampJSON Get weather data by timestamp
 func (d *DBManager) GetWeatherDataByTimestampJSON(timestamp string) (string, error) {
-	// Validate the timestamp format using a regular expression
+	// Validate the format of the input timestamp using a regular expression
 	validTimestamp := regexp.MustCompile(`^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$`)
 	if !validTimestamp.MatchString(timestamp) {
+		// Return an error if the format is invalid
 		return "", fmt.Errorf("Invalid timestamp format: %s", timestamp)
 	}
 
-	// Parse the timestamp
+	// Parse the timestamp string into a time.Time value
 	timestampParsed, err := time.Parse(time.RFC3339, timestamp)
 	if err != nil {
+		// Return the error if there was a problem parsing the timestamp
 		return "", err
 	}
 
+	// Retrieve the weather data with the specified timestamp
 	var weatherData WeatherData
 	result := d.db.Table("weather_data").Where("timestamp = ?", timestampParsed).First(&weatherData)
 	if result.Error != nil {
+		// Return the error if there was a problem retrieving the data
 		return "", result.Error
 	}
 
+	// Check if no rows were affected (i.e. no data was found)
 	if result.RowsAffected == 0 {
+		// Return a message indicating that no data was found
 		return "No weather data found for the specified timestamp", nil
 	}
 
+	// Marshal the weather data into a JSON string
 	weatherDataJSON, err := json.Marshal(weatherData)
 	if err != nil {
+		// Return the error if there was a problem marshaling the data
 		return "", err
 	}
 
+	// Return the JSON string
 	return string(weatherDataJSON), nil
 }
 
 // GetAllWeatherDataJSON Get all weather data as JSON
 func (d *DBManager) GetAllWeatherDataJSON() ([]byte, error) {
+	// Retrieve all weather data records
 	var data []WeatherData
 	result := d.db.Table("weather_data").Find(&data)
 	if result.Error != nil {
+		// Return the error if there was a problem retrieving the data
 		return nil, result.Error
 	}
 	if result.RowsAffected == 0 {
+		// Return an error if no data was found
 		return nil, errors.New("no weather data found")
 	}
+
+	// Marshal the weather data into a JSON string
 	jsonData, err := json.Marshal(data)
 	if err != nil {
+		// Return the error if there was a problem marshaling the data
 		return nil, err
 	}
+
+	// Return the JSON string
 	return jsonData, nil
 }
 
 // DeleteWeatherDataJSON Delete weather data by timestamp
 func (d *DBManager) DeleteWeatherDataJSON(jsonStr string) (string, error) {
+	// Unmarshal the JSON string into a struct
 	var data struct {
 		Timestamp string `json:"timestamp"`
 	}
 	err := json.Unmarshal([]byte(jsonStr), &data)
 	if err != nil {
+		// Return the error if there was a problem unmarshaling the JSON
 		return "", err
 	}
 
+	// Parse the "timestamp" field into a time.Time value
 	timestamp, err := time.Parse(time.RFC3339, data.Timestamp)
 	if err != nil {
+		// Return the error if there was a problem parsing the timestamp
 		return "", err
 	}
 
+	// Delete the weather data with the specified timestamp
 	result := d.db.Table("weather_data").Where("timestamp = ?", timestamp).Delete(&WeatherData{})
 	if result.Error != nil {
+		// Return the error if there was a problem deleting the data
 		return "", result.Error
 	}
 
+	// Check if no rows were affected (i.e. no data was found)
 	if result.RowsAffected == 0 {
+		// Return a message indicating that no data was found
 		return "No weather data found for the specified timestamp", nil
 	}
 
+	// Return a success message
 	return "Weather data deleted", nil
 }
 
 // UpdateWeatherDataJSON Update weather data by timestamp
-// UpdateWeatherDataJSON Update weather data by timestamp
 func (d *DBManager) UpdateWeatherDataJSON(jsonStr string) (string, error) {
+	// Unmarshal the JSON string into a `WeatherData` struct
 	var data WeatherData
 	err := json.Unmarshal([]byte(jsonStr), &data)
 	if err != nil {
+		// Return the error if there was a problem unmarshaling the JSON
 		return "", err
 	}
 
-	// Check if data with the same timestamp already exists
+	// Retrieve the existing weather data with the same timestamp
 	existingData := WeatherData{}
 	result := d.db.Table("weather_data").Where("timestamp = ?", data.Timestamp).First(&existingData)
 	if result.Error != nil {
+		// Return the error if there was a problem retrieving the existing data
 		return "", result.Error
 	}
 	if result.RowsAffected == 0 {
+		// Return a message indicating that no data was found
 		return "No weather data found for the specified timestamp", nil
 	}
 
-	// Update the weather data
+	// Update the existing weather data
 	result = d.db.Table("weather_data").
 		Where("timestamp = ?", data.Timestamp).
 		Updates(WeatherData{
@@ -361,9 +390,11 @@ func (d *DBManager) UpdateWeatherDataJSON(jsonStr string) (string, error) {
 			LightIntensity:   data.LightIntensity,
 		})
 	if result.Error != nil {
+		// Return the error if there was a problem updating the data
 		return "", result.Error
 	}
 
+	// Return a success message
 	return "Weather data updated", nil
 }
 
