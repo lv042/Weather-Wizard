@@ -16,6 +16,7 @@ why I wanted to learn it.
 Because Golang is a very popular language for backend development, there are a lot of libraries available for backend development. I used the following libraries for this project:
 
 These are the rather regular libraries that I used for this project, which dont need much explanation:
+
 - encoding/json: Functions for encoding and decoding JSON data.
 -  fmt: Formatted I/O functions for I/O and string-based operations.
 -  log: A straightforward logging package with basic logging features.
@@ -28,6 +29,7 @@ These are the rather regular libraries that I used for this project, which dont 
 
 
 These are the libraries that are a bit more important for this project:
+
 -  Fiber: A fast, simple, and minimalist web framework for Go. 
 - Gorm: An ORM library for Golang. It helps to work with databases, specifically PostgreSQL.
 - fatih/color: Makes it easy to add colors to text in the console.
@@ -38,6 +40,7 @@ These are the libraries that are a bit more important for this project:
 Why I picked specifically these libraries over others is compared in the research assignment.
 
 Next to these libraries, I also used the following other technologies:
+
 - PostgreSQL: A relational database management system setup in a docker container.
 - Docker: A container platform.
 - Docker-compose: A tool for defining and running multi-container Docker applications.
