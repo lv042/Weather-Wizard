@@ -890,7 +890,79 @@ func BasicAuth(userFile string, realm string) fiber.Handler {
 }
 ```
 
+This is what the authentication looks like:
+
+![Admin page](./images/auth.png)
+
+After entering the right credentials you will be directed to the admin page:
+
+![Admin page](./images/admin.png)
+
+
+I built the admin page with a similar look like the main page. It shows metrics which are collected by the backend and also allows the user to sign up for the email notification service.
+
+The notification service is built with Sendgrid. After setting up a lot of things on the Sendgrid website, I could get an API key to use their service.
+
+#### /api/notifications
+
+This is the route which is used to set up the email notification service. 
+
 ```go
+f.fiberApp.Post("/api/notifications", func(c *fiber.Ctx) error {
+		// Parse the JSON data into a NotificationConfig struct
+		var config NotificationConfig
+		if err := c.BodyParser(&config); err != nil {
+			return err
+		}
+
+		// Set up the email and toggle switch
+		setupEmail(config.Email, config.Enabled)
+
+		// Return a success message
+		return c.SendString("Email and toggle switch have been set up successfully")
+	})
+```
+
+Returns:
+
+```
+Email and toggle switch have been set up successfully
+```
+or
+```
+Some kind of error message
+```
+
+The functions which gets called to set up the email works like this:
+
+```go
+func setupEmail(e string, en bool) {
+email = e
+enabled = en
+readKey()
+stopDailyMailer = make(chan struct{})
+if enabled {
+go func() {
+sendSetupMail(email)
+setupDailyMailer(stopDailyMailer)
+}()
+} else {
+disableDailyMailer()
+}
+}
+
+func sendSetupMail(email string) {
+	mail.NewEmail("Luca", "luca.v.kannen@gmail.com")
+	subject := "Backend Notifications"
+	mail.NewEmail("Luca", email)
+	plainTextContent := "You are now subscribed to notifications. The backend will send from now on notifications to " +
+		"this email address. You will receive a daily summary of all requests and errors. You can unsubscribe in the Admin Panel."
+	htmlContent := "<p>Hi there, you are now subscribed to notifications.</p>\n\n<p>The backend will send from now on notifications to this email address. You will receive a daily summary of all requests and errors.</p>\n\n<p>You can unsubscribe in the Admin Panel."
+	sendSummaryMail(email, subject, plainTextContent, htmlContent)
+}
+```
+
+First a setup mail gets send 
 
 
 
