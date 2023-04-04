@@ -93,15 +93,20 @@ func (d *DBManager) Close() {
 }
 
 func (d *DBManager) Log(s string) {
+	// Log a message with the prefix "DatabaseManager: "
 	log.Default().Println("DatabaseManager: ", s)
 }
 
 func (d *DBManager) LogError(message string) {
+	// Create a red color function for log messages
 	red := color.New(color.FgRed).SprintFunc()
+
+	// Log an error message with the prefix "DatabaseManager: " and in red color
 	log.Fatal("DatabaseManager: ", red(message))
 }
 
 func (d *DBManager) GetInfo() {
+	// Log the string representation of the DBManager struct
 	d.Log(fmt.Sprintf("%+v", d))
 }
 
@@ -115,69 +120,88 @@ func (d *DBManager) Query(sql string) *gorm.DB {
 //Additional functions
 
 func (d *DBManager) logAllTables() {
-	rows, err := d.db.Raw("SELECT table_name FROM information_schema.tables WHERE table_schema='ws'").Rows()
+	// Execute a raw SQL query to retrieve the names of all tables in the "ws" schema
+	rows, err := d.db.Raw("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'").Rows()
 	if err != nil {
+		// If there was an error executing the query, log the error message
 		d.Log(err.Error())
 	}
+
+	// Initialize a string to store the log message
 	var log = "Tables: "
 
+	// Loop through the query results
 	for rows.Next() {
 		var table_name string
 		rows.Scan(&table_name)
+		// Append the table name to the log message
 		log += table_name + ", "
 	}
+
+	// Log the log message
 	d.Log(log)
 }
 
 func (d *DBManager) fillDB() {
+	// Define a function to be executed when the main function returns (i.e. in case of panic)
 	defer func() {
 		if r := recover(); r != nil {
+			// If a panic occurred, log a message indicating that the database fill failed
 			d.Log(fmt.Sprintf("Failed to fill database: %s", r))
 		}
 	}()
 
-	// Check if SQL file exists
+	// Check if the specified SQL file exists
 	sqlFilePath := filepath.Join(".", "sql", d.insertSql)
 	if _, err := os.Stat(sqlFilePath); os.IsNotExist(err) {
+		// If the file does not exist, panic with an error message
 		panic(fmt.Sprintf("SQL file '%s' not found", sqlFilePath))
 	}
 
-	// Read SQL file
+	// Read the contents of the SQL file
 	sqlBytes, err := ioutil.ReadFile(sqlFilePath)
 	if err != nil {
+		// If there was an error reading the file, panic with the error
 		panic(err)
 	}
 	sql := string(sqlBytes)
 
-	// Execute SQL
+	// Execute the SQL statements contained in the file
 	if err := d.db.Exec(sql).Error; err != nil {
+		// If there was an error executing the SQL, panic with the error
 		panic(err)
 	}
+
+	// Log a message indicating that the SQL was executed successfully
 	d.Log("Executed " + d.insertSql)
 }
 
 func (d *DBManager) runSqlSetupFiles() {
-	// Check if SQL file exists
+	// Check if the specified SQL file exists
 	sqlFilePath := filepath.Join(".", "sql", d.rebuildSql)
 	if _, err := os.Stat(sqlFilePath); os.IsNotExist(err) {
+		// If the file does not exist, log an error message
 		d.LogError(fmt.Sprintf("SQL file '%s' not found", sqlFilePath))
 		return
 	}
 
-	// Read SQL file
+	// Read the contents of the SQL file
 	sqlBytes, err := ioutil.ReadFile(sqlFilePath)
 	if err != nil {
+		// If there was an error reading the file, log the error message
 		d.LogError(err.Error())
 		return
 	}
 	sql := string(sqlBytes)
 
-	// Execute SQL
+	// Execute the SQL statements contained in the file
 	if err := d.db.Exec(sql).Error; err != nil {
+		// If there was an error executing the SQL, log the error message
 		d.LogError(err.Error())
 		return
 	}
 
+	// Log a message indicating that the SQL was executed successfully
 	d.Log("Executed " + d.rebuildSql)
 }
 

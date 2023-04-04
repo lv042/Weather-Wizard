@@ -123,7 +123,7 @@ d.Log(fmt.Sprintf("%+v", d))
 }
 ```
 
-It is one of many utility functions that I added to the DBManager and the fiberAPP to make it easier to develop and debug the backend:
+It is one of many utility functions and getters and setters that I added to the DBManager and the fiberAPP to make it easier to develop and debug the backend:
 
 ```go
 
@@ -153,13 +153,13 @@ func (d *DBManager) ToString() string {
 }
 ```
 
-But there is also other functionality which I can't show completely:
+But there is also other functionality which I can't show completely. Most of them have some functionality that are not very relevant for the project itself, but make extension, debugging and testing much better:
 
 
 
-These functions include:
 
 
+_Logs all the weather data from the database to the console_
 
 ```go
 func (d *DBManager) logWeatherData() {
@@ -201,7 +201,105 @@ func (d *DBManager) logWeatherData() {
 }
 ```
 
+Two setup functions which run sql files to first create tables and then insert data into them:
+
 ```go
+func (d *DBManager) runSqlSetupFiles() {
+	// Check if the specified SQL file exists
+	sqlFilePath := filepath.Join(".", "sql", d.rebuildSql)
+	if _, err := os.Stat(sqlFilePath); os.IsNotExist(err) {
+		// If the file does not exist, log an error message
+		d.LogError(fmt.Sprintf("SQL file '%s' not found", sqlFilePath))
+		return
+	}
+
+	// Read the contents of the SQL file
+	sqlBytes, err := ioutil.ReadFile(sqlFilePath)
+	if err != nil {
+		// If there was an error reading the file, log the error message
+		d.LogError(err.Error())
+		return
+	}
+	sql := string(sqlBytes)
+
+	// Execute the SQL statements contained in the file
+	if err := d.db.Exec(sql).Error; err != nil {
+		// If there was an error executing the SQL, log the error message
+		d.LogError(err.Error())
+		return
+	}
+
+	// Log a message indicating that the SQL was executed successfully
+	d.Log("Executed " + d.rebuildSql)
+}
+
+func (d *DBManager) fillDB() {
+	// Define a function to be executed when the main function returns (i.e. in case of panic)
+	defer func() {
+		if r := recover(); r != nil {
+			// If a panic occurred, log a message indicating that the database fill failed
+			d.Log(fmt.Sprintf("Failed to fill database: %s", r))
+		}
+	}()
+
+	// Check if the specified SQL file exists
+	sqlFilePath := filepath.Join(".", "sql", d.insertSql)
+	if _, err := os.Stat(sqlFilePath); os.IsNotExist(err) {
+		// If the file does not exist, panic with an error message
+		panic(fmt.Sprintf("SQL file '%s' not found", sqlFilePath))
+	}
+
+	// Read the contents of the SQL file
+	sqlBytes, err := ioutil.ReadFile(sqlFilePath)
+	if err != nil {
+		// If there was an error reading the file, panic with the error
+		panic(err)
+	}
+	sql := string(sqlBytes)
+
+	// Execute the SQL statements contained in the file
+	if err := d.db.Exec(sql).Error; err != nil {
+		// If there was an error executing the SQL, panic with the error
+		panic(err)
+	}
+
+	// Log a message indicating that the SQL was executed successfully
+	d.Log("Executed " + d.insertSql)
+}
+```
+
+This function logs all the tables which we created to the console:
+
+```go
+func (d *DBManager) logAllTables() {
+	// Execute a raw SQL query to retrieve the names of all tables in the "ws" schema
+	rows, err := d.db.Raw("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'").Rows()
+	if err != nil {
+		// If there was an error executing the query, log the error message
+		d.Log(err.Error())
+	}
+
+	// Initialize a string to store the log message
+	var log = "Tables: "
+
+	// Loop through the query results
+	for rows.Next() {
+		var table_name string
+		rows.Scan(&table_name)
+		// Append the table name to the log message
+		log += table_name + ", "
+	}
+
+	// Log the log message
+	d.Log(log)
+}
+```
+
+```go
+
+
+
+
 
 ## Architecture
 
