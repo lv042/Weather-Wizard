@@ -93,22 +93,28 @@ func (f *FiberApp) setupRoutes() {
 
 	// GET request to retrieve weather data by timestamp
 	f.fiberApp.Get("api/weather/:timestamp", func(c *fiber.Ctx) error {
+		// Get the timestamp from the URL parameters
 		timestamp := c.Params("timestamp")
 
 		// URL-decode the timestamp
 		decodedTimestamp, err := url.QueryUnescape(timestamp)
 		if err != nil {
+			// Return a bad request error if the timestamp format is invalid
 			return c.Status(fiber.StatusBadRequest).SendString("Invalid timestamp format")
 		}
 
-		// call GetWeatherDataByTimestampJSON method from dbManager object
+		// Call the `GetWeatherDataByTimestampJSON` method from the `dbManager` object
 		weatherData, err := dbManager.GetWeatherDataByTimestampJSON(decodedTimestamp)
 		if err != nil {
+			// Increment the error count in the metrics and return the error
 			f.metrics.IncrementErrorCount(c.Route().Path)
 			return c.SendString(err.Error())
 		}
 
+		// Increment the request count in the metrics
 		f.metrics.IncrementRequestCount(c.Route().Path)
+
+		// Return the weather data
 		return c.SendString(weatherData)
 	})
 
@@ -188,17 +194,19 @@ func (f *FiberApp) setupRoutes() {
 
 	// Protect the admin routes with basic authentication
 	f.fiberApp.Use(BasicAuth("users.json", "Admin Access"))
+
 	f.fiberApp.Get("/admin", func(c *fiber.Ctx) error {
 		return c.SendFile("./web/admin.html")
 	})
 
-	//main page
+	//Frontend route
 	f.fiberApp.Get("/", func(c *fiber.Ctx) error {
 		f.metrics.IncrementRequestCount(c.Route().Path)
 		//return main html page
 		return c.SendFile("./web/index.html")
 	})
 
+	//POST request to set up email notifications
 	f.fiberApp.Post("/api/notifications", func(c *fiber.Ctx) error {
 		// Parse the JSON data into a NotificationConfig struct
 		var config NotificationConfig

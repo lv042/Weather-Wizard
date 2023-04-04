@@ -500,7 +500,69 @@ return "Weather data created", nil
 ```
 
 All these operations are getting called by the FiberApp, the second essential component of the application. The FiberApp is also an object that is instantiated in the main function. 
-It is responsible 
+It is responsible for handling HTTP endpoints, middleware, metrics and authentication. After the DBManager is created the FiberApp follows.
+
+This is the constructor of the FiberApp:
+```go
+// NewFiberApp constructor for fiber
+func NewFiberApp() *FiberApp {
+	return &FiberApp{
+		fiberApp: fiber.New(),
+		metrics:  NewMetrics(),
+	}
+}
+```
+
+The FiberApp consists of a Fiber instance and a metric instance that is used to collect metrics about the application.
+
+The FiberApp has some useful auxiliary functions like the DBManager, but I will not go into these again, only the new functionality.
+
+The main function of the FiberApp is the setupRoutes function. As the name suggests it sets up all the routes of the application. 
+
+I will go step by step through this function to explain what is happening.
+
+First we setup middleware which is used for logging incoming requests and logging outgoing responses. 
+It makes it very easy to debug the application and see what is happening. Then we serve the static files of the frontend.
+```go
+	// add middleware to log input and output for all routes
+	f.fiberApp.Use(f.logMiddleware)
+
+	// Serve static files from the "static" directory
+	f.fiberApp.Static("/", "./web")
+```
+
+
+After that we set up all the routes of the application. The first route is delivers data from a specific timestamp. All these routes call the CRUD functions in the DBManager.
+
+```go
+f.fiberApp.Get("api/weather/:timestamp", func(c *fiber.Ctx) error {
+// Get the timestamp from the URL parameters
+timestamp := c.Params("timestamp")
+
+// URL-decode the timestamp
+decodedTimestamp, err := url.QueryUnescape(timestamp)
+if err != nil {
+// Return a bad request error if the timestamp format is invalid
+return c.Status(fiber.StatusBadRequest).SendString("Invalid timestamp format")
+}
+
+// Call the `GetWeatherDataByTimestampJSON` method from the `dbManager` object
+weatherData, err := dbManager.GetWeatherDataByTimestampJSON(decodedTimestamp)
+if err != nil {
+// Increment the error count in the metrics and return the error
+f.metrics.IncrementErrorCount(c.Route().Path)
+return c.SendString(err.Error())
+}
+
+// Increment the request count in the metrics
+f.metrics.IncrementRequestCount(c.Route().Path)
+
+// Return the weather data
+return c.SendString(weatherData)
+})
+```
+
+
 
 
 
