@@ -182,22 +182,39 @@ func (d *DBManager) runSqlSetupFiles() {
 }
 
 func (d *DBManager) logWeatherData() {
+	// Initialize a slice of maps to store the weather data
 	var data []map[string]interface{}
+
+	// Find the weather data from the "weather_data" table
 	result := d.db.Table("weather_data").Find(&data)
+
+	// Check if there was an error while finding the data
 	if result.Error != nil {
+		// Log the error message
 		d.Log(result.Error.Error())
 		return
 	}
+
+	// Check if no rows were affected (i.e. no data was found)
 	if result.RowsAffected == 0 {
+		// Log a message indicating that no data was found
 		d.Log("No weather data found")
 		return
 	}
+
+	// Loop through the data and log each item as a JSON string
 	for _, item := range data {
+		// Convert the map to a JSON string
 		jsonString, err := json.Marshal(item)
+
+		// Check if there was an error while converting to JSON
 		if err != nil {
+			// Log the error message
 			d.Log(err.Error())
 			continue
 		}
+
+		// Log the JSON string
 		d.Log(string(jsonString))
 	}
 }
