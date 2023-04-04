@@ -565,7 +565,8 @@ f.metrics.IncrementRequestCount(c.Route().Path)
 return c.SendString(weatherData)
 })
 ```
-Returns JSON data in this form:
+Returns:
+
 ```
 {
 		"Timestamp": "2022-02-03T00:00:00Z",
@@ -587,6 +588,7 @@ Some kind of error message
 
 ### api/weather
 
+A GET request to receive all weather data entries.
 
 ```go
 f.fiberApp.Get("api/weather", func(c *fiber.Ctx) error {
@@ -606,7 +608,7 @@ f.fiberApp.Get("api/weather", func(c *fiber.Ctx) error {
 })
 ```
 
-Returns JSON data in this form:
+Returns:
 ```
 [
 	{
@@ -650,6 +652,8 @@ Some kind of error message
 
 ### api/weather/delete
 
+A Delete request to delete an specific entry.
+
 ```go
 f.fiberApp.Delete("api/weather/delete", func(c *fiber.Ctx) error {
 	// Get the JSON data from the request body
@@ -679,7 +683,8 @@ f.fiberApp.Delete("api/weather/delete", func(c *fiber.Ctx) error {
 })
 ```
 
-Returns data in this form:
+Returns:
+
 ```
 Weather data updated
 ```
@@ -693,6 +698,8 @@ Some kind of error message
 ```
 
 ### api/weather/update
+
+And PUT request to update weather data.
 
 ```go
 f.fiberApp.Put("api/weather/update", func(c *fiber.Ctx) error {
@@ -713,7 +720,8 @@ f.fiberApp.Put("api/weather/update", func(c *fiber.Ctx) error {
 })
 ```
 
-Returns data in this form:
+Response:
+
 ```
 Weather data updated
 ```
@@ -752,7 +760,7 @@ f.fiberApp.Post("api/weather/create", func(c *fiber.Ctx) error {
 })
 ```
 
-Returns data in this form:
+Response:
 
 ```
 Weather data already exists for the specified timestamp
@@ -768,6 +776,8 @@ Some kind of error message
 
 ### api/metrics
 
+A GET request to the `/api/metrics` endpoint returns the metrics in JSON format.
+
 ```go
 	f.fiberApp.Get("api/metrics", func(c *fiber.Ctx) error {
 		// Retrieve metrics from the metrics object
@@ -781,7 +791,7 @@ Some kind of error message
 	})
 ```
 
-Returns JSON data in this form:
+Response:
 
 ```json
 {
