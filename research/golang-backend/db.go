@@ -69,16 +69,16 @@ func (d *DBManager) ToString() string {
 //setup function
 
 func (d *DBManager) setupDb() {
-	//run sql file
+	//run sql files
 	d.runSqlSetupFiles()
 
-	//show tables again
+	//show tables
 	d.logAllTables()
 
 	//fill db
 	d.fillDB()
 
-	//show tables
+	//show tables again
 	d.logAllTables()
 }
 
