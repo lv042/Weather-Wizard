@@ -199,9 +199,13 @@ func (f *FiberApp) setupRoutes() {
 
 	// GET request to retrieve metrics
 	f.fiberApp.Get("api/metrics", func(c *fiber.Ctx) error {
+		// Retrieve metrics from the metrics object
 		metrics := f.metrics.GetMetrics()
 
+		// Increment the request count for the api/metrics endpoint
 		f.metrics.IncrementRequestCount(c.Route().Path)
+
+		// Return the metrics in JSON format
 		return c.JSON(metrics)
 	})
 

@@ -565,6 +565,25 @@ f.metrics.IncrementRequestCount(c.Route().Path)
 return c.SendString(weatherData)
 })
 ```
+Returns JSON data in this form:
+```
+{
+		"Timestamp": "2022-02-03T00:00:00Z",
+		"Temperature": 23,
+		"Humidity": 57.4,
+		"Pressure": 1016.4,
+		"ObstacleDetected": true,
+		"LightIntensity": 1025.5
+}
+```
+or
+```
+No weather data found for the specified timestamp
+```
+or
+```
+Some kind of error message
+```
 
 ### api/weather
 
@@ -585,6 +604,48 @@ f.fiberApp.Get("api/weather", func(c *fiber.Ctx) error {
 	// Return the weather data to the client
 	return c.Send(weatherData)
 })
+```
+
+Returns JSON data in this form:
+```
+[
+	{
+		"Timestamp": "2022-02-03T00:00:00Z",
+		"Temperature": 23,
+		"Humidity": 57.4,
+		"Pressure": 1016.4,
+		"ObstacleDetected": true,
+		"LightIntensity": 1025.5
+	},
+	{
+		"Timestamp": "2022-02-04T00:00:00Z",
+		"Temperature": 23.5,
+		"Humidity": 54.6,
+		"Pressure": 1016.7,
+		"ObstacleDetected": true,
+		"LightIntensity": 1025.8
+	},
+	{
+		"Timestamp": "2022-03-02T00:00:00Z",
+		"Temperature": 22.1,
+		"Humidity": 63.8,
+		"Pressure": 1016.2,
+		"ObstacleDetected": false,
+		"LightIntensity": 0
+	},
+	{
+		"Timestamp": "2022-02-01T00:00:00Z",
+		"Temperature": 31.5,
+		"Humidity": 65.2,
+		"Pressure": 1094.7,
+		"ObstacleDetected": false,
+		"LightIntensity": 1024.8
+	}
+]
+```
+or
+```
+Some kind of error message
 ```
 
 ### api/weather/delete
@@ -618,6 +679,19 @@ f.fiberApp.Delete("api/weather/delete", func(c *fiber.Ctx) error {
 })
 ```
 
+Returns data in this form:
+```
+Weather data updated
+```
+or
+```
+Not Found
+```
+or
+```
+Some kind of error message
+```
+
 ### api/weather/update
 
 ```go
@@ -639,6 +713,90 @@ f.fiberApp.Put("api/weather/update", func(c *fiber.Ctx) error {
 })
 ```
 
+Returns data in this form:
+```
+Weather data updated
+```
+or
+```
+No weather data found for the specified timestamp
+```
+or
+```
+Some kind of error message
+```
+
+### api/weather/create
+
+```go
+// Handle HTTP POST request to the "/api/weather/create" endpoint
+f.fiberApp.Post("api/weather/create", func(c *fiber.Ctx) error {
+	// Get the JSON data from the request body
+	jsonStr := string(c.Body())
+
+	// Call the `CreateWeatherDataJSON` method from the `dbManager` object
+	result, err := dbManager.CreateWeatherDataJSON(jsonStr)
+	if err != nil {
+		// Increment the error count for the current route
+		f.metrics.IncrementErrorCount(c.Route().Path)
+
+		// Return the error message
+		return c.SendString(err.Error())
+	}
+
+	// Increment the request count for the current route
+	f.metrics.IncrementRequestCount(c.Route().Path)
+
+	// Return the result of the `CreateWeatherDataJSON` method
+	return c.SendString(result)
+})
+```
+
+Returns data in this form:
+
+```
+Weather data already exists for the specified timestamp
+```
+ or
+```
+Weather data created successfully.
+```
+or 
+```
+Some kind of error message
+```
+
+### api/metrics
+
+```go
+	f.fiberApp.Get("api/metrics", func(c *fiber.Ctx) error {
+		// Retrieve metrics from the metrics object
+		metrics := f.metrics.GetMetrics()
+
+		// Increment the request count for the api/metrics endpoint
+		f.metrics.IncrementRequestCount(c.Route().Path)
+
+		// Return the metrics in JSON format
+		return c.JSON(metrics)
+	})
+```
+
+Returns JSON data in this form:
+
+```json
+{
+	"errorCount": {
+		"/api/weather/:timestamp": 1
+	},
+	"requestCount": {
+		"/api/metrics": 8,
+		"/api/weather": 1,
+		"/api/weather/create": 1,
+		"/api/weather/delete": 1,
+		"/api/weather/update": 1
+	}
+}
+```
 
 
 
