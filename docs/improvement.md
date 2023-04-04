@@ -532,7 +532,11 @@ It makes it very easy to debug the application and see what is happening. Then w
 ```
 
 
+
+### api/weather/:timestamp
+
 After that we set up all the routes of the application. The first route is delivers data from a specific timestamp. All these routes call the CRUD functions in the DBManager.
+
 
 ```go
 f.fiberApp.Get("api/weather/:timestamp", func(c *fiber.Ctx) error {
@@ -561,6 +565,86 @@ f.metrics.IncrementRequestCount(c.Route().Path)
 return c.SendString(weatherData)
 })
 ```
+
+### api/weather
+
+
+```go
+f.fiberApp.Get("api/weather", func(c *fiber.Ctx) error {
+	// Call the GetAllWeatherDataJSON method from the dbManager object
+	weatherData, err := dbManager.GetAllWeatherDataJSON()
+	if err != nil {
+		// If an error occurs, increment the error count for this route
+		f.metrics.IncrementErrorCount(c.Route().Path)
+		// Return the error message to the client
+		return c.SendString(err.Error())
+	}
+
+	// Increment the request count for this route
+	f.metrics.IncrementRequestCount(c.Route().Path)
+	// Return the weather data to the client
+	return c.Send(weatherData)
+})
+```
+
+### api/weather/delete
+
+```go
+f.fiberApp.Delete("api/weather/delete", func(c *fiber.Ctx) error {
+	// Get the JSON data from the request body
+	jsonStr := string(c.Body())
+
+	// Call the DeleteWeatherDataJSON method from the dbManager object
+	result, err := dbManager.DeleteWeatherDataJSON(jsonStr)
+	if err != nil {
+		// Increment error count in the metrics object and log the error
+		f.metrics.IncrementErrorCount(c.Route().Path)
+		fmt.Println("Failed to delete weather data:", err)
+		// Return a 500 Internal Server Error status code
+		return c.SendStatus(fiber.StatusInternalServerError)
+	}
+
+	// If no weather data was found for the specified timestamp
+	if result == "No weather data found for the specified timestamp" {
+		// Increment error count in the metrics object and return a 404 Not Found status code
+		f.metrics.IncrementErrorCount(c.Route().Path)
+		return c.SendStatus(fiber.StatusNotFound)
+	}
+
+	// Increment request count in the metrics object
+	f.metrics.IncrementRequestCount(c.Route().Path)
+	// Return a success message
+	return c.SendString("Weather data deleted successfully.")
+})
+```
+
+### api/weather/update
+
+```go
+f.fiberApp.Put("api/weather/update", func(c *fiber.Ctx) error {
+	// Get JSON data from the request body
+	jsonStr := string(c.Body())
+
+	// Call the UpdateWeatherDataJSON method from the dbManager object
+	result, err := dbManager.UpdateWeatherDataJSON(jsonStr)
+	if err != nil {
+		// If there is an error, increment the error count and return the error message
+		f.metrics.IncrementErrorCount(c.Route().Path)
+		return c.SendString(err.Error())
+	}
+
+	// If the update was successful, increment the request count
+	f.metrics.IncrementRequestCount(c.Route().Path)
+	return c.SendString(result)
+})
+```
+
+
+
+
+
+
+
 
 
 
