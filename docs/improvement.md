@@ -808,6 +808,90 @@ Response:
 }
 ```
 
+### / 
+
+Route which returns the index.html file.
+
+```go
+f.fiberApp.Get("/", func(c *fiber.Ctx) error {
+		f.metrics.IncrementRequestCount(c.Route().Path)
+		//returns main html page
+		return c.SendFile("./web/index.html")
+	})
+```
+
+Returns the main page of the web application:
+
+![Main page](./images/main.png)
+
+The Frontend of my page also got some aesthetic improvements, but because my research only focus on the backend I will not cover that.
+
+### /admin 
+
+This route is used to return the admin.html file. I wanted to use at least some basic protection for the admin page, that's why implemented HTTP authentication . Of course this is not the optimal solution, but my research focus is also not 
+cybersecurity focused. This is just a basic implementation to prevent unauthorized access to the admin page.
+
+The authentication works like this:
+First a json file with credentials is read and parsed into a map. Then we return a middleware function that checks for the Authorization header in the request, if it exists we check if the credentials are correct we return the admin.html file. If there are any errors we return a 401 Unauthorized status code.
+
+```go
+func BasicAuth(userFile string, realm string) fiber.Handler {
+	// Read the user file into memory and parse it as a map of usernames to passwords
+	userBytes, err := ioutil.ReadFile(userFile)
+	if err != nil {
+		log.Fatal(err)
+	}
+	users := make(map[string]string)
+	if err := json.Unmarshal(userBytes, &users); err != nil {
+		log.Fatal(err)
+	}
+
+	// Return the middleware function that performs basic authentication
+	return func(c *fiber.Ctx) error {
+		// Get the Authorization header from the request
+		auth := c.Get("Authorization")
+
+		// If the Authorization header is missing, return a 401 Unauthorized response
+		if auth == "" {
+			c.Status(fiber.StatusUnauthorized)
+			c.Set("WWW-Authenticate", fmt.Sprintf(`Basic realm="%s"`, realm))
+			return c.SendString("Unauthorized")
+		}
+
+		// Decode the Authorization header to get the username and password
+		authBytes, err := base64.StdEncoding.DecodeString(strings.TrimPrefix(auth, "Basic "))
+		if err != nil {
+			c.Status(fiber.StatusUnauthorized)
+			c.Set("WWW-Authenticate", fmt.Sprintf(`Basic realm="%s"`, realm))
+			return c.SendString("Unauthorized")
+		}
+		authString := string(authBytes)
+		parts := strings.SplitN(authString, ":", 2)
+
+		// If the Authorization header is not in the correct format, return a 401 Unauthorized response
+		if len(parts) != 2 {
+			c.Status(fiber.StatusUnauthorized)
+			c.Set("WWW-Authenticate", fmt.Sprintf(`Basic realm="%s"`, realm))
+			return c.SendString("Unauthorized")
+		}
+
+		// Check if the username and password match a valid user in the users map
+		username := parts[0]
+		password := parts[1]
+		if storedPassword, ok := users[username]; !ok || storedPassword != password {
+			c.Status(fiber.StatusUnauthorized)
+			c.Set("WWW-Authenticate", fmt.Sprintf(`Basic realm="%s"`, realm))
+			return c.SendString("Unauthorized")
+		}
+
+		// If the username and password are valid, call the next middleware function
+		return c.Next()
+	}
+}
+```
+
+```go
+
 
 
 

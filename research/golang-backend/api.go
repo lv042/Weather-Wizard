@@ -91,6 +91,13 @@ func (f *FiberApp) setupRoutes() {
 	// Serve static files from the "static" directory
 	f.fiberApp.Static("/", "./web")
 
+	//Frontend route
+	f.fiberApp.Get("/", func(c *fiber.Ctx) error {
+		f.metrics.IncrementRequestCount(c.Route().Path)
+		//returns main html page
+		return c.SendFile("./web/index.html")
+	})
+
 	// GET request to retrieve weather data by timestamp
 	f.fiberApp.Get("api/weather/:timestamp", func(c *fiber.Ctx) error {
 		// Get the timestamp from the URL parameters
@@ -214,13 +221,6 @@ func (f *FiberApp) setupRoutes() {
 
 	f.fiberApp.Get("/admin", func(c *fiber.Ctx) error {
 		return c.SendFile("./web/admin.html")
-	})
-
-	//Frontend route
-	f.fiberApp.Get("/", func(c *fiber.Ctx) error {
-		f.metrics.IncrementRequestCount(c.Route().Path)
-		//return main html page
-		return c.SendFile("./web/index.html")
 	})
 
 	//POST request to set up email notifications

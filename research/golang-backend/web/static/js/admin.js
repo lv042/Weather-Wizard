@@ -5,7 +5,7 @@ VANTA.CLOUDS({
     mouseControls: true,
     touchControls: true,
     gyroControls: false,
-    minHeight: 1200.00,
+    minHeight: 1300.00,
     minWidth: 200.00,
     speed: 1.00
 });
