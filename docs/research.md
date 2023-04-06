@@ -34,7 +34,29 @@ Since this research question can be interpreted very broadly, I will have to nar
 - What are modern features of Golang?
 - What is the best architecture for a backend in Golang?
 
-These topics will be researched by reading articles and watching videos about Golang
+These topics will be researched by reading literature, watching videos and trying out the language myself. Other sources of information I want to use are the official documentation of Golang, case studies and performance benchmarks.
+
+## What are libraries that could be used?
+
+Since Golang is very popular for backend development, there are also a lot of libraries available for it. 
+
+To get familiar with good libraries which are offered in the Goland ecosystem, I can recommend the following Github page:
+https://github.com/mingrammer/go-web-framework-stars
+
+It contains a list of the most popular libaries and frameworks for Golang. It is structured by category, so it is easy to find the right library for your use cases.
+
+https://madappgang.com/blog/backend-development-with-golang/
+
+For weather wizard we need the following types libraries to build a modern backend:
+
+https://kinsta.com/blog/postgresql-vs-mysql/#:~:text=MySQL%20is%20a%20purely%20relational,%2C%20ACID%2Dcompliant%20storage%20engine.
+Database: What database should we use?
+
+Since we already have a sql database it makes sense to use another sql database. I decided to pick PostgreSQL, because it is a very popular and modern database. It has a lot of features that make it subjectively better than MySQL. It is also open-source and free to use. 
+The stackoverflow developer survey 2022 shows that PostgreSQL is one of the most popular databases for backend development.
+
+
+
 
 
 
