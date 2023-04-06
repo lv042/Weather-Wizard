@@ -5,7 +5,7 @@ following I will explain the improvements I made.
 
 ## DOCUMENTATION
 
-Im using Golang language for the backend of Weather Wizard. before talking about the implementation of the backend, I will explain the language itself.
+I'm using Golang language for the backend of Weather Wizard. before talking about the implementation of the backend, I will explain the language itself.
 Golang is a compiled language, which means that the code is compiled to machine code before it is executed. This makes it much faster than interpreted languages like PHP.
 Golang is also a statically typed language, which means that you have to define the type of variable when you declare it. This makes it easier to find bugs in your code.
 It is also garbage collected language like Java, which means that you don't have to worry about memory management like in C or C++. The garbage collector will clean up after you.
@@ -937,32 +937,117 @@ The functions which gets called to set up the email works like this:
 
 ```go
 func setupEmail(e string, en bool) {
+// set the email address and whether notifications are enabled or not
 email = e
 enabled = en
+
+// read the encryption key
 readKey()
+
+// create a channel to stop the daily mailer
 stopDailyMailer = make(chan struct{})
+
+// if notifications are enabled, start the daily mailer and send a setup email
 if enabled {
 go func() {
 sendSetupMail(email)
 setupDailyMailer(stopDailyMailer)
 }()
 } else {
+// if notifications are not enabled, disable the daily mailer
 disableDailyMailer()
 }
 }
 
 func sendSetupMail(email string) {
-	mail.NewEmail("Luca", "luca.v.kannen@gmail.com")
-	subject := "Backend Notifications"
-	mail.NewEmail("Luca", email)
-	plainTextContent := "You are now subscribed to notifications. The backend will send from now on notifications to " +
-		"this email address. You will receive a daily summary of all requests and errors. You can unsubscribe in the Admin Panel."
-	htmlContent := "<p>Hi there, you are now subscribed to notifications.</p>\n\n<p>The backend will send from now on notifications to this email address. You will receive a daily summary of all requests and errors.</p>\n\n<p>You can unsubscribe in the Admin Panel."
-	sendSummaryMail(email, subject, plainTextContent, htmlContent)
+// create a new email from "Luca" to the given email address
+mail.NewEmail("Luca", email)
+
+// set the subject of the email
+subject := "Backend Notifications"
+
+// set the plain text content of the email
+plainTextContent := "You are now subscribed to notifications. The backend will send from now on notifications to " +
+"this email address. You will receive a daily summary of all requests and errors. You can unsubscribe in the Admin Panel."
+
+// set the HTML content of the email
+htmlContent := "<p>Hi there, you are now subscribed to notifications.</p>\n\n<p>The backend will send from now on notifications to this email address. You will receive a daily summary of all requests and errors.</p>\n\n<p>You can unsubscribe in the Admin Panel."
+
+// send the summary email
+sendSummaryMail(email, subject, plainTextContent, htmlContent)
 }
 ```
 
-First a setup mail gets send 
+First a setup mail gets send which looks like this: 
+
+
+
+![Setup mail](./images/setupmail.png)
+
+
+
+and then the daily mailer gets started. The daily mailing process works in a seperate thread and looks very similar to the sendSetupMail function:
+
+![Daily mail](./images/daily.png)
+
+These were all the api routes which I have used for the backend. Lastly I still have to cover the remaining Middleware.
+
+To have an convienient way to debug all incoming requests and responses are logged.
+
+That could look like this:
+```
+2023/04/04 18:36:01 FiberApp:  Request: GET /api/metrics
+2023/04/04 18:36:01 FiberApp:  Request Headers: {"Header":{},"UseHostHeader":false}
+2023/04/04 18:36:01 FiberApp:  Request Body: 
+2023/04/04 18:36:01 FiberApp:  Response: 200
+2023/04/04 18:36:01 FiberApp:  Response Headers: {}
+2023/04/04 18:36:01 FiberApp:  Response Body: {"errorCount":{"/api/weather/:timestamp":1,"/api/weather/create":1,"/api/weather/delete":11},"requestCount":{"/api/metrics":145,"/api/weather":6,"/api/weather/create":12,"/api/weather/delete":1,"/api/weather/update":1}} 
+```
+
+and is implemented like this:
+
+```go
+func (f *FiberApp) logMiddleware(c *fiber.Ctx) error {
+	// Log request method and URL
+	f.Log(fmt.Sprintf("Request: %s %s", c.Method(), c.Path()))
+
+	// Log request headers
+	headers, _ := json.Marshal(c.Request())
+	f.Log(fmt.Sprintf("Request Headers: %s", headers))
+
+	// Log request body
+	body := c.Request().Body()
+	f.Log(fmt.Sprintf("Request Body: %s", body))
+
+	// Restore the request body for further processing
+	c.Request().SetBody(body)
+
+	// Continue processing the request
+	err := c.Next()
+
+	// Log response status code
+	f.Log(fmt.Sprintf("Response: %d", c.Response().StatusCode()))
+
+	// Log response headers
+	headers, _ = json.Marshal(c.Response().Header)
+	f.Log(fmt.Sprintf("Response Headers: %s", headers))
+
+	// Log response body
+	body = c.Response().Body()
+	f.Log(fmt.Sprintf("Response Body: %s \n\n\n", body))
+
+	// Restore the response body for further processing
+	c.Response().SetBody(body)
+
+	return err
+}
+```
+
+
+
+
+
+
 
 
 
