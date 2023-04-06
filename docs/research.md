@@ -50,13 +50,13 @@ https://madappgang.com/blog/backend-development-with-golang/
 For weather wizard we need the following types libraries to build a modern backend:
 
 https://kinsta.com/blog/postgresql-vs-mysql/#:~:text=MySQL%20is%20a%20purely%20relational,%2C%20ACID%2Dcompliant%20storage%20engine.
-Database: 
+#### Database: 
 https://survey.stackoverflow.co/2022/
 Since we already have a sql database it makes sense to use another sql database. I decided to pick PostgreSQL, because it is a very popular and modern database. It has a lot of features that make it subjectively better than MySQL. It is also open-source and free to use. 
 The stackoverflow developer survey 2022 shows that PostgreSQL is one of the most popular databases for backend development.
 
 https://github.com/mingrammer/go-web-framework-stars
-Web-framework: 
+#### Web-framework: 
 The most popular and most used web-framework for Golang is currently Gin, but after doing some research I decided to pick Fiber.
 Fiber is a better choice than Gin due to its better performance, nicer syntax, and more comprehensive documentation.
 https://www.youtube.com/watch?v=10miByMOGfY&t=735s
@@ -74,7 +74,7 @@ Fiber is the third fastest web-framework for Golang, with only rather smaller an
 It is also the 24. fastest web-framework for all languages. https://www.techempower.com/benchmarks/#section=data-r21&test=fortune
 For me, it was also easier to get started with Fiber, because I was already familiar Express.js, which is a similar web-framework for Node.js.
 
-ORM (Object Relational Mapping): https://github.com/go-gorm/gorm
+#### ORM (Object Relational Mapping): https://github.com/go-gorm/gorm
 https://blog.bitsrc.io/what-is-an-orm-and-why-you-should-use-it-b2b6f75f5e2a
 ORM is a technique that allows you to query and manipulate data from a database using an object-oriented paradigm.
 Using an ORM allows developers to leverage their fluency in a programming language, simplifying database interactions and abstracting away SQL complexities. It offers easy database system switching, advanced built-in features, and often leads to better-performing queries than hand-written SQL. It is typically recommended for small to allow teams to increase their productivity.
@@ -94,4 +94,14 @@ https://betterstack.com/community/guides/logging/logging-framework/
 For bigger projects it is recommended to use a proper logging framework. The most popular and widely used logging framework is Logrus. https://github.com/sirupsen/logrus
 https://betterprogramming.pub/awesome-logging-in-go-with-logrus-70606a49f285
 Logrus supports a variety of output formats, log levels, and hooks, as well as structured logging. Its adaptability and extensibility make it an excellent choice for a wide range of applications.
+
+#### Testing:
+
+The most popular testing framework for Golang is Testify, but most Golang developers stated in the JetBrains survey, that they prefer the standard library of Golang for testing.
+https://www.jetbrains.com/research/devecosystem-2018/go/
+Altogether, the standard library of Golang is very good and provides all the necessary tools for testing. It is also very easy to use and has a good documentation.
+Testify can be used if more advanced features are needed, but for a small scale project like Weather Wizard, the standard library is sufficient.
+Testify has a lot of features like mocking, assertions, and test suites. 
+
+## References
 
