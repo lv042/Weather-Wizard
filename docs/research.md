@@ -41,7 +41,7 @@ These topics will be researched by reading literature, watching videos and tryin
 Since Golang is very popular for backend development, there are also a lot of libraries available for it. 
 
 To get familiar with good libraries which are offered in the Goland ecosystem, I can recommend the following Github page:
-https://github.com/mingrammer/go-web-framework-stars
+https://github.com/avelino/awesome-go
 
 It contains a list of the most popular libaries and frameworks for Golang. It is structured by category, so it is easy to find the right library for your use cases.
 
@@ -50,13 +50,32 @@ https://madappgang.com/blog/backend-development-with-golang/
 For weather wizard we need the following types libraries to build a modern backend:
 
 https://kinsta.com/blog/postgresql-vs-mysql/#:~:text=MySQL%20is%20a%20purely%20relational,%2C%20ACID%2Dcompliant%20storage%20engine.
-Database: What database should we use?
-
+Database: 
+https://survey.stackoverflow.co/2022/
 Since we already have a sql database it makes sense to use another sql database. I decided to pick PostgreSQL, because it is a very popular and modern database. It has a lot of features that make it subjectively better than MySQL. It is also open-source and free to use. 
 The stackoverflow developer survey 2022 shows that PostgreSQL is one of the most popular databases for backend development.
 
+https://github.com/mingrammer/go-web-framework-stars
+Web-framework: 
+The most popular and most used web-framework for Golang is currently Gin, but after doing some research I decided to pick Fiber.
+Fiber is a better choice than Gin due to its better performance, nicer syntax, and more comprehensive documentation.
+https://www.youtube.com/watch?v=10miByMOGfY&t=735s
+For me, it was also easier to get started with Fiber, because I was already familiar Express.js, which is a similar web-framework for Node.js.
 
+ORM (Object Relational Mapping): https://github.com/go-gorm/gorm
+https://blog.bitsrc.io/what-is-an-orm-and-why-you-should-use-it-b2b6f75f5e2a
+ORM is a technique that allows you to query and manipulate data from a database using an object-oriented paradigm.
+Using an ORM allows developers to leverage their fluency in a programming language, simplifying database interactions and abstracting away SQL complexities. It offers easy database system switching, advanced built-in features, and often leads to better-performing queries than hand-written SQL. It is typically recommended for small to allow teams to increase their productivity.
 
+Monitoring and Logging:
+For monitoring the most popular frameworks are Prometheus and Grafana. Both are open-source and free to use. You can deploy them in a docker container and connect them to your application.
+After setting them up you can see the performance of your application in real-time. You can also set up alerts, so you get notified if something goes wrong.
+https://prometheus.io/docs/introduction/overview/
+https://grafana.com/docs/
+
+An example of a dashboard that you can create with Grafana:
+![grafana](images/graf.jpg) 
+https://grafana.com/
 
 
 
