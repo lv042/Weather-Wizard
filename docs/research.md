@@ -26,7 +26,7 @@ For all those reasons many companies have switched to Golang for their backend d
 This researchs target audience are developers who wish to create high-performance, scalable, and concurrent applications. Golang is especially well-suited for developing microservices, APIs, and web servers. Because of its simplicity and speed, it is also a popular choice for building DevOps tools like as continuous integration and deployment (CI/CD) systems.
 
 
-## What are methods to research this question?
+## What are methods and sources to research this question?
 
 Since this research question can be interpreted very broadly, I will have to narrow it down. I will focus on the following topics:
 
@@ -60,6 +60,18 @@ Web-framework:
 The most popular and most used web-framework for Golang is currently Gin, but after doing some research I decided to pick Fiber.
 Fiber is a better choice than Gin due to its better performance, nicer syntax, and more comprehensive documentation.
 https://www.youtube.com/watch?v=10miByMOGfY&t=735s
+The strong performance is also shown in the TechEmpower benchmarks.The benchmark is consists of three parts. 
+
+1. Database access: The test demands the web application to connect to a database, get records, and execute specified operations on the data.
+
+2. Server-side templating: After retrieving records from the database, the web application must generate an HTML view using server-side templates. This tests the framework's ability to handle dynamic HTML creation.
+
+3. JSON serialization: The test requires the web application to serialize data into JSON format, which tests the framework's JSON handling skills.
+
+![benchmark](./images/bench.png)
+
+Fiber is the third fastest web-framework for Golang, with only rather smaller and less popular frameworks being faster.
+It is also the 24. fastest web-framework for all languages. https://www.techempower.com/benchmarks/#section=data-r21&test=fortune
 For me, it was also easier to get started with Fiber, because I was already familiar Express.js, which is a similar web-framework for Node.js.
 
 ORM (Object Relational Mapping): https://github.com/go-gorm/gorm
@@ -77,7 +89,9 @@ An example of a dashboard that you can create with Grafana:
 ![grafana](images/graf.jpg) 
 https://grafana.com/
 
-
-
-
+For logging, a logging framework doesnt have to be used for a small scale project like Weather Wizard. The standard library of Golang already provides a good logging framework.
+https://betterstack.com/community/guides/logging/logging-framework/
+For bigger projects it is recommended to use a proper logging framework. The most popular and widely used logging framework is Logrus. https://github.com/sirupsen/logrus
+https://betterprogramming.pub/awesome-logging-in-go-with-logrus-70606a49f285
+Logrus supports a variety of output formats, log levels, and hooks, as well as structured logging. Its adaptability and extensibility make it an excellent choice for a wide range of applications.
 
