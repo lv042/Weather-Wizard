@@ -118,7 +118,6 @@ Testify has a lot of features like mocking, assertions, and test suites.
 
 ## What architecture pattern should be used?
 https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith#:~:text=A%20monolithic%20architecture%20is%20a,monolith%20architecture%20for%20software%20design
-https://www.datadoghq.com/knowledge-center/serverless-architecture/#:~:text=Serverless%20architecture%20is%20an%20approach,storage%20systems%20at%20any%20scale.
 
 Before you can implement a new backend, you should decide what architecture pattern you want to use. There are two main architecture patterns that are relevant for this project. The first one is the monolithic architecture and the second one is the microservices' architecture.
 
@@ -129,5 +128,12 @@ Microservice architecture is an architectural approach in which an application i
 ### Monolithic architecture:
 Monolithic architecture is an architectural style in which an application is constructed as a single, cohesive system. This technique encourages simplicity, quicker development and testing, and improved speed owing to fewer network calls. Nevertheless, it can limit scalability and flexibility, have weaker fault isolation and resilience, and be more complex to deploy and manage. It also provides limited support for polyglot development, which allows various programming languages and technologies to be utilized for different areas of the application.
 
+### Which architecture pattern should be used for what project?
+
+A monolithic architecture may be a better choice for a small-scale project than a microservice design. A monolithic design is quicker to construct and administer, needs less infrastructure resources, and is easier to verify end-to-end functionality. 
+
+Microservice architecture, on the other hand, is more complicated and necessitates more infrastructure resources. It is often better suited for bigger and more complicated applications that require high scalability, fault tolerance, and autonomous service deployment.
+
+Nevertheless, the particular objectives and constraints of the project ultimately decide between monolithic and microservice design. If the project is projected to grow significantly in the future or if it requires independent scaling and deployment of various services, microservice architecture may be a better option. On the other hand, if the project is anticipated to have a lower scope and scale or if simplicity and convenience of development and management are the primary criteria, a monolithic design could be more suited.
 
 ## References
