@@ -3,6 +3,10 @@
 
 Go, often referred to as Golang is an open-source programming language that was developed by Google in 2009.
 Go is gaining a lot of popularity in the last years and has become one of the most popular languages for backend development.
+
+
+## What makes Goland special?
+
 Many features of Go's make it a great choice for that. Go is a compiled language, which means that it is actually converted to machine code before it is executed.
 This makes it a lot faster than interpreted languages like PHP. Another great feature of Golang is its Garbage Collector. This makes it a lot easier to
 manage memory in Go. Most other compiled languages require you to manually manage your memory, which can be a lot of work and is very error-prone.
@@ -23,7 +27,7 @@ For all those reasons many companies have switched to Golang for their backend d
 
 ## For whom is this research relevant?
 
-This researchs target audience are developers who wish to create high-performance, scalable, and concurrent applications. Golang is especially well-suited for developing microservices, APIs, and web servers. Because of its simplicity and speed, it is also a popular choice for building DevOps tools like as continuous integration and deployment (CI/CD) systems.
+This researches target audience are developers who want to create high-performance, scalable, and concurrent applications. Golang is especially well-suited for developing microservices, APIs, and web servers. Because of its simplicity and speed, it is also a popular choice for building DevOps tools like as continuous integration and deployment (CI/CD) systems.
 
 
 ## What are methods and sources to research this question?
@@ -95,13 +99,19 @@ For bigger projects it is recommended to use a proper logging framework. The mos
 https://betterprogramming.pub/awesome-logging-in-go-with-logrus-70606a49f285
 Logrus supports a variety of output formats, log levels, and hooks, as well as structured logging. Its adaptability and extensibility make it an excellent choice for a wide range of applications.
 
+### Authentication
+https://dev.to/kcdchennai/how-jwt-json-web-token-authentication-works-21e7
+For authentication, the most popular token based authentication is JWT. JSON Web Tokens (JWTs) are a widely used modern standard for securely exchanging data between parties. JSON Web Tokens are often used to authenticate users and convey authorization information and consist of a header, payload, and signature. A JWT's header provides information about the hashing technique used to sign the token, and the payload contains the actual data being transferred. The signature ensures the token's integrity and prevents manipulation. JWTs are adaptable and simple to implement, and they may be used in a broad range of applications and use situations. Although for a small scale project like Weather Wizard, a more simplistic authentication method can also be used. 
+Basic authentication is a simple authentication scheme built into the HTTP protocol. The client sends HTTP requests with the Authorization header that contains the word Basic word followed by a space and a base64-encoded string username:password. The server decodes the base64 string, splits the string into the username and password components, and verifies that the given credentials are valid. Basic authentication may not be very feature rich, but it is very easy to implement. It also doesn't require any additional libraries. It's only draw is that it doesnt offer confidentiality, so the password is sent in plain text, but this can be mitigated by using HTTPS instead of HTTP. 
+
+
 #### Testing:
 
 The most popular testing framework for Golang is Testify, but most Golang developers stated in the JetBrains survey, that they prefer the standard library of Golang for testing.
 https://www.jetbrains.com/research/devecosystem-2018/go/
+https://www.jetbrains.com/lp/devecosystem-2022/go/
 Altogether, the standard library of Golang is very good and provides all the necessary tools for testing. It is also very easy to use and has a good documentation.
 Testify can be used if more advanced features are needed, but for a small scale project like Weather Wizard, the standard library is sufficient.
 Testify has a lot of features like mocking, assertions, and test suites. 
 
 ## References
-
