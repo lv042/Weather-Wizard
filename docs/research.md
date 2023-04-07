@@ -19,11 +19,15 @@ since it allows you to handle many requests and perform multiple tasks simultane
 For all those reasons many companies have switched to Golang for their backend development. Here are some examples:
 
 - Uber: Uber heavily relies on Golang for backend development, notably its dispatch system and map services. Uber can handle a huge number of requests concurrently thanks to Golang's concurrency characteristics, making it simpler to deliver a smooth experience for its consumers.
-
+  https://www.uber.com/en-NL/blog/aresdb/
 - Dropbox: Dropbox's desktop client, which manages file syncing between devices, is written in Golang. The desktop client can sync data rapidly and effectively thanks to Golang's fast execution speeds and concurrency characteristics.
-
+  https://dropbox.tech/infrastructure/open-sourcing-our-go-libraries
 - Docker: Docker is a popular containerization program that heavily relies on Golang.
+  https://news.ycombinator.com/item?id=6709517
 
+ And there are many more examples, like Netflix, Meta, Cloudflare and of course Google itself. Most developer teams have said that they switched to Golang because of its performance and concurrency characteristics.
+
+    
 
 ## For whom is this research relevant?
 
@@ -85,13 +89,16 @@ Using an ORM allows developers to leverage their fluency in a programming langua
 
 Monitoring and Logging:
 For monitoring the most popular frameworks are Prometheus and Grafana. Both are open-source and free to use. You can deploy them in a docker container and connect them to your application.
-After setting them up you can see the performance of your application in real-time. You can also set up alerts, so you get notified if something goes wrong.
+After setting them up you can see the performance of your application in real-time like here:
 https://prometheus.io/docs/introduction/overview/
 https://grafana.com/docs/
 
-An example of a dashboard that you can create with Grafana:
+
+
 ![grafana](images/graf.jpg) 
 https://grafana.com/
+
+You can also set up alerts, so you get notified if something goes wrong.
 
 For logging, a logging framework doesnt have to be used for a small scale project like Weather Wizard. The standard library of Golang already provides a good logging framework.
 https://betterstack.com/community/guides/logging/logging-framework/
@@ -135,5 +142,14 @@ A monolithic architecture may be a better choice for a small-scale project than 
 Microservice architecture, on the other hand, is more complicated and necessitates more infrastructure resources. It is often better suited for bigger and more complicated applications that require high scalability, fault tolerance, and autonomous service deployment.
 
 Nevertheless, the particular objectives and constraints of the project ultimately decide between monolithic and microservice design. If the project is projected to grow significantly in the future or if it requires independent scaling and deployment of various services, microservice architecture may be a better option. On the other hand, if the project is anticipated to have a lower scope and scale or if simplicity and convenience of development and management are the primary criteria, a monolithic design could be more suited.
+
+## How could such an implementation look like?
+
+The most widely used standard for APIs in a monolith architecture is Rest.
+
+The REST API (Representational State Transfer) is a web-based software architecture approach for developing scalable and adaptable distributed systems. A RESTful API enables customers to access and alter resources over HTTP using established methods.
+
+Clients should be able to conduct conventional CRUD (Create, Read, Update, Delete) activities on resources defined by URIs via a REST API (Uniform Resource Identifiers). The API should use a stateless communication paradigm, in which the server does not save the client's state and each request provides all of the information needed to process it.
+
 
 ## References
