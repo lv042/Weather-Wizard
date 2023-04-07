@@ -5,7 +5,7 @@ Go, often referred to as Golang is an open-source programming language that was 
 Go is gaining a lot of popularity in the last years and has become one of the most popular languages for backend development.
 
 
-## What makes Goland special?
+## What makes the language special?
 
 Many features of Go's make it a great choice for that. Go is a compiled language, which means that it is actually converted to machine code before it is executed.
 This makes it a lot faster than interpreted languages like PHP. Another great feature of Golang is its Garbage Collector. This makes it a lot easier to
@@ -47,7 +47,7 @@ Since Golang is very popular for backend development, there are also a lot of li
 To get familiar with good libraries which are offered in the Goland ecosystem, I can recommend the following Github page:
 https://github.com/avelino/awesome-go
 
-It contains a list of the most popular libaries and frameworks for Golang. It is structured by category, so it is easy to find the right library for your use cases.
+It contains a list of the most popular libraries and frameworks for Golang. It is structured by category, so it is easy to find the right library for your use cases.
 
 https://madappgang.com/blog/backend-development-with-golang/
 
@@ -101,11 +101,12 @@ Logrus supports a variety of output formats, log levels, and hooks, as well as s
 
 ### Authentication
 https://dev.to/kcdchennai/how-jwt-json-web-token-authentication-works-21e7
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication
 For authentication, the most popular token based authentication is JWT. JSON Web Tokens (JWTs) are a widely used modern standard for securely exchanging data between parties. JSON Web Tokens are often used to authenticate users and convey authorization information and consist of a header, payload, and signature. A JWT's header provides information about the hashing technique used to sign the token, and the payload contains the actual data being transferred. The signature ensures the token's integrity and prevents manipulation. JWTs are adaptable and simple to implement, and they may be used in a broad range of applications and use situations. Although for a small scale project like Weather Wizard, a more simplistic authentication method can also be used. 
-Basic authentication is a simple authentication scheme built into the HTTP protocol. The client sends HTTP requests with the Authorization header that contains the word Basic word followed by a space and a base64-encoded string username:password. The server decodes the base64 string, splits the string into the username and password components, and verifies that the given credentials are valid. Basic authentication may not be very feature rich, but it is very easy to implement. It also doesn't require any additional libraries. It's only draw is that it doesnt offer confidentiality, so the password is sent in plain text, but this can be mitigated by using HTTPS instead of HTTP. 
+Basic authentication is a simple authentication scheme built into the HTTP protocol. The client sends HTTP requests with the Authorization header that contains the word Basic word followed by a space and a base64-encoded string username:password. The server decodes the base64 string, splits the string into the username and password components, and verifies that the given credentials are valid. Basic authentication may not be very feature rich, but it is very easy to implement. It also doesn't require any additional libraries. It's only draw is that it doesn't offer confidentiality, so the password is sent in plain text, but this can be mitigated by using HTTPS instead of HTTP. 
 
 
-#### Testing:
+### Testing:
 
 The most popular testing framework for Golang is Testify, but most Golang developers stated in the JetBrains survey, that they prefer the standard library of Golang for testing.
 https://www.jetbrains.com/research/devecosystem-2018/go/
@@ -113,5 +114,20 @@ https://www.jetbrains.com/lp/devecosystem-2022/go/
 Altogether, the standard library of Golang is very good and provides all the necessary tools for testing. It is also very easy to use and has a good documentation.
 Testify can be used if more advanced features are needed, but for a small scale project like Weather Wizard, the standard library is sufficient.
 Testify has a lot of features like mocking, assertions, and test suites. 
+
+
+## What architecture pattern should be used?
+https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith#:~:text=A%20monolithic%20architecture%20is%20a,monolith%20architecture%20for%20software%20design
+https://www.datadoghq.com/knowledge-center/serverless-architecture/#:~:text=Serverless%20architecture%20is%20an%20approach,storage%20systems%20at%20any%20scale.
+
+Before you can implement a new backend, you should decide what architecture pattern you want to use. There are two main architecture patterns that are relevant for this project. The first one is the monolithic architecture and the second one is the microservices' architecture.
+
+
+### Microservices' architecture:
+Microservice architecture is an architectural approach in which an application is divided into smaller, autonomous services that communicate with one another using APIs. This method enhances scalability, flexibility, and fault separation while also making deployment and maintenance easier. Nevertheless, it can result in additional complexity and administrative overhead, higher infrastructure and operating expenses, and more challenging end-to-end functionality testing.
+
+### Monolithic architecture:
+Monolithic architecture is an architectural style in which an application is constructed as a single, cohesive system. This technique encourages simplicity, quicker development and testing, and improved speed owing to fewer network calls. Nevertheless, it can limit scalability and flexibility, have weaker fault isolation and resilience, and be more complex to deploy and manage. It also provides limited support for polyglot development, which allows various programming languages and technologies to be utilized for different areas of the application.
+
 
 ## References
