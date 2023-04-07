@@ -2,11 +2,29 @@
 
 Go, often referred to as Golang is an open-source programming language that was developed by Google in 2009.
 Go is gaining a lot of popularity in the last years and has become one of the most popular languages for backend
-development.
+development. The languages philosophy is to be simple, fast and efficient.
 
-## What makes the language special?
+## For whom is this research relevant?
 
-Many features of Go's make it a great choice for that. Go is a compiled language, which means that it is actually
+The target audience for this research are developers and engineers who are interested in using Golang for backend
+development in small scale or personal projects.
+
+## What are methods and sources to research this question?
+
+Since the research question can be interpreted very broadly, I will narrow it down on these sub questions:
+
+- What are the benefits of developing in Golang?
+- What libraries can be used for backend development in Golang?
+- What is the best architecture for a Weather Wizard backend in Golang?
+
+These topics will be researched by reading literature, watching videos and trying out the language myself. Other sources
+of information I want to use are the official documentation of Golang, case studies and performance benchmarks.
+
+
+## What are the benefits of developing in Golang?
+
+Many features of Go's make it a great choice for backend development. Go is a compiled language, which means that it is
+actually
 converted to machine code before it is executed.
 This makes it a lot faster than interpreted languages like PHP. Another great feature of Golang is its Garbage
 Collector. This makes it a lot easier to
@@ -22,6 +40,7 @@ Golang has very good support for concurrency. That means that you run multiple t
 useful for backend development,
 since it allows you to handle many requests and perform multiple tasks simultaneously,what improves performance and
 responsiveness.
+https://medium.com/@julienetienne/why-go-the-benefits-of-golang-6c39ea6cff7e
 
 For all those reasons many companies have switched to Golang for their backend development. Here are some examples:
 
@@ -32,32 +51,25 @@ For all those reasons many companies have switched to Golang for their backend d
 - Dropbox: Dropbox's desktop client, which manages file syncing between devices, is written in Golang. The desktop
   client can sync data rapidly and effectively thanks to Golang's fast execution speeds and concurrency characteristics.
   https://dropbox.tech/infrastructure/open-sourcing-our-go-libraries
-- Docker: Docker is a popular containerization program that heavily relies on Golang.
+- Docker: Docker uses Golang to implement its core container runtime, as well as various other components such as the
+  Docker CLI and Docker Compose.
   https://news.ycombinator.com/item?id=6709517
 
 And there are many more examples, like Netflix, Meta, Cloudflare and of course Google itself. Most developer teams have
 said that they switched to Golang because of its performance and concurrency characteristics.
+https://go.dev/solutions/case-studies
 
-## For whom is this research relevant?
+### Drawbacks of Golang
 
-This researches target audience are developers who want to create high-performance, scalable, and concurrent
-applications. Golang is especially well-suited for developing microservices, APIs, and web servers. Because of its
-simplicity and speed, it is also a popular choice for building DevOps tools like as continuous integration and
-deployment (CI/CD) systems.
+Even though Golang has many great features, it also has some drawbacks.
 
-## What are methods and sources to research this question?
+- Lack of Generics: Because Golang doesn't have a generic type system, it is more difficult to write code that requires generic programming capabilities.
 
-Since this research question can be interpreted very broadly, I will have to narrow it down. I will focus on the
-following topics:
+- A smaller standard library: Golang has a standard library, however it is small in contrast to other programming languages, which could build up a big ecosystem of libraries over the last years. This means that developers must frequently rely on third-party libraries to do particular tasks.
 
-- What libraries could be used?
-- What are modern features of Golang?
-- What is the best architecture for a backend in Golang?
+- Different Syntax: Golang has a particular syntax and approach to programming that may be different for certain developers to learn and understand. Also, because it is a younger language, there aren't as many learning resources as there are for more established languages like Java or Python.
 
-These topics will be researched by reading literature, watching videos and trying out the language myself. Other sources
-of information I want to use are the official documentation of Golang, case studies and performance benchmarks.
-
-## What are libraries that could be used?
+## What libraries can be used for backend development in Golang?
 
 Since Golang is very popular for backend development, there are also a lot of libraries available for it.
 
@@ -234,4 +246,25 @@ https://www.integrate.io/blog/why-you-need-a-rest-api/
   lightweight than other API designs.
 - REST APIs may be used for a variety of applications, including automated ETL and data integration.
 
-## References
+## Conclusion
+
+To summarize, Golang is an excellent alternative for creating high-performance, scalable, and concurrent applications.
+Because of its compiled nature, garbage collector, static typing, easy syntax, and high concurrency support, it is a
+popular choice for backend development. Organizations like Uber, Dropbox, and Docker have turned to Golang for backend
+development, citing its high speed and parallelism.
+
+I propose PostgreSQL as the database, Fiber as the web framework, and GORM as the ORM for Weather Wizard. We suggest
+Prometheus and Grafana for monitoring and logging. JWT may be used for authentication, or Basic authentication for lower
+scale projects. The basic Golang library is adequate for testing, while Testify can be used for more sophisticated
+capabilities.
+
+In terms of architecture, whether to utilize a monolithic or microservice architecture ultimately relies on the
+project's unique aims and restrictions. A monolithic design may be more suitable for a small-scale project, but a
+microservice architecture may be better suited for larger and more complex systems that require great scalability and
+fault tolerance.
+
+Lastly, a REST API should be utilized for the backend because it is a widely used and standardized way for constructing
+scalable and adaptive distributed systems. It simplifies development, offers technological advantages, and may be
+utilized for a wide range of applications.
+
+## Sources
