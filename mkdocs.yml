@@ -16,8 +16,8 @@ theme:
     # See available fonts at https://fonts.google.com/
     text: Raleway
     code: Ubuntu Mono  
-  logo: images/iot_power.svg
-  favicon: images/iot_power.svg
+  logo: ./images/logo.svg
+  favicon: ./images/logo.svg
   features:
     - navigation.instant 
     - content.code.annotate 
