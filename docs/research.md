@@ -5,9 +5,9 @@ is used in a lot of projects and is easy to learn. However, there are more moder
 offer
 plenty of benefits over old languages. One of those languages is Go.
 
-Go, often referred to as Golang is an open-source programming language that was developed by Google in 2009.
+Go, often referred to as Golang, is an open-source programming language that was developed by Google in 2009.
 Go is gaining a lot of popularity in the last years and has become one of the most popular languages for backend
-development. The languages philosophy is to be simple, fast and efficient.
+development. The language's philosophy is to be simple, fast, and efficient.
 
 ## For whom is this research relevant?
 
@@ -45,11 +45,11 @@ is very similar to C, which makes it easy to switch language (Etienne, 2022). Th
 mention is the concurrency of Go.
 Golang has very good support for concurrency. That means that you run multiple threads and processes at the same time. This is very
 useful for backend development,
-since it allows you to handle many requests and perform multiple tasks simultaneously,what improves performance and
+since it allows you to handle many requests and perform multiple tasks simultaneously, what improves performance and
 responsiveness (Etienne, 2022).
 
 
-For all those reasons many companies have switched to Golang for their backend development. Here are some examples:
+For all those reasons, many companies have switched to Golang for their backend development. Here are some examples:
 
 - Uber: Uber heavily relies on Golang for backend development, notably its dispatch system and map services. Uber can
   handle a huge number of requests concurrently thanks to Golang's concurrency characteristics, making it simpler to
@@ -58,7 +58,7 @@ For all those reasons many companies have switched to Golang for their backend d
 - Dropbox: Dropbox's desktop client, which manages file syncing between devices, is written in Golang. The desktop
   client can sync data rapidly and effectively thanks to Golang's fast execution speeds and concurrency characteristics (Lee, n.d.).
 
-  
+
 - Docker: Docker uses Golang to implement its core container runtime, as well as various other components such as the
   Docker CLI and Docker Compose (Docker and Go, n.d.)
 
@@ -70,19 +70,19 @@ said that they switched to Golang because of its performance and concurrency cha
 Even though Golang has many great features, it also has some drawbacks.
 
 - Lack of Generics: Golang lacks the functionality of Generics. This can limit developers in some use cases, because Generics allow you very easily to
-  create reusable code. 
+  create reusable code.
 
 - A smaller standard library compared to other programming languages: Golang has a standard library, but it is fairly
   small compared to other programming languages that have had years to establish a big ecosystem of libraries. Thus, to
-  complete certain tasks, programmers often need to employ libraries third party sources.
+  complete certain tasks, programmers often need to employ libraries of third party sources.
 
-- Unique Syntax: Some developers can find the syntax of Golang a bit strange and find that it feels very unfamiliar. 
+- Unique Syntax: Some developers can find the syntax of Golang a bit strange and find that it feels very unfamiliar.
 
 ## What libraries and technologies can be used for backend development in Golang?
 
 Since Golang is very popular for backend development, there are also a lot of libraries available for it.
 
-To get familiar with good libraries which are offered in the Goland ecosystem, I can recommend the following Github
+To get familiar with good libraries which are offered in the Golang ecosystem, I can recommend the following Github
 page: https://github.com/avelino/awesome-go
 
 It contains a list of the most popular libraries and frameworks for Golang. It is structured by category, so it is easy
@@ -90,15 +90,15 @@ to find the right library for your use cases. It is also very well maintained an
 
 https://madappgang.com/blog/backend-development-with-golang/
 
-For weather wizard we need the following types of libraries and technologies to build a modern backend:
+For weather wizard, we need the following types of libraries and technologies to build a modern backend:
 
 
 #### Database:
 
 
-Since we already worked with MySQL it makes sense to use another sql database. I decided to pick PostgreSQL, because
+Since we already worked with MySQL, it makes sense to use another sql database. I decided to pick PostgreSQL, because
 it is a very popular and modern database. It has a lot of features that make it objectively better than MySQL (Ravoof, 2023).
-Of course, it is also open-source and free to use. The stackoverflow developer survey 2022 shows that PostgreSQL is the most popular
+Of course, it is also open-source and free to use. The Stack Overflow developer survey 2022 shows that PostgreSQL is the most popular
 database under professional developers (2022). It is also the most
 popular database for backend development.
 
@@ -115,7 +115,7 @@ https://github.com/mingrammer/go-web-framework-stars
 
 The most popular and most used web-framework for Golang is currently Gin, but after doing some research I decided to
 pick Fiber. Fiber is a better choice than Gin due to its better performance, nicer syntax, and more comprehensive
-documentation (Coding with Robby, 2022). The strong performance is also shown in the TechEmpower benchmarks (n.d.).The benchmark consists of three parts.
+documentation (Coding with Robby, 2022). The strong performance is also shown in the TechEmpower benchmarks (n.d.). The benchmark consists of three parts.
 
 1. Database access: The test demands the web application to connect to a database, get records, and execute specified
    operations on the data.
@@ -133,7 +133,7 @@ It is also the 24. fastest web-framework for all languages. Gin is only the 162.
 For me, it was also easier to get started with Fiber, because I was already familiar Express.js, which is a similar
 web-framework for Node.js.
 
-#### ORM (Object Relational Mapping): 
+#### ORM (Object Relational Mapping):
 
 
 ORM is a technique that allows you to query and manipulate data from a database using an object-oriented paradigm.
@@ -144,9 +144,9 @@ development easier.
 
 #### Monitoring and Logging and Notification:
 
-For monitoring the most popular frameworks are Prometheus and Grafana. Both are open-source and free to use. You can
+For monitoring, the most popular frameworks are Prometheus and Grafana. Both are open-source and free to use. You can
 deploy them in a docker container and connect them to your application.
-After setting them up you can see the performance of your application in real-time like here:
+After setting them up, you can see the performance of your application in real-time like here:
 
 ![grafana](images/graf.jpg)
 Logging is really important to debug your systems and to know what is happening in the black box of your application (Isaiah, 2022).
@@ -154,7 +154,7 @@ Logging is really important to debug your systems and to know what is happening 
 For logging, a logging framework doesn't have to be used for a small scale project like Weather Wizard. The standard
 library of Golang already provides a good logging framework.
 
-For bigger projects it is recommended to use a proper logging framework. The most popular and widely used logging
+For bigger projects, it is recommended to use a proper logging framework. The most popular and widely used logging
 framework is called Logrus ((Gartner, 2022).
 
 Logrus supports a variety of output formats, log levels, and hooks, as well as structured logging. Its adaptability and
@@ -180,7 +180,7 @@ HTTP protocol. The client sends HTTP requests with
 the Authorization header that contains the word Basic word followed by a space and a base64-encoded string username:
 password. The server decodes the base64 string, splits the string into the username and password components, and
 verifies that the given credentials are valid. Basic authentication may not be very feature rich, but it is very easy to
-implement and use (HTTP Authentication - HTTP | MDN, 2023). It also doesn't require any additional libraries. It's only draw is that it doesn't offer confidentiality, so
+implement and use (HTTP Authentication - HTTP | MDN, 2023). It also doesn't require any additional libraries. Its only draw is that it doesn't offer confidentiality, so
 the password is sent in plain text, but this can be mitigated by using HTTPS instead of HTTP.
 
 The implementation of Basic authentication looks like this:
@@ -244,7 +244,7 @@ methods (What Is a REST API? | IBM, n.d.).
 
 Clients should be able to conduct conventional CRUD (Create, Read, Update, Delete) activities on resources defined by
 URIs via a REST API (Uniform Resource Identifiers). The API should use a stateless communication paradigm, in which the
-server does not save the client's state and each request provides all the information needed to process it.
+server does not save the client's state, and each request provides all the information needed to process it.
 
 #### Why should be a REST API be used?
 
@@ -267,8 +267,8 @@ popular choice for backend development. Organizations like Uber, Dropbox, and Do
 development, citing its high speed and parallelism.
 
 I propose PostgreSQL as the database, Fiber as the web framework, and GORM as the ORM for Weather Wizard. I suggest
-Prometheus or Grafana for monitoring. Basic HTTP Authentication can be used to provide a basic layer of security. 
-The basic Golang library is adequate for testing, while Testify can be used for more sophisticated  capabilities. To notify 
+Prometheus or Grafana for monitoring. Basic HTTP Authentication can be used to provide a basic layer of security.
+The basic Golang library is adequate for testing, while Testify can be used for more sophisticated capabilities. To notify
 an administrator about errors and logs, I recommend using SendGrids API.
 
 In terms of architecture, whether to utilize a monolithic or microservice architecture ultimately relies on the
