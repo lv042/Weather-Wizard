@@ -1,6 +1,6 @@
 # Replace the text below to customize your site
-site_name: IOT Weather Wizard by Luca von Kannen
-site_description: Weather Wizard
+site_name: Weather Wizard Docs
+site_description: Weather Wizard Docs
 site_author: Luca von Kannen
 copyright: Copyright 2022 Luca von Kannen - Creative Commons Attribution Non Commercial
 
@@ -10,14 +10,14 @@ theme:
   name: material
   palette:
     # try other colors https://squidfunk.github.io/mkdocs-material/getting-started/#primary-colors
-    primary: white
-    accent: #C57A80
+    primary: light blue
+    accent: white
   font:
     # See available fonts at https://fonts.google.com/
     text: Raleway
     code: Ubuntu Mono  
-  logo: ./images/logo.svg
-  favicon: ./images/logo.svg
+  logo: ./images/logo.png
+  favicon: ./images/logo.png
   features:
     - navigation.instant 
     - content.code.annotate 
