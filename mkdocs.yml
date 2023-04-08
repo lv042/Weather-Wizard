@@ -10,8 +10,8 @@ theme:
   name: material
   palette:
     # try other colors https://squidfunk.github.io/mkdocs-material/getting-started/#primary-colors
-    primary: deep purple
-    accent: red
+    primary: white
+    accent: #C57A80
   font:
     # See available fonts at https://fonts.google.com/
     text: Raleway
