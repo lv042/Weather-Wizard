@@ -42,7 +42,8 @@ nav:
         - 'Failures' : 'failures.md'
     - 'Profile':
         - 'Research' : 'research.md'
-        - 'Improvement' : 'improvement.md'
+        - 'Improvement Documentation' : 'improvement.md'
+        - 'Changelog' : 'changelog.md'
         - 'Research Question' : 'research_question.md'
         - 'Research Log' : 'research_log.md'
 
