@@ -1,6 +1,6 @@
 # Research Log
 
-In this document the current state of the research phase of the project.
+In this document the current state of the research phase of the project. This log might be very messy and unstructured, as it only servers as a personal log for me to keep track of my progress.
 
 
 ## Starting out with the project
