@@ -1,5 +1,10 @@
 # How can Golang be used to implement a better backend for Weather Wizard?
 
+In the first version of Weather Wizard, we used PHP for the backend. PHP is very popular, has great community support
+is used in a lot of projects and is easy to learn. However, there are more modern languages which are coming up and
+offer
+plenty of benefits over old languages. One of those languages is Go.
+
 Go, often referred to as Golang is an open-source programming language that was developed by Google in 2009.
 Go is gaining a lot of popularity in the last years and has become one of the most popular languages for backend
 development. The languages philosophy is to be simple, fast and efficient.
@@ -11,15 +16,14 @@ development in small scale or personal projects.
 
 ## What are methods and sources to research this question?
 
-Since the research question can be interpreted very broadly, I will narrow it down on these sub questions:
+To narrow down the research question, I will focus on the following topics:
 
 - What are the benefits of developing in Golang?
-- What libraries can be used for backend development in Golang?
+- What libraries and technologies can be used for backend development in Golang?
 - What is the best architecture for a Weather Wizard backend in Golang?
 
-These topics will be researched by reading literature, watching videos and trying out the language myself. Other sources
-of information I want to use are the official documentation of Golang, case studies and performance benchmarks.
-
+These topics will be researched by reading articles and developer blogs, watching videos and tutorials and by analyzing
+surveys and benchmarks.
 
 ## What are the benefits of developing in Golang?
 
@@ -29,12 +33,12 @@ converted to machine code before it is executed.
 This makes it a lot faster than interpreted languages like PHP. Another great feature of Golang is its Garbage
 Collector. This makes it a lot easier to
 manage memory in Go. Most other compiled languages require you to manually manage your memory, which can be a lot of
-work and is very error-prone.
+work and is very error-prone. Microsoft estimated that 70% of all security bugs are caused by bad memory management. https://msrc.microsoft.com/blog/2019/07/a-proactive-approach-to-more-secure-code/
 Furthermore, Go is a statically typed language, which means that you have to define the type of variable when you
 declare it, which makes it a lot easier to
-find errors in your code before runtime. The easy syntax of Go also makes it a lot easier to learn than other languages.
+find errors in your code before runtime.https://instil.co/blog/static-vs-dynamic-types/#:~:text=Protection%20from%20Runtime%20Errors,a%20much%20smoother%20development%20experience. The easy syntax of Go also makes it a lot easier to learn than other languages.
 The syntax of Go
-is very similar to C and Python, which makes it easy to switch between those languages. The last feature that I want to
+is very similar to C, which makes it easy to switch between those languages. The last feature that I want to
 mention is the concurrency of Go.
 Golang has very good support for concurrency. That means that you run multiple tasks at the same time. This is very
 useful for backend development,
@@ -63,13 +67,18 @@ https://go.dev/solutions/case-studies
 
 Even though Golang has many great features, it also has some drawbacks.
 
-- Lack of Generics: Because Golang doesn't have a generic type system, it is more difficult to write code that requires generic programming capabilities.
+- Lack of Generics: Because Golang doesn't have a generic type system, it is more difficult to write code that requires
+  generic programming capabilities.
 
-- A smaller standard library: Golang has a standard library, however it is small in contrast to other programming languages, which could build up a big ecosystem of libraries over the last years. This means that developers must frequently rely on third-party libraries to do particular tasks.
+- A smaller standard library: Golang has a standard library, however it is small in contrast to other programming
+  languages, which could build up a big ecosystem of libraries over the last years. This means that developers must
+  frequently rely on third-party libraries to do particular tasks.
 
-- Different Syntax: Golang has a particular syntax and approach to programming that may be different for certain developers to learn and understand. Also, because it is a younger language, there aren't as many learning resources as there are for more established languages like Java or Python.
+- Different Syntax: Golang has a particular syntax and approach to programming that may be different for certain
+  developers to learn and understand. Also, because it is a younger language, there aren't as many learning resources as
+  there are for more established languages like Java or Python.
 
-## What libraries can be used for backend development in Golang?
+## What libraries and technologies can be used for backend development in Golang?
 
 Since Golang is very popular for backend development, there are also a lot of libraries available for it.
 
@@ -78,32 +87,39 @@ page:
 https://github.com/avelino/awesome-go
 
 It contains a list of the most popular libraries and frameworks for Golang. It is structured by category, so it is easy
-to find the right library for your use cases.
+to find the right library for your use cases. It is also very well maintained and updated frequently.
 
 https://madappgang.com/blog/backend-development-with-golang/
 
-For weather wizard we need the following types libraries to build a modern backend:
+For weather wizard we need the following types of libraries and technologies to build a modern backend:
 
 https://kinsta.com/blog/postgresql-vs-mysql/#:~:text=MySQL%20is%20a%20purely%20relational,%2C%20ACID%2Dcompliant%20storage%20engine.
 
 #### Database:
 
 https://survey.stackoverflow.co/2022/
-Since we already have a sql database it makes sense to use another sql database. I decided to pick PostgreSQL, because
-it is a very popular and modern database. It has a lot of features that make it subjectively better than MySQL. It is
-also open-source and free to use.
-The stackoverflow developer survey 2022 shows that PostgreSQL is one of the most popular databases for backend
-development.
+Since we already worked with MySQL it makes sense to use another sql database. I decided to pick PostgreSQL, because
+it is a very popular and modern database. It has a lot of features that make it subjectively better than MySQL. Of
+course, it is
+also open-source and free to use. The stackoverflow developer survey 2022 shows that PostgreSQL is the most popular
+database under professional developers. It is also the most
+popular database for backend development.
+
+![image](./images/stack.png)
+Nevertheless, there is not a big one decisive reason why I should pick one of the popular sql databases over the others
+Almost all popular sql databases, which are not deprecated, are very good and have a lot of features.
+
+NoSQL databases on the other hand would require us to change our whole data model, which is not worth the effort.
 
 https://github.com/mingrammer/go-web-framework-stars
 
 #### Web-framework:
 
 The most popular and most used web-framework for Golang is currently Gin, but after doing some research I decided to
-pick Fiber.
-Fiber is a better choice than Gin due to its better performance, nicer syntax, and more comprehensive documentation.
+pick Fiber. Fiber is a better choice than Gin due to its better performance, nicer syntax, and more comprehensive
+documentation. 
 https://www.youtube.com/watch?v=10miByMOGfY&t=735s
-The strong performance is also shown in the TechEmpower benchmarks.The benchmark is consists of three parts.
+The strong performance is also shown in the TechEmpower benchmarks.The benchmark consists of three parts.
 
 1. Database access: The test demands the web application to connect to a database, get records, and execute specified
    operations on the data.
@@ -116,9 +132,10 @@ The strong performance is also shown in the TechEmpower benchmarks.The benchmark
 
 ![benchmark](./images/bench.png)
 
-Fiber is the third fastest web-framework for Golang, with only rather smaller and less popular frameworks being faster.
+Fiber is the third fastest web-framework for Golang, with only rather small and less popular frameworks being faster.
 It is also the 24. fastest web-framework for all
-languages. https://www.techempower.com/benchmarks/#section=data-r21&test=fortune
+languages. Gin is only the 162. fastest web-framework.
+https://www.techempower.com/benchmarks/#section=data-r21&test=fortune
 For me, it was also easier to get started with Fiber, because I was already familiar Express.js, which is a similar
 web-framework for Node.js.
 
@@ -128,10 +145,10 @@ https://blog.bitsrc.io/what-is-an-orm-and-why-you-should-use-it-b2b6f75f5e2a
 ORM is a technique that allows you to query and manipulate data from a database using an object-oriented paradigm.
 Using an ORM allows developers to leverage their fluency in a programming language, simplifying database interactions
 and abstracting away SQL complexities. It offers easy database system switching, advanced built-in features, and often
-leads to better-performing queries than hand-written SQL. It is typically recommended for small to allow teams to
-increase their productivity.
+leads to better-performing queries than handwritten SQL. It is typically recommended for small projects to make rapid
+development easier.
 
-Monitoring and Logging:
+#### Monitoring and Logging and Notification:
 For monitoring the most popular frameworks are Prometheus and Grafana. Both are open-source and free to use. You can
 deploy them in a docker container and connect them to your application.
 After setting them up you can see the performance of your application in real-time like here:
@@ -152,23 +169,35 @@ https://betterprogramming.pub/awesome-logging-in-go-with-logrus-70606a49f285
 Logrus supports a variety of output formats, log levels, and hooks, as well as structured logging. Its adaptability and
 extensibility make it an excellent choice for a wide range of applications.
 
+Notifications can be implemented by Grafana or Prometheus, but also by a separate notification framework. The
+notifications can be
+implemented by email, Slack, Telegram or other messaging services.
+
+I decided to use an email service for the notifications since it doesn't require setting up a mail server. The most
+popular email service which also supports
+Golang development is SendGrid. It also offers a free tier with 100 free emails per day and is very easy to set up.
+https://rapidapi.com/blog/email-apis-which-one-is-right-for-you/
+
 ### Authentication
 
 https://dev.to/kcdchennai/how-jwt-json-web-token-authentication-works-21e7
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication
 For authentication, the most popular token based authentication is JWT. JSON Web Tokens (JWTs) are a widely used modern
 standard for securely exchanging data between parties. JSON Web Tokens are often used to authenticate users and convey
-authorization information and consist of a header, payload, and signature. A JWT's header provides information about the
-hashing technique used to sign the token, and the payload contains the actual data being transferred. The signature
-ensures the token's integrity and prevents manipulation. JWTs are adaptable and simple to implement, and they may be
+authorization information and consist of a header, payload, and signature. JWTs are adaptable and simple to implement,
+and they may be
 used in a broad range of applications and use situations. Although for a small scale project like Weather Wizard, a more
-simplistic authentication method can also be used.
-Basic authentication is a simple authentication scheme built into the HTTP protocol. The client sends HTTP requests with
+simplistic authentication method can also be used. Basic authentication is a simple authentication scheme built into the
+HTTP protocol. The client sends HTTP requests with
 the Authorization header that contains the word Basic word followed by a space and a base64-encoded string username:
 password. The server decodes the base64 string, splits the string into the username and password components, and
 verifies that the given credentials are valid. Basic authentication may not be very feature rich, but it is very easy to
 implement. It also doesn't require any additional libraries. It's only draw is that it doesn't offer confidentiality, so
 the password is sent in plain text, but this can be mitigated by using HTTPS instead of HTTP.
+
+The implementation of Basic authentication looks like this:
+
+![basic auth](images/auth.png)
 
 ### Testing:
 
@@ -178,11 +207,11 @@ https://www.jetbrains.com/research/devecosystem-2018/go/
 https://www.jetbrains.com/lp/devecosystem-2022/go/
 Altogether, the standard library of Golang is very good and provides all the necessary tools for testing. It is also
 very easy to use and has a good documentation.
-Testify can be used if more advanced features are needed, but for a small scale project like Weather Wizard, the
+Testify can be used if more advanced features are needed, but for a small scale project, the
 standard library is sufficient.
 Testify has a lot of features like mocking, assertions, and test suites.
 
-## What architecture pattern should be used?
+## What is the best architecture for a Weather Wizard backend in Golang?
 
 https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith#:~:text=A%20monolithic%20architecture%20is%20a,monolith%20architecture%20for%20software%20design
 

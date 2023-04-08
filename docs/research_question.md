@@ -39,8 +39,6 @@ Primary data topics:
 - Comparison of PHP and Golang backend development
 
 Secondary data topics (books, articles, websites, etc.)
-- What are benefits of Golang?
-- What are the disadvantages of Golang?
-- How to build a backend in Golang?
-- What is the best architecture for a backend in Golang?
-- What libraries should you use?
+- What are the benefits of developing in Golang?
+- What libraries and technologies can be used for backend development in Golang?
+- What is the best architecture for a Weather Wizard backend in Golang?
