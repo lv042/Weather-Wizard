@@ -29,18 +29,21 @@ surveys and benchmarks.
 
 Many features of Go's make it a great choice for backend development. Go is a compiled language, which means that it is
 actually
-converted to machine code before it is executed.
-This makes it a lot faster than interpreted languages like PHP. Another great feature of Golang is its Garbage
-Collector. This makes it a lot easier to
+converted to binary before it is executed on a machine
+This makes it a lot faster than other languages which use an interpreter. Another great feature of Golang is its Garbage
+Collector. The Garbage Collector makes it much easier to
 manage memory in Go. Most other compiled languages require you to manually manage your memory, which can be a lot of
-work and is very error-prone. Microsoft estimated that 70% of all security bugs are caused by bad memory management. https://msrc.microsoft.com/blog/2019/07/a-proactive-approach-to-more-secure-code/
+work and is very error-prone. Microsoft estimated that 70% of all security breaches are caused by bad memory
+management. https://msrc.microsoft.com/blog/2019/07/a-proactive-approach-to-more-secure-code/
 Furthermore, Go is a statically typed language, which means that you have to define the type of variable when you
 declare it, which makes it a lot easier to
-find errors in your code before runtime.https://instil.co/blog/static-vs-dynamic-types/#:~:text=Protection%20from%20Runtime%20Errors,a%20much%20smoother%20development%20experience. The easy syntax of Go also makes it a lot easier to learn than other languages.
+find errors in your code before
+runtime and also increases the speed of execution.https://instil.co/blog/static-vs-dynamic-types/#:~:text=Protection%20from%20Runtime%20Errors,a%20much%20smoother%20development%20experience.
+The easy syntax of Go also makes it a lot easier to learn than other languages.
 The syntax of Go
-is very similar to C, which makes it easy to switch between those languages. The last feature that I want to
+is very similar to C, which makes it easy to switch languages. The last feature that I want to
 mention is the concurrency of Go.
-Golang has very good support for concurrency. That means that you run multiple tasks at the same time. This is very
+Golang has very good support for concurrency. That means that you run multiple threads and processes at the same time. This is very
 useful for backend development,
 since it allows you to handle many requests and perform multiple tasks simultaneously,what improves performance and
 responsiveness.
@@ -67,16 +70,14 @@ https://go.dev/solutions/case-studies
 
 Even though Golang has many great features, it also has some drawbacks.
 
-- Lack of Generics: Because Golang doesn't have a generic type system, it is more difficult to write code that requires
-  generic programming capabilities.
+- Lack of Generics: Golang lacks the functionality of Generics. This can limit developers in some use cases, because Generics allow you very easily to
+  create reusable code. 
 
-- A smaller standard library: Golang has a standard library, however it is small in contrast to other programming
-  languages, which could build up a big ecosystem of libraries over the last years. This means that developers must
-  frequently rely on third-party libraries to do particular tasks.
+- A smaller standard library compared to other programming languages: Golang has a standard library, but it is fairly
+  small compared to other programming languages that have had years to establish a big ecosystem of libraries. Thus, to
+  complete certain tasks, programmers often need to employ libraries third party sources.
 
-- Different Syntax: Golang has a particular syntax and approach to programming that may be different for certain
-  developers to learn and understand. Also, because it is a younger language, there aren't as many learning resources as
-  there are for more established languages like Java or Python.
+- Unique Syntax: Some developers can find the syntax of Golang a bit strange. It is quite different compared to more widely used languages like Java or Python.
 
 ## What libraries and technologies can be used for backend development in Golang?
 
@@ -117,7 +118,7 @@ https://github.com/mingrammer/go-web-framework-stars
 
 The most popular and most used web-framework for Golang is currently Gin, but after doing some research I decided to
 pick Fiber. Fiber is a better choice than Gin due to its better performance, nicer syntax, and more comprehensive
-documentation. 
+documentation.
 https://www.youtube.com/watch?v=10miByMOGfY&t=735s
 The strong performance is also shown in the TechEmpower benchmarks.The benchmark consists of three parts.
 
@@ -149,43 +150,43 @@ leads to better-performing queries than handwritten SQL. It is typically recomme
 development easier.
 
 #### Monitoring and Logging and Notification:
+
 For monitoring the most popular frameworks are Prometheus and Grafana. Both are open-source and free to use. You can
 deploy them in a docker container and connect them to your application.
 After setting them up you can see the performance of your application in real-time like here:
 https://prometheus.io/docs/introduction/overview/
-https://grafana.com/docs/
+https://grafana.com/docs/grafana/latest/introduction/
 
 ![grafana](images/graf.jpg)
 https://grafana.com/
 
 You can also set up alerts, so you get notified if something goes wrong.
 
-For logging, a logging framework doesnt have to be used for a small scale project like Weather Wizard. The standard
+For logging, a logging framework doesn't have to be used for a small scale project like Weather Wizard. The standard
 library of Golang already provides a good logging framework.
 https://betterstack.com/community/guides/logging/logging-framework/
 For bigger projects it is recommended to use a proper logging framework. The most popular and widely used logging
-framework is Logrus. https://github.com/sirupsen/logrus
+framework is calledLogrus. https://github.com/sirupsen/logrus
 https://betterprogramming.pub/awesome-logging-in-go-with-logrus-70606a49f285
 Logrus supports a variety of output formats, log levels, and hooks, as well as structured logging. Its adaptability and
 extensibility make it an excellent choice for a wide range of applications.
 
-Notifications can be implemented by Grafana or Prometheus, but also by a separate notification framework. The
-notifications can be
-implemented by email, Slack, Telegram or other messaging services.
+Grafana, Prometheus, as well as a different notification system, are both capable of implementing notifications. Email,
+Slack, Telegram, and other messaging systems are all capable of implementing the notifications.
 
-I decided to use an email service for the notifications since it doesn't require setting up a mail server. The most
-popular email service which also supports
-Golang development is SendGrid. It also offers a free tier with 100 free emails per day and is very easy to set up.
+Because setting up a mail server is not necessary, I choose to use an email provider for the alerts. SendGrid is the
+most well-known email provider that also allows for Golang programming. It is also quite simple to start up and gives a
+free tier with 100 free emails each day.
 https://rapidapi.com/blog/email-apis-which-one-is-right-for-you/
 
 ### Authentication
 
 https://dev.to/kcdchennai/how-jwt-json-web-token-authentication-works-21e7
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication
-For authentication, the most popular token based authentication is JWT. JSON Web Tokens (JWTs) are a widely used modern
-standard for securely exchanging data between parties. JSON Web Tokens are often used to authenticate users and convey
+For authentication, the most popular modern token based authentication is JWT. JSON Web Tokens (JWTs) are a widely used
+standard for securely exchanging data between parties. JSON Web Tokens are often used to authenticate users and prove
 authorization information and consist of a header, payload, and signature. JWTs are adaptable and simple to implement,
-and they may be
+and they can be
 used in a broad range of applications and use situations. Although for a small scale project like Weather Wizard, a more
 simplistic authentication method can also be used. Basic authentication is a simple authentication scheme built into the
 HTTP protocol. The client sends HTTP requests with
@@ -203,11 +204,10 @@ The implementation of Basic authentication looks like this:
 
 The most popular testing framework for Golang is Testify, but most Golang developers stated in the JetBrains survey,
 that they prefer the standard library of Golang for testing.
-https://www.jetbrains.com/research/devecosystem-2018/go/
 https://www.jetbrains.com/lp/devecosystem-2022/go/
 Altogether, the standard library of Golang is very good and provides all the necessary tools for testing. It is also
-very easy to use and has a good documentation.
-Testify can be used if more advanced features are needed, but for a small scale project, the
+very easy to use and has a great documentation.
+Testify can be used if more advanced features are in need, but for a small scale project, the
 standard library is sufficient.
 Testify has a lot of features like mocking, assertions, and test suites.
 
@@ -215,29 +215,28 @@ Testify has a lot of features like mocking, assertions, and test suites.
 
 https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith#:~:text=A%20monolithic%20architecture%20is%20a,monolith%20architecture%20for%20software%20design
 
-Before you can implement a new backend, you should decide what architecture pattern you want to use. There are two main
-architecture patterns that are relevant for this project. The first one is the monolithic architecture and the second
-one is the microservices' architecture.
+You should choose the architectural pattern before you may create a new backend. For this project, there are primarily
+two architectural patterns that matter. The monolithic architecture is the first, while the architecture of
+microservices is the second.
 
 ### Microservices' architecture:
 
-Microservice architecture is an architectural approach in which an application is divided into smaller, autonomous
-services that communicate with one another using APIs. This method enhances scalability, flexibility, and fault
-separation while also making deployment and maintenance easier. Nevertheless, it can result in additional complexity and
-administrative overhead, higher infrastructure and operating expenses, and more challenging end-to-end functionality
-testing.
+An application is separated into smaller, independent services that may interact with one another through APIs in a
+microservice architecture. This approach facilitates deployment and maintenance while improving scalability,
+flexibility, and fault separation. Nevertheless, it may lead to increased complexity and administrative burden, more
+expensive infrastructure and operational costs, and more difficult end-to-end functionality testing.
 
 ### Monolithic architecture:
 
-Monolithic architecture is an architectural style in which an application is constructed as a single, cohesive system.
-This technique encourages simplicity, quicker development and testing, and improved speed owing to fewer network calls.
-Nevertheless, it can limit scalability and flexibility, have weaker fault isolation and resilience, and be more complex
-to deploy and manage. It also provides limited support for polyglot development, which allows various programming
+Monolithic architecture is an architectural style in which an application is constructed as a single united system.
+This technique encourages simplicity, quicker development and testing, and improved speed.
+Nevertheless, it limits scalability and flexibility. It also provides limited support for polyglot development, which
+allows various programming
 languages and technologies to be utilized for different areas of the application.
 
 ### Which architecture pattern should be used for what project?
 
-A monolithic architecture may be a better choice for a small-scale project than a microservice design. A monolithic
+A monolithic architecture is a better choice for a small-scale project than a microservice design. A monolithic
 design is quicker to construct and administer, needs less infrastructure resources, and is easier to verify end-to-end
 functionality.
 
@@ -268,12 +267,11 @@ server does not save the client's state and each request provides all the inform
 
 https://www.integrate.io/blog/why-you-need-a-rest-api/
 
-- Simplifies development by defining a standard language via which diverse systems may communicate.
-- Offers an abstraction layer over technical information, making it easier for developers to deal with.
-- REST is the most common API design, with a plethora of tools and courses accessible for developers.
-- The API provides technical advantages such as interoperability with multiple message formats and being more
-  lightweight than other API designs.
-- REST APIs may be used for a variety of applications, including automated ETL and data integration.
+- Defines a common language for numerous systems, simplifying development.
+- Is another abstraction layer that simplifies technological changes.
+- REST is the most prevalent API architecture, therefore documentation and tools are abundant.
+- The API is lighter and interoperable with many communication formats.
+- Automated ETL and data integration may leverage REST APIs.
 
 ## Conclusion
 
@@ -282,10 +280,9 @@ Because of its compiled nature, garbage collector, static typing, easy syntax, a
 popular choice for backend development. Organizations like Uber, Dropbox, and Docker have turned to Golang for backend
 development, citing its high speed and parallelism.
 
-I propose PostgreSQL as the database, Fiber as the web framework, and GORM as the ORM for Weather Wizard. We suggest
-Prometheus and Grafana for monitoring and logging. JWT may be used for authentication, or Basic authentication for lower
-scale projects. The basic Golang library is adequate for testing, while Testify can be used for more sophisticated
-capabilities.
+I propose PostgreSQL as the database, Fiber as the web framework, and GORM as the ORM for Weather Wizard. I suggest
+Prometheus and Grafana for monitoring and logging. Basic HTTP Authentication can be used to provide some security. 
+The basic Golang library is adequate for testing, while Testify can be used for more sophisticated  capabilities.
 
 In terms of architecture, whether to utilize a monolithic or microservice architecture ultimately relies on the
 project's unique aims and restrictions. A monolithic design may be more suitable for a small-scale project, but a
@@ -296,4 +293,34 @@ Lastly, a REST API should be utilized for the backend because it is a widely use
 scalable and adaptive distributed systems. It simplifies development, offers technological advantages, and may be
 utilized for a wide range of applications.
 
-## Sources
+## References
+
+- A. (n.d.-a). GitHub - avelino/awesome-go: A curated list of awesome Go frameworks, libraries and software. GitHub. https://github.com/avelino/awesome-go
+- Atlassian. (n.d.). Microservices vs. monolithic architecture | Atlassian. https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith#:~:text=A%20monolithic%20architecture%20is%20a,monolith%20architecture%20for%20software%20design
+- Case Studies - The Go Programming Language. (n.d.). https://go.dev/solutions/case-studies
+- Coding with Robby. (2022, October 11). Is Fiber the best Go web framework? Better than Gin? [Video]. YouTube. https://www.youtube.com/watch?v=10miByMOGfY
+- Docker and Go: why did we decide to write Docker in Go? | Hacker News. (n.d.). https://news.ycombinator.com/item?id=6709517
+- Etienne, J. (2022, April 23). Why Go: The benefits of Golang - Julien Etienne - Medium. Medium. https://medium.com/@julienetienne/why-go-the-benefits-of-golang-6c39ea6cff7e
+- Gartner, M. (2022, April 2). Awesome Logging in Go With Logrus - Better Programming. Medium. https://betterprogramming.pub/awesome-logging-in-go-with-logrus-70606a49f285
+- Go in 2018 - The State of Developer Ecosystem by JetBrains. (n.d.). JetBrains. https://www.jetbrains.com/research/devecosystem-2018/go/
+- Go Programming - The State of Developer Ecosystem in 2022 Infographic. (n.d.). JetBrains: Developer Tools for Professionals and Teams. https://www.jetbrains.com/lp/devecosystem-2022/go/
+- Grafana Labs. (n.d.). Grafana: The open observability platform | Grafana Labs. https://grafana.com/
+- Hoyos, M. (2023, March 22). What is an ORM and Why You Should Use it - Bits and Pieces. Medium. https://blog.bitsrc.io/what-is-an-orm-and-why-you-should-use-it-b2b6f75f5e2a
+- HTTP authentication - HTTP | MDN. (2023, March 3). https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication
+- Introducing AresDB: Uber’s GPU-Powered Open Source, Real-time Analytics Engine | Uber Blog. (2019, January 29). Uber Blog. https://www.uber.com/en-NL/blog/aresdb/
+- Introduction to Grafana |  Grafana documentation. (n.d.). Grafana Labs. https://grafana.com/docs/grafana/latest/introduction/
+- Isaiah, A. (2022, December 20). 6 Factors to Consider When Choosing a Logging Framework. Better Stack Community. https://betterstack.com/community/guides/logging/logging-framework/
+- Kumar, S. (2022, April 25). How JWT (JSON Web Token) authentication works? DEV Community. https://dev.to/kcdchennai/how-jwt-json-web-token-authentication-works-21e7
+- Lee, P. (n.d.). Open Sourcing Our Go Libraries. Dropbox. https://dropbox.tech/infrastructure/open-sourcing-our-go-libraries
+- M. (n.d.-b). GitHub - mingrammer/go-web-framework-stars: Web frameworks for Go, most starred on GitHub. GitHub. https://github.com/mingrammer/go-web-framework-stars
+- M. (2019, July 16). A proactive approach to more secure code | MSRC Blog         | Microsoft Security Response Center. https://msrc.microsoft.com/blog/2019/07/a-proactive-approach-to-more-secure-code/
+- P. (n.d.-c). Overview | Prometheus. https://prometheus.io/docs/introduction/overview/
+- Ravoof, S. (2023, February 17). PostgreSQL vs MySQL: Explore Their 12 Critical Differences. Kinsta®. https://kinsta.com/blog/postgresql-vs-mysql/#:~:text=MySQL%20is%20a%20purely%20relational,%2C%20ACID%2Dcompliant%20storage%20engine.
+- S. (n.d.-d). GitHub - sirupsen/logrus: Structured, pluggable logging for Go. GitHub. https://github.com/sirupsen/logrus
+- Smallcombe, M. (2021, August 3). Why You Need a REST API. Integrate.io. https://www.integrate.io/blog/why-you-need-a-rest-api/
+- Stack Overflow Developer Survey 2022. (n.d.). Stack Overflow. https://survey.stackoverflow.co/2022/
+- Static Types vs Dynamic Types. Stop fighting and make my life easier already | Instil. (n.d.). Insights by Instil. https://instil.co/blog/static-vs-dynamic-types/#:~:text=Protection%20from%20Runtime%20Errors,a%20much%20smoother%20development%20experience
+- TechEmpower Framework Benchmarks. (n.d.). https://www.techempower.com/benchmarks/#section=data-r21&test=fortune
+- Wagner, J. (2021, July 7). Top 10 Best Email APIs. Rapid Blog. https://rapidapi.com/blog/email-apis-which-one-is-right-for-you/
+- Web and mobile app development company. (n.d.). https://madappgang.com/blog/backend-development-with-golang/
+- What is a REST API? | IBM. (n.d.). https://www.ibm.com/topics/rest-apis
