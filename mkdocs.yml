@@ -27,7 +27,6 @@ nav:
       - 'User Manual' : 'user_manual.md'
       - 'Architecture Overview' : 'architecture_overview.md'
     - 'Embedded Device' :
-      - 'Concept' : 'embedded_device.md'
       - 'System requirements' : 'system_requirements.md'
       - 'Software' : 'emb_software.md'
       - 'Wiring Diagram & BOM' : 'bom.md'
