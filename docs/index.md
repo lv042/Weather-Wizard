@@ -1,3 +1,5 @@
+<img style="float: right;" src="./images/logo.png">
+
 # WeatherWizard
 
 WeatherWizard is an Internet of Things (IoT) project that collects and analyzes weather data in real-time. The project is designed to provide users with accurate and up-to-date weather information, as well as insights into climate trends over time.
@@ -15,16 +17,22 @@ WeatherWizard is an Internet of Things (IoT) project that collects and analyzes 
 
 ![Weather measurements](./images/main.png)
 
+### Admin panel:
+
+![Admin panel](./images/admin.png)
+
 ### Embedded device:
 
 ![Embedded device](./images/front.jpg)
 
-### Admin panel:
-
-![Admin panel](./images/admin.png)
   
 # Getting Started
 Clone the WeatherWizard repository and to and follow the instructions provided in the [User manual](./user_manual.md).
+
+# Documentation
+
+- [Backend overview](./improvement.md)
+- [Architecture overview](./architecture_overview.md)
 
 # License
 WeatherWizard is released under the [Apache License 2.0](./LICENSE).
