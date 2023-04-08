@@ -12,7 +12,7 @@ The Weather Wizard is an IOT device that collects weather data, including temper
 by the frontend and displayed in graphs. The Weather Wizard is designed for weather enthusiasts, students, and researchers who want to collect accurate weather data.
 
 
-
+    
 
 The Weather Wizard's features include:
 
