@@ -22,7 +22,7 @@ theme:
     - navigation.instant 
     - content.code.annotate 
 nav:
-    - 'index.md'
+    - About: 'index.md'
     - 'Product' :
       - 'Project planning' : 'structure.md'
       - 'User Manual' : 'user_manual.md'
