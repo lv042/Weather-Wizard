@@ -973,7 +973,7 @@ func BasicAuth(userFile string, realm string) fiber.Handler {
 }
 ```
 
-This is what the authentication looks like in a browser
+This is what the authentication looks like in a browser:
 
 ![Admin page](./images/auth.png)
 
@@ -1068,7 +1068,7 @@ First a setup mail gets send which looks like this:
 
 ![Setup mail](./images/setupmail.png)
 
-and then the daily mailer gets started. The daily mailing process works in a seperate thread and looks very similar to
+and then the daily mailer gets started. The daily mailing process works in a separate thread and looks very similar to
 the sendSetupMail function. It gives you a daily summary of all requests and errors:
 
 ![Daily mail](./images/daily.png)
@@ -1092,50 +1092,62 @@ and is implemented like this:
 
 ```go
 func (f *FiberApp) logMiddleware(c *fiber.Ctx) error {
-// Log request method and URL
-f.Log(fmt.Sprintf("Request: %s %s", c.Method(), c.Path()))
-
-// Log request headers
-headers, _ := json.Marshal(c.Request())
-f.Log(fmt.Sprintf("Request Headers: %s", headers))
-
-// Log request body
-body := c.Request().Body()
-f.Log(fmt.Sprintf("Request Body: %s", body))
-
-// Restore the request body for further processing
-c.Request().SetBody(body)
-
-// Continue processing the request
-err := c.Next()
-
-// Log response status code
-f.Log(fmt.Sprintf("Response: %d", c.Response().StatusCode()))
-
-// Log response headers
-headers, _ = json.Marshal(c.Response().Header)
-f.Log(fmt.Sprintf("Response Headers: %s", headers))
-
-// Log response body
-body = c.Response().Body()
-f.Log(fmt.Sprintf("Response Body: %s \n\n\n", body))
-
-// Restore the response body for further processing
-c.Response().SetBody(body)
-
-return err
+    // Log request method and URL
+    f.Log(fmt.Sprintf("Request: %s %s", c.Method(), c.Path()))
+    
+    // Log request headers
+    headers, _ := json.Marshal(c.Request())
+    f.Log(fmt.Sprintf("Request Headers: %s", headers))
+    
+    // Log request body
+    body := c.Request().Body()
+    f.Log(fmt.Sprintf("Request Body: %s", body))
+    
+    // Restore the request body for further processing
+    c.Request().SetBody(body)
+    
+    // Continue processing the request
+    err := c.Next()
+    
+    // Log response status code
+    f.Log(fmt.Sprintf("Response: %d", c.Response().StatusCode()))
+    
+    // Log response headers
+    headers, _ = json.Marshal(c.Response().Header)
+    f.Log(fmt.Sprintf("Response Headers: %s", headers))
+    
+    // Log response body
+    body = c.Response().Body()
+    f.Log(fmt.Sprintf("Response Body: %s \n\n\n", body))
+    
+    // Restore the response body for further processing
+    c.Response().SetBody(body)
+    
+    return err
 }
 ```
 
-## Architecture
+Lastly I also created a Docker image for the Grafana dashboard. Originally I mainly wanted to use Grafana as a way to visualize
+my data, but I had many network issues. The other Docker containers were only reachable with their IP addresses and not
+by localhost. That is why I decided to create the Admin panel myself. 
 
-During writing this assignment it is much easier to follow if you have a look at the architecture first.
+The Grafana dashboard is still finished though not used:
 
-Main architecture:
-3
+![Grafana dashboard](./images/grafana.png)
 
-SUBSTANTIATION.
-The improvement proposals are substantiated with explicit links to your research outcomes.
+## Summary of implementations
 
-REALISATION.
-The realised improvements are documented with code explanations, pictures, videos, etc. on your markdown site.
+Lastly I want to summarize all the implementations I have done in this project:
+
+- Build Rest API with all CRUD operations
+- Created a new Postgres database in Docker
+- Build a Metric system to track the usage of the API
+- Improved the dashboard of the web application
+- Created Admin Panel to display the metrics and manage
+- Build authentication system for the Admin Panel
+- Build a notification system which sends emails with updates from the backend
+- Created modern Logging system with log levels, colors and timestamps
+- Build development environment with automated scripts and air reload
+- Created Grafana dashboard as comparison to the web application dashboard
+- Wrote exemplary unit tests for the backend
+
