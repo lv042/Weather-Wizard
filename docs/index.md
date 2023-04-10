@@ -31,8 +31,37 @@ Clone the WeatherWizard repository and to and follow the instructions provided i
 
 # Documentation
 
-- [Backend overview](./improvement.md)
+The documentation of the project is divided into the following sections:
+
+
+### Project overview:
+
+### General:
+- [User manual](./user_manual.md)
 - [Architecture overview](./architecture_overview.md)
+
+### Embedded device:
+- [System requirements](./system_requirements.md)
+- [Software](./emb_software.md)
+- [Wiring Diagram & BOM](./bom.md)
+
+### Web application:
+- [Database](./db.md)
+- [Frontend](./frontend.md)
+- [Backend API](./backend.md)
+- [New Backend](./improvement.md)
+
+### Physical design:
+- [Concept](./physical_design.md)
+- [Creation](./creation.md)
+- [Failures](./failures.md)
+
+### Research:
+- [Research question](./research_question.md)
+- [Research](./research.md)
+- [Backend implementation](./improvement.md)
+- [Changelog](./changelog.md)
+
 
 # License
 WeatherWizard is released under the [Apache License 2.0](./LICENSE).

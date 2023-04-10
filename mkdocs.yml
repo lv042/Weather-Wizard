@@ -23,7 +23,7 @@ theme:
     - content.code.annotate 
 nav:
     - About: 'index.md'
-    - 'Product' :
+    - 'General' :
       - 'User Manual' : 'user_manual.md'
       - 'Architecture Overview' : 'architecture_overview.md'
     - 'Embedded Device' :
