@@ -1130,7 +1130,7 @@ func (f *FiberApp) logMiddleware(c *fiber.Ctx) error {
 #### Testing
 
 In the research paper I have also stated that testing is very important in a good backend. You always have to make sure that your system works as expected, also when you integrate new features.
-Due to the lack of time and the scale of this project, I have only done exemplary testing, which show how tests should be written. 
+Due to the lack of time and the scale of this project, I have only done exemplary testing, which shows how tests should be written. 
 
 This test checks if the "/api/weather" route is working as intended. It checks if the response code of the message is 200:
 
