@@ -63,9 +63,8 @@ func sendSummaryMail(email, subject, plainTextContent, htmlContent string) {
 		fiberApp.Log(fmt.Sprintf("Error: %s", err))
 	} else {
 		fiberApp.Log(fmt.Sprintf("Sent email to %s", email))
-		fiberApp.Log(fmt.Sprintf("Status code: %s", response.StatusCode))
-		fiberApp.Log(fmt.Sprintf("Response: %s", response))
-
+		fiberApp.Log(fmt.Sprintf("Status code: %d", response.StatusCode)) // Update the format specifier here
+		fiberApp.Log(fmt.Sprintf("Response: %+v", response))              // Update the format specifier here
 	}
 }
 
