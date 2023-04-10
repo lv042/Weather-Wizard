@@ -1187,7 +1187,7 @@ Finally, I want to summarize all the implementations I have done in this project
 - Created Grafana dashboard as comparison to the web application dashboard
 - Wrote exemplary unit tests for the backend
 
-## SUBSTANTIATION 
+## Substantiation
 
 The following table shows the stack, which I planned to use in the research paper and if I actually used it in the project:
 
