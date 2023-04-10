@@ -1187,5 +1187,20 @@ Finally, I want to summarize all the implementations I have done in this project
 - Created Grafana dashboard as comparison to the web application dashboard
 - Wrote exemplary unit tests for the backend
 
+## SUBSTANTIATION 
+
+The following table shows the stack, which I planned to use in the research paper and if I actually used it in the project:
+
+| Stack         |    Recommendation | URL                                                    | Realisation |
+|---------------|------------------:|--------------------------------------------------------|-------------|
+| Language      |            Golang | https://go.dev/                                        | [x]         |
+| Database      |          Postgres | https://www.postgresql.org/                            | [x]         |
+| Web-framework |             Fiber | https://gofiber.io/                                    | [x]         |
+| ORM           |              Gorm | https://gorm.io/                                       | [x]         |
+| Monitoring    |           Grafana | https://grafana.com/ / https://prometheus.io/          | [x]         |
+| Logging       |   Standard Logger | https://pkg.go.dev/log                                 | [x]         |
+| Notifications |          Sendgrid | https://sendgrid.com/                                  | [x]         |
+| Architecture  | Monolith REST API | https://www.integrate.io/blog/why-you-need-a-rest-api/ | [x]         |
+
 
 
