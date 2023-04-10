@@ -1127,6 +1127,37 @@ func (f *FiberApp) logMiddleware(c *fiber.Ctx) error {
 }
 ```
 
+#### Testing
+
+In the research paper I have also stated that testing is very important in a good backend. You always have to make sure that your system works as expected, also when you integrate new features.
+Due to the lack of time and the scale of this project, I have only done exemplary testing, which show how tests should be written. 
+
+This test checks if the "/api/weather" route is working as intended. It checks if the response code of the message is 200:
+
+```go
+func TestGetAllWeatherData(t *testing.T) {
+	// Initialize a Fiber application
+	app := NewFiberApp()
+	app.InitFiber()
+
+	// Create a test HTTP request
+	req := httptest.NewRequest(http.MethodGet, "/api/weather", nil)
+
+	// Set the response for the test request
+	resp, err := app.fiberApp.Test(req)
+	if err != nil {
+		t.Fatalf("Failed to run the test: %v", err)
+	}
+
+	// Check if the response status code is 200 OK
+	if resp.StatusCode != 200 {
+		t.Fatalf("Expected status code 200, got %d", resp.StatusCode)
+	}
+}
+```
+
+#### Grafana 
+
 Lastly I also created a Docker image for the Grafana dashboard. Originally I mainly wanted to use Grafana as a way to visualize
 my data, but I had many network issues. The other Docker containers were only reachable with their IP addresses and not
 by localhost. That is why I decided to create the Admin panel myself. 
@@ -1134,6 +1165,7 @@ by localhost. That is why I decided to create the Admin panel myself.
 The Grafana dashboard is still finished though not used:
 
 ![Grafana dashboard](./images/grafana.png)
+
 
 ## Summary of implementations
 
