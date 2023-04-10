@@ -991,7 +991,7 @@ also allows the user to sign up for the email notification service.
 The notification service is built with Sendgrid. After setting up a lot of things on the Sendgrid website, I could get
 an API key to use their service.
 
-#### /api/notifications
+### /api/notifications
 
 This is the route which is used to set up the email notification service.
 
