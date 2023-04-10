@@ -4,7 +4,6 @@ My research focused on the backend of Weather Wizard. I wanted to implement the 
 timeframe. In the
 following I will explain the improvements I made.
 
-## DOCUMENTATION
 
 I'm using Golang language for the backend of Weather Wizard. before talking about the implementation of the backend, I
 will explain the language itself.
@@ -21,7 +20,9 @@ very popular language for backend development and also the reason
 why I wanted to learn it.
 
 Because Golang is a very popular language for backend development, there are a lot of libraries available for backend
-development. I used the following libraries for this project:
+development. I used the following libraries for this project.
+
+## Libraries
 
 These are the rather regular libraries that I used for this project, which don't need much explanation:
 
@@ -56,6 +57,7 @@ Next to these libraries, I also used the following other technologies:
 
 Why I picked them specifically is stated in the research assignment.
 
+## Foundation
 
 Before I get started with the documentation of the backend, I recommend checking out the [Architecture overview](./architecture_overview.md).
 The documentation of the backend is very long, and the architecture overview shows the big picture of the backend.
@@ -551,6 +553,8 @@ func (d *DBManager) CreateWeatherDataJSON(jsonStr string) (string, error) {
     return "Weather data created", nil
 }
 ```
+
+## API
 
 All these operations are getting called by the FiberApp, the second essential component of the application. The FiberApp
 is the other object that is instantiated in the main function.
@@ -1127,7 +1131,7 @@ func (f *FiberApp) logMiddleware(c *fiber.Ctx) error {
 }
 ```
 
-#### Testing
+### Testing
 
 In the research paper, I have also stated that testing is very important in a good backend. You always have to make sure that your system works as expected, also when you integrate new features.
 Due to the lack of time and the scale of this project, I have only done exemplary testing, which shows how tests should be written.
@@ -1156,7 +1160,7 @@ func TestGetAllWeatherData(t *testing.T) {
 }
 ```
 
-#### Grafana
+### Grafana
 
 Lastly, I also created a Docker image for the Grafana dashboard. Originally, I mainly wanted to use Grafana as a way to visualize
 my data, but I had many network issues. The other Docker containers were only reachable with their IP addresses and not
