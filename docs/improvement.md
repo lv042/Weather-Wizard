@@ -1164,7 +1164,7 @@ by localhost. That is why I decided to create the Admin panel myself.
 
 The Grafana dashboard is still finished though not used:
 
-![Grafana dashboard](./images/grafana.png)
+![Grafana dashboard](./images/graf.png)
 
 
 ## Summary of implementations
