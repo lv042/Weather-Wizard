@@ -33,9 +33,6 @@ Clone the WeatherWizard repository and to and follow the instructions provided i
 
 The documentation of the project is divided into the following sections:
 
-
-### Project overview:
-
 ### General:
 - [User manual](./user_manual.md)
 - [Architecture overview](./architecture_overview.md)
