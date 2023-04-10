@@ -58,14 +58,14 @@ Why I picked them specifically is stated in the research assignment.
 
 
 Before I get started with the documentation of the backend, I recommend checking out the [Architecture overview](./architecture_overview.md).
-The documentation of the backend is very long and the architecture overview shows the big picture of the backend.
+The documentation of the backend is very long, and the architecture overview shows the big picture of the backend.
 
 Since I also added around 1000 lines of code, I will only focus on the most important parts of the source code and not too
 much on language specific
 details. The starting point of the backend is the main file and its main function as you might know it from
 Java or C#.
 
-First there are two global objects declared, which are the dbManager and the fiberApp. They get initialized in the
+First, there are two global objects declared, which are the dbManager and the fiberApp. They get initialized in the
 initBackend function and
 are created with the New functions The new functions is similar to the constructor in Java or C#. It returns a new
 object of the given type and also initializes it.
@@ -118,7 +118,7 @@ return &d
 }
 ```
 
-This the struct of the object. It contains the database connection, the name of the database, the paths of the sql
+This is the struct of the object. It contains the database connection, the name of the database, the paths of the sql
 insert and rebuild files.
 
 ```go
@@ -130,7 +130,7 @@ rebuildSql string
 }
 ```
 
-The function called afterwards is the GetInfo function. This function returns information about the DBManager. This
+The function called afterward is the GetInfo function. This function returns information about the DBManager. This
 function is only used to ensure that the DBManager is initialised correctly.
 
 ```go
@@ -139,7 +139,7 @@ d.Log(fmt.Sprintf("%+v", d))
 }
 ```
 
-It is one of many utility functions, getters and setters that I added to the DBManager and the fiberAPP to make it
+It is one of many utility functions, getters, and setters that I added to the DBManager and the fiberAPP to make it
 easier to develop and debug the backend. These are some of them, which both the DBManager and the fiberApp have:
 
 ```go
@@ -574,12 +574,12 @@ The FiberApp consists of a Fiber instance and a metric instance that is used to 
 The FiberApp has some useful auxiliary functions like the DBManager, but I will not go into these again, only the new
 functionality.
 
-The main function of the FiberApp is the setupRoutes function. As the name suggests it sets up all the routes of the
+The main function of the FiberApp is the setupRoutes function. As the name suggests, it sets up all the routes of the
 application.
 
 I will go step by step through this function to explain what is happening.
 
-First we setup middleware which is used for logging incoming requests and logging outgoing responses.
+First we set up middleware which is used for logging incoming requests and logging outgoing responses.
 It makes it very easy to debug the application and see what is happening. Then we serve the static files of the
 frontend.
 
@@ -593,7 +593,7 @@ f.fiberApp.Static("/", "./web")
 
 ### api/weather/:timestamp
 
-After that we set up all the routes of the application. The first route is delivers data from a specific timestamp. All
+After that, we set up all the routes of the application. The first route delivers data from a specific timestamp. All
 these routes call the CRUD functions in the DBManager.
 
 ```go
@@ -977,7 +977,7 @@ This is what the authentication looks like in a browser:
 
 ![Admin page](./images/auth.png)
 
-After entering the right credentials you will be directed to the admin page:
+After entering the right credentials, you will be directed to the admin page:
 
 ![Admin page](./images/admin.png)
 
@@ -1129,8 +1129,8 @@ func (f *FiberApp) logMiddleware(c *fiber.Ctx) error {
 
 #### Testing
 
-In the research paper I have also stated that testing is very important in a good backend. You always have to make sure that your system works as expected, also when you integrate new features.
-Due to the lack of time and the scale of this project, I have only done exemplary testing, which shows how tests should be written. 
+In the research paper, I have also stated that testing is very important in a good backend. You always have to make sure that your system works as expected, also when you integrate new features.
+Due to the lack of time and the scale of this project, I have only done exemplary testing, which shows how tests should be written.
 
 This test checks if the "/api/weather" route is working as intended. It checks if the response code of the message is 200:
 
@@ -1156,20 +1156,20 @@ func TestGetAllWeatherData(t *testing.T) {
 }
 ```
 
-#### Grafana 
+#### Grafana
 
-Lastly I also created a Docker image for the Grafana dashboard. Originally I mainly wanted to use Grafana as a way to visualize
+Lastly, I also created a Docker image for the Grafana dashboard. Originally, I mainly wanted to use Grafana as a way to visualize
 my data, but I had many network issues. The other Docker containers were only reachable with their IP addresses and not
-by localhost. That is why I decided to create the Admin panel myself. 
+by localhost. That is why I decided to create the Admin panel myself.
 
-The Grafana dashboard is still finished though not used:
+The Grafana dashboard is still finished, though not used:
 
 ![Grafana dashboard](./images/graf.png)
 
 
 ## Summary of implementations
 
-Lastly I want to summarize all the implementations I have done in this project:
+Finally, I want to summarize all the implementations I have done in this project:
 
 - Build Rest API with all CRUD operations
 - Created a new Postgres database in Docker
@@ -1182,4 +1182,6 @@ Lastly I want to summarize all the implementations I have done in this project:
 - Build development environment with automated scripts and air reload
 - Created Grafana dashboard as comparison to the web application dashboard
 - Wrote exemplary unit tests for the backend
+
+
 
