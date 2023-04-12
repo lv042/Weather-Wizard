@@ -275,7 +275,7 @@ I propose PostgreSQL as the database, Fiber as the web framework, and GORM as th
 Prometheus or Grafana for monitoring. Basic HTTP Authentication can be used to provide a basic layer of security.
 The basic Golang library is adequate for testing, while Testify can be used for more sophisticated capabilities. To
 notify
-an administrator about errors and logs, I recommend using SendGrids API.
+an administrator about errors and logs, I recommend using SendGrid's API.
 
 In terms of architecture, whether to utilize a monolithic or microservice architecture ultimately relies on the
 project's unique aims and restrictions. A monolithic design may be more suitable for a small-scale project, but a
