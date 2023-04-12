@@ -144,7 +144,7 @@ ORM is a technique that allows you to query and manipulate data from a database 
 Using an ORM allows developers to leverage their fluency in a programming language, simplifying database interactions
 and abstracting away SQL complexities (Hoyos, 2023). It offers easy database system switching, advanced built-in
 features, and often
-leads to better-performing queries than handwritten SQL. It is typically recommended for small projects to make rapid
+leads to better-performing queries than handwritten SQL. It is typically recommended for small projects, to make rapid
 development easier.
 
 #### Monitoring and Logging and Notification:
@@ -161,7 +161,7 @@ For logging, a logging framework doesn't have to be used for a small scale proje
 library of Golang already provides a good logging framework.
 
 For bigger projects, it is recommended to use a proper logging framework. The most popular and widely used logging
-framework is called Logrus ((Gartner, 2022).
+framework is called Logrus (Gartner, 2022).
 
 Logrus supports a variety of output formats, log levels, and hooks, as well as structured logging. Its adaptability and
 extensibility make it an excellent choice for a wide range of applications.
@@ -183,9 +183,8 @@ authorization information and consist of a header, payload, and signature. JWTs 
 and they can be
 used in a broad range of applications and use situations. Although for a small scale project like Weather Wizard, a more
 simplistic authentication method can also be used. Basic authentication is a simple authentication scheme built into the
-HTTP protocol. The client sends HTTP requests with
-the Authorization header that contains the word Basic word followed by a space and a base64-encoded string username:
-password. The server decodes the base64 string, splits the string into the username and password components, and
+HTTP protocol. The client sends HTTP requests with the Authorization header that contains the word Basic word followed by a space and a base64-encoded string username:password.
+The server decodes the base64 string, splits the string into the username and password components, and
 verifies that the given credentials are valid. Basic authentication may not be very feature rich, but it is very easy to
 implement and use (HTTP Authentication - HTTP | MDN, 2023). It also doesn't require any additional libraries. Its only
 draw is that it doesn't offer confidentiality, so
@@ -202,13 +201,12 @@ that they prefer the standard library of Golang for testing.
 Altogether, the standard library of Golang is very good and provides all the necessary tools for testing (Go
 Programming - the State of Developer Ecosystem in 2022 Infographic, n.d.). It is also
 very easy to use and has a great documentation.
-Testify can be used if more advanced features are in need, but for a small scale project, the
-standard library is sufficient.
+Testify can be used if more advanced features are needed, but for a small scale project, the standard library is sufficient.
 Testify has a lot of features like mocking, assertions, and test suites.
 
 ## What is the best architecture for a Weather Wizard backend in Golang?
 
-You should choose the architectural pattern before you may create a new backend. For this project, there are primarily
+You should choose the architectural pattern before you create a new backend. For this project, there are primarily
 two architectural patterns that matter. The monolithic architecture is the first, while the architecture of
 microservices is the second.
 
